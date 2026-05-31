@@ -9,8 +9,9 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('GRUPOSNAP_THEME_VERSION', '1.0.1');
+define('GRUPOSNAP_THEME_VERSION', '1.0.2');
 
+require_once get_stylesheet_directory() . '/inc/brand.php';
 require_once get_stylesheet_directory() . '/inc/updater.php';
 require_once get_stylesheet_directory() . '/inc/admin.php';
 

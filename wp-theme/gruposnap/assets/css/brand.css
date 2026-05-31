@@ -1,0 +1,175 @@
+/**
+ * GrupoSnap — línea gráfica (botones / CTA)
+ * Pantone 1505U #F26200 · Pantone 2935U #061F5E
+ */
+
+:root {
+	--gruposnap-orange: #f26200;
+	--gruposnap-blue: #061f5e;
+	--gruposnap-whatsapp: #25d366;
+	--gruposnap-dark: #000000;
+	--gruposnap-cta-radius: 0;
+	--gruposnap-cta-padding: 14px 32px;
+	--gruposnap-cta-font-size: 0.875rem;
+
+	--wdtPrimaryColor: var(--gruposnap-orange);
+	--wdtPrimaryColorRgb: 242, 98, 0;
+	--wdtSecondaryColor: var(--gruposnap-blue);
+	--wdtSecondaryColorRgb: 6, 31, 94;
+	--wdtTertiaryColor: var(--gruposnap-blue);
+	--wdtTertiaryColorRgb: 6, 31, 94;
+	--wdtLinkHoverColor: var(--gruposnap-orange);
+	--wdtLinkHoverColorRgb: 242, 98, 0;
+	--wdtRadius_1X: 0;
+	--wdtRadius_2X: 0;
+	--wdtRadius_3X: 0;
+}
+
+/* Selectores de botón / CTA del sitio */
+.gruposnap-cta,
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button[type="button"],
+[role="button"],
+button,
+.button,
+a.button,
+.wdt-button,
+.elementor-button,
+.elementor-widget-button .elementor-button,
+.wp-block-button__link,
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit,
+.yith-wcwl-add-to-wishlist a,
+.yith-wcqv-button,
+.wdt-wcsg-button {
+	border-radius: var(--gruposnap-cta-radius) !important;
+	font-weight: 700 !important;
+	font-size: var(--gruposnap-cta-font-size) !important;
+	letter-spacing: 0.08em !important;
+	line-height: 1.2 !important;
+	padding: var(--gruposnap-cta-padding) !important;
+	text-transform: uppercase !important;
+	border-width: 0 !important;
+	box-shadow: none !important;
+}
+
+/* CTA principal — naranja marca */
+.gruposnap-cta--primary,
+input[type="submit"],
+input[type="button"],
+button[type="button"],
+button,
+.button,
+a.button,
+.wdt-button:not(.gruposnap-cta--dark):not(.gruposnap-cta--whatsapp):not(.gruposnap-cta--outline),
+.elementor-widget-button .elementor-button:not(.elementor-button-outline):not(.gruposnap-cta--dark):not(.gruposnap-cta--whatsapp),
+.elementor-button:not(.elementor-button-outline):not(.gruposnap-cta--dark):not(.gruposnap-cta--whatsapp),
+.wp-block-button:not(.is-style-outline) .wp-block-button__link,
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit {
+	background-color: var(--gruposnap-orange) !important;
+	border-color: var(--gruposnap-orange) !important;
+	color: #ffffff !important;
+}
+
+.gruposnap-cta--primary:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+button[type="button"]:hover,
+button:hover,
+.button:hover,
+a.button:hover,
+.wdt-button:not(.gruposnap-cta--dark):not(.gruposnap-cta--whatsapp):not(.gruposnap-cta--outline):hover,
+.elementor-widget-button .elementor-button:not(.elementor-button-outline):not(.gruposnap-cta--dark):not(.gruposnap-cta--whatsapp):hover,
+.elementor-button:not(.elementor-button-outline):not(.gruposnap-cta--dark):not(.gruposnap-cta--whatsapp):hover,
+.wp-block-button:not(.is-style-outline) .wp-block-button__link:hover,
+.woocommerce a.button:hover,
+.woocommerce button.button:hover,
+.woocommerce input.button:hover,
+.woocommerce #respond input#submit:hover {
+	background-color: var(--gruposnap-blue) !important;
+	border-color: var(--gruposnap-blue) !important;
+	color: #ffffff !important;
+}
+
+/* Contorno — azul marca */
+.gruposnap-cta--outline,
+.elementor-button.elementor-button-outline,
+.elementor-widget-button .elementor-button.elementor-button-outline,
+.wp-block-button.is-style-outline .wp-block-button__link {
+	background-color: transparent !important;
+	border: 2px solid var(--gruposnap-blue) !important;
+	color: var(--gruposnap-blue) !important;
+}
+
+.gruposnap-cta--outline:hover,
+.elementor-button.elementor-button-outline:hover,
+.elementor-widget-button .elementor-button.elementor-button-outline:hover,
+.wp-block-button.is-style-outline .wp-block-button__link:hover {
+	background-color: var(--gruposnap-blue) !important;
+	border-color: var(--gruposnap-blue) !important;
+	color: #ffffff !important;
+}
+
+/* WhatsApp — verde (COTIZAR) */
+.gruposnap-cta--whatsapp,
+a[href*="wa.me"]:not(.no-gruposnap-brand),
+a[href*="whatsapp.com"]:not(.no-gruposnap-brand),
+a[href*="api.whatsapp"]:not(.no-gruposnap-brand) {
+	background-color: var(--gruposnap-whatsapp) !important;
+	border-color: var(--gruposnap-whatsapp) !important;
+	color: #ffffff !important;
+}
+
+.gruposnap-cta--whatsapp:hover,
+a[href*="wa.me"]:not(.no-gruposnap-brand):hover,
+a[href*="whatsapp.com"]:not(.no-gruposnap-brand):hover,
+a[href*="api.whatsapp"]:not(.no-gruposnap-brand):hover {
+	background-color: #1da851 !important;
+	border-color: #1da851 !important;
+	color: #ffffff !important;
+}
+
+/* Catálogo / secundario oscuro */
+.gruposnap-cta--dark,
+.gruposnap-cta--catalog {
+	background-color: var(--gruposnap-dark) !important;
+	border-color: var(--gruposnap-dark) !important;
+	color: #ffffff !important;
+}
+
+.gruposnap-cta--dark:hover,
+.gruposnap-cta--catalog:hover {
+	background-color: var(--gruposnap-blue) !important;
+	border-color: var(--gruposnap-blue) !important;
+	color: #ffffff !important;
+}
+
+/* Secundario sólido — azul marca */
+.gruposnap-cta--blue {
+	background-color: var(--gruposnap-blue) !important;
+	border-color: var(--gruposnap-blue) !important;
+	color: #ffffff !important;
+}
+
+.gruposnap-cta--blue:hover {
+	background-color: var(--gruposnap-orange) !important;
+	border-color: var(--gruposnap-orange) !important;
+	color: #ffffff !important;
+}
+
+/* Iconos dentro del botón (Elementor) */
+.elementor-button .elementor-button-icon,
+.elementor-button .elementor-button-text {
+	vertical-align: middle;
+}
+
+.elementor-button-content-wrapper {
+	gap: 0.5em;
+}
