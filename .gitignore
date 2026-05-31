@@ -1,0 +1,10 @@
+.DS_Store
+*.log
+.env
+.env.*
+*.sql
+*.sqlite
+wp-theme/*.zip
+.cursor/
+DEVELOPMENT.md
+docs/

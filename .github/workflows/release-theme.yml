@@ -1,0 +1,33 @@
+# Publica tag vX.Y.Z con gruposnap.zip en el release para que WordPress detecte la actualización.
+
+name: Release Theme
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Empaquetar tema y publicar release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Crear gruposnap.zip
+        run: |
+          cd wp-theme
+          rm -f gruposnap.zip
+          zip -r gruposnap.zip gruposnap -x "*.DS_Store" -x "*/.DS_Store"
+          test -f gruposnap.zip
+          unzip -l gruposnap.zip | grep -q 'gruposnap/style.css'
+
+      - name: Publicar release en GitHub con gruposnap.zip
+        uses: softprops/action-gh-release@v2
+        with:
+          files: wp-theme/gruposnap.zip
+          generate_release_notes: true
+          make_latest: true
