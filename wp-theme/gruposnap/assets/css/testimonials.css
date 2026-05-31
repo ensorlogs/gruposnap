@@ -1,0 +1,86 @@
+/**
+ * Testimonios — logos de marca y CTA Google Reviews.
+ */
+
+.elementor-element.gruposnap-testimonial .wdt-content-image img {
+	width: 100%;
+	height: 100%;
+	max-height: 72px;
+	object-fit: contain;
+	object-position: left center;
+	background: #ffffff;
+	border-radius: 6px;
+	padding: 10px 12px;
+	box-sizing: border-box;
+}
+
+.elementor-element.gruposnap-testimonial .wdt-content-image-wrapper,
+.elementor-element.gruposnap-testimonial .wdt-content-image {
+	max-width: 140px;
+}
+
+.elementor-element.gruposnap-testimonial .wdt-content-elements-group.wdt-media-group .wdt-content-title h5,
+.elementor-element.gruposnap-testimonial .wdt-content-elements-group.wdt-media-group .wdt-content-title h5 a {
+	font-weight: 700;
+	color: #112b75;
+}
+
+.elementor-element.gruposnap-testimonial .wdt-content-subtitle {
+	color: #5a5a5a;
+	font-size: 0.875rem;
+}
+
+.elementor-element.gruposnap-testimonial .wdt-content-description {
+	color: #333333;
+	line-height: 1.6;
+}
+
+.elementor-751 .elementor-element-25b718d .elementor-widget-heading {
+	display: none !important;
+}
+
+.gruposnap-google-reviews-wrap {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	clear: both;
+}
+
+.gruposnap-google-reviews-wrap--section {
+	margin: 2.5rem 0 3.5rem;
+	padding: 0 clamp(1rem, 4vw, 2rem);
+}
+
+.gruposnap-google-reviews-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: min(100%, 300px);
+	padding: 15px 36px;
+	border-radius: 4px;
+	background-color: #112b75;
+	border: 0;
+	color: #ffffff;
+	font-weight: 700;
+	font-size: 0.8125rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	text-decoration: none;
+	transition: background-color 0.25s ease, transform 0.2s ease;
+	box-shadow: 0 6px 20px rgba(17, 43, 117, 0.22);
+}
+
+.gruposnap-google-reviews-btn:hover {
+	transform: translateY(-1px);
+}
+
+.gruposnap-google-reviews-btn:hover,
+.gruposnap-google-reviews-btn:focus {
+	background-color: #0c1e55;
+	color: #ffffff;
+}
+
+.gruposnap-google-reviews-btn:focus-visible {
+	outline: 2px solid #f57c20;
+	outline-offset: 3px;
+}

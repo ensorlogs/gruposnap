@@ -1,0 +1,231 @@
+/**
+ * GrupoSnap — solo botones CTA (no layout, no tipografía global, no enlaces de texto).
+ * Azul #112B75 · Naranja #F57C20 · WhatsApp #25D366
+ */
+
+:root {
+	--gs-cta-orange: #f57c20;
+	--gs-cta-orange-hover: #e56712;
+	--gs-cta-blue: #112b75;
+	--gs-cta-blue-hover: #0c1e55;
+	--gs-cta-white: #ffffff;
+	--gs-cta-whatsapp: #25d366;
+	--gs-cta-whatsapp-hover: #1da851;
+	--gs-cta-radius: 4px;
+	--gs-cta-padding: 14px 32px;
+	--gs-cta-font-size: 0.875rem;
+	--gs-cta-transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+/* Forma común — solo widgets marcados como CTA */
+.elementor-element[class*="gruposnap-cta--"] .wdt-button-holder .wdt-button,
+.elementor-element[class*="gruposnap-cta--"] .wdt-button.gruposnap-cta--primary,
+.elementor-element[class*="gruposnap-cta--"] .wdt-button.gruposnap-cta--secondary,
+.elementor-element[class*="gruposnap-cta--"] .wdt-button.gruposnap-cta--whatsapp {
+	border-radius: var(--gs-cta-radius) !important;
+	font-weight: 700 !important;
+	font-size: var(--gs-cta-font-size) !important;
+	letter-spacing: 0.06em !important;
+	line-height: 1.25 !important;
+	padding: var(--gs-cta-padding) !important;
+	text-transform: uppercase !important;
+	border-width: 0 !important;
+	box-shadow: none !important;
+	background-image: none !important;
+	transition: var(--gs-cta-transition) !important;
+}
+
+.elementor-element[class*="gruposnap-cta--"] .wdt-button:focus-visible {
+	outline: 2px solid var(--gs-cta-orange) !important;
+	outline-offset: 3px !important;
+}
+
+/* —— Primario: acción principal (naranja) —— */
+.elementor-element.gruposnap-cta--primary .wdt-button-holder .wdt-button,
+.wdt-button.gruposnap-cta--primary {
+	background-color: var(--gs-cta-orange) !important;
+	border-color: var(--gs-cta-orange) !important;
+	color: var(--gs-cta-white) !important;
+}
+
+.elementor-element.gruposnap-cta--primary .wdt-button-holder .wdt-button:hover,
+.elementor-element.gruposnap-cta--primary .wdt-button-holder .wdt-button:focus,
+.wdt-button.gruposnap-cta--primary:hover {
+	background-color: var(--gs-cta-orange-hover) !important;
+	border-color: var(--gs-cta-orange-hover) !important;
+	color: var(--gs-cta-white) !important;
+}
+
+/* —— Secundario: catálogo, ver más (azul) —— */
+.elementor-element.gruposnap-cta--secondary .wdt-button-holder .wdt-button,
+.wdt-button.gruposnap-cta--secondary {
+	background-color: var(--gs-cta-blue) !important;
+	border-color: var(--gs-cta-blue) !important;
+	color: var(--gs-cta-white) !important;
+}
+
+.elementor-element.gruposnap-cta--secondary .wdt-button-holder .wdt-button:hover,
+.elementor-element.gruposnap-cta--secondary .wdt-button-holder .wdt-button:focus,
+.wdt-button.gruposnap-cta--secondary:hover {
+	background-color: var(--gs-cta-orange) !important;
+	border-color: var(--gs-cta-orange) !important;
+	color: var(--gs-cta-white) !important;
+}
+
+/*
+ * WhatsApp / cotización fuera del hero: azul catálogo → hover naranja (mismo patrón).
+ * En el hero (650305b) se mantiene verde WhatsApp más abajo.
+ */
+.elementor-element.gruposnap-cta--whatsapp .wdt-button-holder .wdt-button,
+.wdt-button.gruposnap-cta--whatsapp {
+	background-color: var(--gs-cta-blue) !important;
+	border-color: var(--gs-cta-blue) !important;
+	color: var(--gs-cta-white) !important;
+}
+
+.elementor-element.gruposnap-cta--whatsapp .wdt-button-holder .wdt-button:hover,
+.elementor-element.gruposnap-cta--whatsapp .wdt-button-holder .wdt-button:focus,
+.wdt-button.gruposnap-cta--whatsapp:hover {
+	background-color: var(--gs-cta-orange) !important;
+	border-color: var(--gs-cta-orange) !important;
+	color: var(--gs-cta-white) !important;
+}
+
+/*
+ * Hero home (fondo cálido/naranja, sección 650305b): verde WhatsApp + azul catálogo.
+ * Sustituye el negro del demo por azul corporativo con mejor contraste.
+ */
+.elementor-751 .elementor-element-650305b .gruposnap-cta--secondary .wdt-button-holder .wdt-button {
+	background-color: var(--gs-cta-blue) !important;
+	border-color: var(--gs-cta-blue) !important;
+}
+
+.elementor-751 .elementor-element-650305b .gruposnap-cta--whatsapp .wdt-button-holder .wdt-button {
+	background-color: var(--gs-cta-whatsapp) !important;
+	border-color: var(--gs-cta-whatsapp) !important;
+}
+
+.elementor-751 .elementor-element-650305b .gruposnap-cta--whatsapp .wdt-button-holder .wdt-button:hover,
+.elementor-751 .elementor-element-650305b .gruposnap-cta--whatsapp .wdt-button-holder .wdt-button:focus {
+	background-color: var(--gs-cta-whatsapp-hover) !important;
+	border-color: var(--gs-cta-whatsapp-hover) !important;
+}
+
+/* Bloques oferta / gradiente: primario azul → hover naranja */
+.elementor-element[class*="wdt-offer"] .gruposnap-cta--primary .wdt-button-holder .wdt-button,
+.elementor-element.wdt-custom-gr-bg-btn.gruposnap-cta--primary .wdt-button-holder .wdt-button {
+	background-color: var(--gs-cta-blue) !important;
+	border-color: var(--gs-cta-blue) !important;
+	color: var(--gs-cta-white) !important;
+}
+
+.elementor-element[class*="wdt-offer"] .gruposnap-cta--primary .wdt-button-holder .wdt-button:hover,
+.elementor-element[class*="wdt-offer"] .gruposnap-cta--primary .wdt-button-holder .wdt-button:focus,
+.elementor-element.wdt-custom-gr-bg-btn.gruposnap-cta--primary .wdt-button-holder .wdt-button:hover,
+.elementor-element.wdt-custom-gr-bg-btn.gruposnap-cta--primary .wdt-button-holder .wdt-button:focus {
+	background-color: var(--gs-cta-orange) !important;
+	border-color: var(--gs-cta-orange) !important;
+}
+
+/* SCROLL — sin estilo CTA (prioridad máxima) */
+.elementor-element.wdt-custom-slider-scroll .wdt-button-holder .wdt-button,
+.wdt-custom-slider-scroll .wdt-button-holder .wdt-button,
+.wdt-custom-slider-scroll .wdt-button {
+	background: transparent !important;
+	border: 0 !important;
+	box-shadow: none !important;
+	padding: 0 !important;
+	font-size: inherit !important;
+	letter-spacing: 1.28px !important;
+	color: #000000 !important;
+	text-transform: uppercase !important;
+}
+
+.elementor-element.wdt-custom-slider-scroll .wdt-button-holder .wdt-button:hover,
+.wdt-custom-slider-scroll .wdt-button:hover {
+	background: transparent !important;
+	color: #000000 !important;
+}
+
+/* Formularios y tienda — solo envíos / compra (CTA claros) */
+.wdt-custom-contact-page-form input[type="submit"],
+.woocommerce a.button.alt,
+.woocommerce button.button.alt,
+.woocommerce input.button.alt,
+.woocommerce #respond input#submit {
+	border-radius: var(--gs-cta-radius) !important;
+	font-weight: 700 !important;
+	font-size: var(--gs-cta-font-size) !important;
+	letter-spacing: 0.06em !important;
+	text-transform: uppercase !important;
+	background-color: var(--gs-cta-orange) !important;
+	border-color: var(--gs-cta-orange) !important;
+	color: var(--gs-cta-white) !important;
+	background-image: none !important;
+	transition: var(--gs-cta-transition) !important;
+}
+
+.wdt-custom-contact-page-form input[type="submit"]:hover,
+.woocommerce a.button.alt:hover,
+.woocommerce button.button.alt:hover,
+.woocommerce input.button.alt:hover {
+	background-color: var(--gs-cta-orange-hover) !important;
+	border-color: var(--gs-cta-orange-hover) !important;
+}
+
+/*
+ * Catálogo (VER CATLAOGO 2026): anula --wdt-elementor-color-accent (#61CE70) y hover Elementor.
+ * Widgets home: 037651e, 465050a · enlaces flipsnack.
+ */
+.elementor-element.gruposnap-cta--secondary .wdt-button-holder.wdt-template-filled .wdt-button,
+.elementor-element.gruposnap-cta--secondary .wdt-button-holder .wdt-button,
+.elementor-element.gruposnap-cta--secondary .wdt-button-holder a.wdt-button[href*="flipsnack"],
+.elementor-751 .elementor-element.elementor-element-037651e.gruposnap-cta--secondary .wdt-button-holder .wdt-button,
+.elementor-751 .elementor-element.elementor-element-465050a.gruposnap-cta--secondary .wdt-button-holder .wdt-button {
+	background-color: var(--gs-cta-blue) !important;
+	border-color: var(--gs-cta-blue) !important;
+	color: var(--gs-cta-white) !important;
+}
+
+.elementor-element.gruposnap-cta--secondary .wdt-button-holder .wdt-button:hover,
+.elementor-element.gruposnap-cta--secondary .wdt-button-holder .wdt-button:focus,
+.elementor-751 .elementor-element.elementor-element-037651e.gruposnap-cta--secondary .wdt-button-holder .wdt-button:hover,
+.elementor-751 .elementor-element.elementor-element-037651e.gruposnap-cta--secondary .wdt-button-holder .wdt-button:focus,
+.elementor-751 .elementor-element.elementor-element-465050a.gruposnap-cta--secondary .wdt-button-holder .wdt-button:hover,
+.elementor-751 .elementor-element.elementor-element-465050a.gruposnap-cta--secondary .wdt-button-holder .wdt-button:focus {
+	background-color: var(--gs-cta-orange) !important;
+	border-color: var(--gs-cta-orange) !important;
+	color: var(--gs-cta-white) !important;
+}
+
+.elementor-element.gruposnap-cta--secondary .wdt-button-holder[class*="wdt-animation"] .wdt-button:after,
+.elementor-element.gruposnap-cta--secondary .wdt-button-holder[class*="wdt-animation"] .wdt-button:hover:after,
+.elementor-element.gruposnap-cta--secondary .wdt-button-holder[class*="wdt-animation"] .wdt-button:focus:after,
+.elementor-751 .elementor-element.elementor-element-037651e.gruposnap-cta--secondary .wdt-button-holder[class*="wdt-animation"] .wdt-button:after,
+.elementor-751 .elementor-element.elementor-element-465050a.gruposnap-cta--secondary .wdt-button-holder[class*="wdt-animation"] .wdt-button:after {
+	background-color: var(--gs-cta-orange) !important;
+	background-image: none !important;
+}
+
+/* Anulaciones Elementor/WDT (accent verde) en CTAs de cotización */
+.elementor-751 .elementor-element.elementor-element-e4b12f6.gruposnap-cta--whatsapp .wdt-button-holder .wdt-button,
+.elementor-751 .elementor-element.elementor-element-47796ac.gruposnap-cta--whatsapp .wdt-button-holder .wdt-button,
+.elementor-751 .elementor-element.elementor-element-e4b12f6.gruposnap-cta--whatsapp .wdt-button-holder[class*="wdt-animation"] .wdt-button:after,
+.elementor-751 .elementor-element.elementor-element-47796ac.gruposnap-cta--whatsapp .wdt-button-holder[class*="wdt-animation"] .wdt-button:after,
+.elementor-751 .elementor-element.elementor-element-e4b12f6.gruposnap-cta--whatsapp .wdt-button-holder[class*="wdt-animation"] .wdt-button:hover:after,
+.elementor-751 .elementor-element.elementor-element-47796ac.gruposnap-cta--whatsapp .wdt-button-holder[class*="wdt-animation"] .wdt-button:hover:after {
+	background-color: var(--gs-cta-blue) !important;
+	background-image: none !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-e4b12f6.gruposnap-cta--whatsapp .wdt-button-holder .wdt-button:hover,
+.elementor-751 .elementor-element.elementor-element-e4b12f6.gruposnap-cta--whatsapp .wdt-button-holder .wdt-button:focus,
+.elementor-751 .elementor-element.elementor-element-47796ac.gruposnap-cta--whatsapp .wdt-button-holder .wdt-button:hover,
+.elementor-751 .elementor-element.elementor-element-47796ac.gruposnap-cta--whatsapp .wdt-button-holder .wdt-button:focus,
+.elementor-751 .elementor-element.elementor-element-e4b12f6.gruposnap-cta--whatsapp .wdt-button-holder[class*="wdt-animation"] .wdt-button:hover:after,
+.elementor-751 .elementor-element.elementor-element-47796ac.gruposnap-cta--whatsapp .wdt-button-holder[class*="wdt-animation"] .wdt-button:hover:after,
+.elementor-751 .elementor-element.elementor-element-e4b12f6.gruposnap-cta--whatsapp .wdt-button-holder[class*="wdt-animation"] .wdt-button:focus:after,
+.elementor-751 .elementor-element.elementor-element-47796ac.gruposnap-cta--whatsapp .wdt-button-holder[class*="wdt-animation"] .wdt-button:focus:after {
+	background-color: var(--gs-cta-orange) !important;
+	border-color: var(--gs-cta-orange) !important;
+}

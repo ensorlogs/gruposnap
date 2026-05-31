@@ -1,0 +1,127 @@
+/**
+ * GrupoSnap · cabecera móvil / tablet
+ * Logo y burger más centrados; etiqueta MENU visible.
+ */
+
+@media only screen and (max-width: 1024px) {
+	.elementor-640 .elementor-element.elementor-element-070ddc7 > .elementor-container {
+		justify-content: center !important;
+		align-items: center !important;
+		flex-wrap: nowrap !important;
+		gap: clamp(1.25rem, 6vw, 2.75rem) !important;
+		padding-left: clamp(1rem, 4vw, 1.75rem) !important;
+		padding-right: clamp(1rem, 4vw, 1.75rem) !important;
+		max-width: 100%;
+	}
+
+	.elementor-640 .elementor-element.elementor-element-d9112b5,
+	.elementor-640 .elementor-element.elementor-element-f41d30a {
+		width: auto !important;
+		max-width: none !important;
+		flex: 0 1 auto !important;
+	}
+
+	.elementor-640 .elementor-element.elementor-element-d9112b5 > .elementor-widget-wrap,
+	.elementor-640 .elementor-element.elementor-element-f41d30a > .elementor-widget-wrap {
+		justify-content: center !important;
+	}
+
+	.elementor-640 .elementor-element.elementor-element-b928f2e {
+		width: auto !important;
+		max-width: min(58vw, 220px) !important;
+	}
+
+	.elementor-640 .elementor-element.elementor-element-b928f2e .wdt-logo-container {
+		text-align: center;
+	}
+
+	.elementor-640 .elementor-element.elementor-element-b928f2e .wdt-logo-container img {
+		width: auto;
+		max-height: 46px;
+		margin: 0 auto;
+	}
+
+	.elementor-640 .elementor-element.elementor-element-fcfb7aa {
+		width: auto !important;
+		max-width: none !important;
+	}
+
+	.elementor-640 .elementor-element.elementor-element-fcfb7aa .wdt-header-menu,
+	.elementor-640 .elementor-element.elementor-element-fcfb7aa .mobile-nav-container {
+		display: flex !important;
+		justify-content: center;
+		align-items: center;
+		margin: 0 !important;
+		float: none !important;
+	}
+
+	.elementor-640 .mobile-nav-container .menu-trigger {
+		display: inline-flex !important;
+		align-items: center;
+		justify-content: center;
+		gap: 0.55rem;
+		height: auto !important;
+		min-height: 44px;
+		line-height: 1.2 !important;
+		padding: 0.45rem 0.95rem 0.45rem 0.8rem;
+		border: 1px solid rgba(17, 43, 117, 0.22);
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.92);
+		box-shadow: 0 4px 14px rgba(17, 43, 117, 0.12);
+		color: #112b75 !important;
+	}
+
+	.elementor-640 .mobile-nav-container .menu-trigger:hover,
+	.elementor-640 .mobile-nav-container .menu-trigger:focus-visible {
+		color: #f57c20 !important;
+		border-color: rgba(245, 124, 32, 0.45);
+	}
+
+	.elementor-640 .mobile-nav-container .menu-trigger > i {
+		flex-shrink: 0;
+		margin: 0;
+	}
+
+	.elementor-640 .mobile-nav-container .menu-trigger > span {
+		display: inline-block !important;
+		font-size: 0.72rem !important;
+		font-weight: 800 !important;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: #112b75;
+		vertical-align: middle;
+		line-height: 1;
+		padding: 0;
+	}
+
+	.elementor-640 .mobile-nav-container .menu-trigger:hover > span,
+	.elementor-640 .mobile-nav-container .menu-trigger:focus-visible > span {
+		color: #f57c20;
+	}
+
+	.elementor-640 .mobile-menu .wdt-header-menu .wdt-primary-nav > li > a {
+		transition: color 0.2s ease;
+	}
+
+	.elementor-640 .mobile-menu .wdt-header-menu .wdt-primary-nav > li:hover > a,
+	.elementor-640 .mobile-menu .wdt-header-menu .wdt-primary-nav > li > a:hover,
+	.elementor-640 .mobile-menu .wdt-header-menu .wdt-primary-nav > li > a:focus-visible {
+		color: #f57c20 !important;
+	}
+}
+
+@media only screen and (max-width: 479px) {
+	.elementor-640 .elementor-element.elementor-element-070ddc7 > .elementor-container {
+		gap: 1rem !important;
+		padding-left: 0.85rem !important;
+		padding-right: 0.85rem !important;
+	}
+
+	.elementor-640 .elementor-element.elementor-element-b928f2e {
+		max-width: min(52vw, 180px) !important;
+	}
+
+	.elementor-640 .elementor-element.elementor-element-b928f2e .wdt-logo-container img {
+		max-height: 40px;
+	}
+}

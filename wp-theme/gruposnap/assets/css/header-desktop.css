@@ -1,0 +1,122 @@
+/**
+ * Header escritorio — menú centrado y CTA catálogo (template Elementor 640).
+ */
+
+@media only screen and (min-width: 1025px) {
+	.elementor-640 .elementor-element.elementor-element-070ddc7 > .elementor-container {
+		display: grid !important;
+		grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+		align-items: center;
+		column-gap: 1.5rem;
+		width: 100%;
+		max-width: 1600px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.elementor-640 .elementor-element.elementor-element-070ddc7 > .elementor-container > .elementor-column {
+		width: auto !important;
+		max-width: none !important;
+	}
+
+	.elementor-640 .elementor-element.elementor-element-d9112b5 {
+		justify-self: start;
+		grid-column: 1;
+	}
+
+	.elementor-640 .elementor-element.elementor-element-e41d348 {
+		justify-self: center;
+		grid-column: 2;
+	}
+
+	.elementor-640 .elementor-element.elementor-element-f41d30a {
+		justify-self: end;
+		grid-column: 3;
+	}
+
+	.elementor-640 .elementor-element.elementor-element-e41d348 .elementor-widget-wrap,
+	.elementor-640 .elementor-element.elementor-element-e41d348 .wdt-header-menu,
+	.elementor-640 .elementor-element.elementor-element-e41d348 .menu-container {
+		justify-content: center !important;
+	}
+
+	.elementor-640 .elementor-element.elementor-element-e41d348 .wdt-primary-nav {
+		justify-content: center;
+	}
+
+	.elementor-640 .elementor-element.elementor-element-e41d348 .wdt-header-menu .wdt-primary-nav > li > a {
+		transition: color 0.2s ease;
+	}
+
+	.elementor-640 .elementor-element.elementor-element-e41d348 .wdt-header-menu .wdt-primary-nav > li:hover > a,
+	.elementor-640 .elementor-element.elementor-element-e41d348 .wdt-header-menu .wdt-primary-nav > li > a:hover,
+	.elementor-640 .elementor-element.elementor-element-e41d348 .wdt-header-menu .wdt-primary-nav > li > a:focus-visible {
+		color: #f57c20 !important;
+	}
+
+	.elementor-640 .elementor-element.elementor-element-f41d30a .elementor-widget-wrap {
+		justify-content: flex-end !important;
+	}
+}
+
+/* CTA catálogo (sustituye buscador) */
+.gruposnap-header-catalog-wrap {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.gruposnap-header-catalog-cta {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.45rem;
+	min-height: 42px;
+	padding: 0.55rem 1.15rem;
+	border-radius: 4px;
+	background-color: #112b75;
+	border: 1px solid #112b75;
+	color: #ffffff !important;
+	font-size: 0.75rem;
+	font-weight: 700;
+	line-height: 1.2;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	text-decoration: none !important;
+	white-space: nowrap;
+	box-shadow: 0 4px 14px rgba(17, 43, 117, 0.22);
+	transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.gruposnap-header-catalog-cta:hover,
+.gruposnap-header-catalog-cta:focus-visible {
+	background-color: #f57c20;
+	border-color: #f57c20;
+	color: #ffffff !important;
+	transform: translateY(-1px);
+}
+
+.gruposnap-header-catalog-cta:focus-visible {
+	outline: 2px solid #f57c20;
+	outline-offset: 2px;
+}
+
+.gruposnap-header-catalog-cta__icon {
+	display: inline-flex;
+	width: 14px;
+	height: 14px;
+	flex-shrink: 0;
+}
+
+.gruposnap-header-catalog-cta__icon svg {
+	display: block;
+	width: 14px;
+	height: 14px;
+	fill: currentColor;
+}
+
+@media only screen and (max-width: 1024px) {
+	.gruposnap-header-catalog-wrap {
+		display: none;
+	}
+}

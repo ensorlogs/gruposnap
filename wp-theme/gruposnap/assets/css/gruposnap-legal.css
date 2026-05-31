@@ -1,0 +1,243 @@
+/* GrupoSnap · Páginas legales */
+:root {
+	--gsnap-legal-accent: #f57c20;
+	--gsnap-legal-navy: #112b75;
+	--gsnap-legal-ink: #1f2125;
+	--gsnap-legal-soft: rgba(31, 33, 37, 0.78);
+	--gsnap-legal-border: rgba(0, 0, 0, 0.08);
+	--gsnap-legal-card: #fff;
+}
+
+.gsnap-legal-page {
+	color: var(--gsnap-legal-ink);
+	padding-bottom: 3rem;
+}
+
+.gsnap-legal-hero {
+	padding: 2.5rem 1.25rem 1.5rem;
+	background: linear-gradient(180deg, rgba(17, 43, 117, 0.06) 0%, transparent 100%);
+}
+
+.gsnap-legal-hero__inner {
+	max-width: 760px;
+	margin: 0 auto;
+}
+
+.gsnap-legal-hero__eyebrow {
+	font-size: 0.72rem;
+	font-weight: 800;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--gsnap-legal-navy);
+	margin: 0 0 0.75rem;
+}
+
+.gsnap-legal-hero__title {
+	font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+	line-height: 1.15;
+	font-weight: 800;
+	color: var(--gsnap-legal-navy);
+	margin: 0 0 0.85rem;
+}
+
+.gsnap-legal-hero__lead {
+	font-size: 1.05rem;
+	line-height: 1.55;
+	color: var(--gsnap-legal-soft);
+	margin: 0 0 1rem;
+	max-width: 62ch;
+}
+
+.gsnap-legal-hero__meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.gsnap-legal-pill {
+	display: inline-flex;
+	align-items: center;
+	font-size: 0.72rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	background: var(--gsnap-legal-card);
+	border: 1px solid var(--gsnap-legal-border);
+	padding: 0.35rem 0.75rem;
+	border-radius: 999px;
+	color: var(--gsnap-legal-soft);
+}
+
+.gsnap-legal-wrap {
+	max-width: 760px;
+	margin: 0 auto;
+	padding: 0 1.25rem 2rem;
+}
+
+.gsnap-legal-body {
+	background: var(--gsnap-legal-card);
+	border: 1px solid var(--gsnap-legal-border);
+	border-radius: 16px;
+	padding: 1.5rem 1.35rem;
+	box-shadow: 0 8px 28px rgba(17, 43, 117, 0.06);
+}
+
+.gsnap-legal-body h2 {
+	font-size: 1.2rem;
+	color: var(--gsnap-legal-navy);
+	margin: 1.75rem 0 0.65rem;
+	line-height: 1.3;
+}
+
+.gsnap-legal-body h2:first-child {
+	margin-top: 0;
+}
+
+.gsnap-legal-body p,
+.gsnap-legal-body li {
+	font-size: 1rem;
+	line-height: 1.7;
+	color: var(--gsnap-legal-ink);
+}
+
+.gsnap-legal-body ul {
+	margin: 0 0 1rem;
+	padding-left: 1.25rem;
+}
+
+.gsnap-legal-body a {
+	color: var(--gsnap-legal-navy);
+	text-decoration: underline;
+	text-decoration-color: var(--gsnap-legal-accent);
+}
+
+.gsnap-legal-body table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 1rem 0;
+	font-size: 0.9rem;
+}
+
+.gsnap-legal-body th,
+.gsnap-legal-body td {
+	border: 1px solid var(--gsnap-legal-border);
+	padding: 0.55rem 0.65rem;
+	text-align: left;
+	vertical-align: top;
+}
+
+.gsnap-legal-body th {
+	background: rgba(17, 43, 117, 0.05);
+	color: var(--gsnap-legal-navy);
+}
+
+.gsnap-legal-body .gsnap-cookies-reopen {
+	display: inline;
+	margin: 0;
+	padding: 0;
+	background: none !important;
+	border: 0 !important;
+	box-shadow: none !important;
+	color: var(--gsnap-legal-navy);
+	text-decoration: underline;
+	text-transform: none;
+	letter-spacing: 0;
+	font: inherit;
+	cursor: pointer;
+}
+
+.gsnap-legal-foot {
+	max-width: 760px;
+	margin: 2rem auto 0;
+	padding: 0 1.25rem;
+}
+
+.gsnap-legal-cta-card {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: 1.25rem 1.35rem;
+	border-radius: 14px;
+	background: rgba(245, 124, 32, 0.08);
+	border: 1px solid rgba(245, 124, 32, 0.25);
+}
+
+.gsnap-legal-cta-card__title {
+	font-weight: 700;
+	margin: 0 0 0.35rem;
+	color: var(--gsnap-legal-navy);
+}
+
+.gsnap-legal-cta-card__sub {
+	margin: 0;
+	font-size: 0.92rem;
+	line-height: 1.5;
+	color: var(--gsnap-legal-soft);
+}
+
+.gsnap-legal-cta-card__action {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+	padding: 0.65rem 1.1rem;
+	border-radius: 999px;
+	background: var(--gsnap-legal-navy);
+	color: #fff;
+	text-decoration: none;
+	font-weight: 700;
+	font-size: 0.9rem;
+}
+
+.gsnap-legal-cta-card__action:hover {
+	background: var(--gsnap-legal-accent);
+	color: #fff;
+}
+
+.gsnap-legal-cross {
+	margin-top: 1.5rem;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 1rem;
+}
+
+.gsnap-legal-cross__title {
+	width: 100%;
+	font-size: 0.78rem;
+	font-weight: 800;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--gsnap-legal-soft);
+	margin: 0 0 0.25rem;
+}
+
+.gsnap-legal-cross a {
+	font-size: 0.88rem;
+	color: var(--gsnap-legal-navy);
+	text-decoration: none;
+	font-weight: 600;
+}
+
+.gsnap-legal-cross a.is-current,
+.gsnap-legal-cross a:hover {
+	color: var(--gsnap-legal-accent);
+	text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+	.gsnap-legal-body {
+		padding: 1.15rem 1rem;
+	}
+
+	.gsnap-legal-body table {
+		display: block;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.gsnap-legal-cta-card {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}

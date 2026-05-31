@@ -1,0 +1,355 @@
+/* GrupoSnap · Accesibilidad (panel compacto, aislado del tema padre) */
+
+:root {
+	--gsnap-a11y-accent: #f57c20;
+	--gsnap-a11y-navy: #112b75;
+	--gsnap-a11y-muted: #6b7280;
+	--gsnap-a11y-line: rgba(17, 43, 117, 0.1);
+}
+
+.gsnap-skip-link {
+	position: absolute;
+	left: -9999px;
+	top: 0;
+	z-index: 9999;
+	padding: 0.5rem 0.85rem;
+	background: var(--gsnap-a11y-navy);
+	color: #fff;
+	text-decoration: none;
+	font-size: 0.8125rem;
+	font-weight: 700;
+	border-radius: 0 0 6px 6px;
+}
+
+.gsnap-skip-link:focus {
+	left: 0.75rem;
+	top: 0.5rem;
+	outline: 2px solid var(--gsnap-a11y-accent);
+	outline-offset: 2px;
+}
+
+:focus-visible {
+	outline: 2px solid var(--gsnap-a11y-accent);
+	outline-offset: 2px;
+}
+
+/* FAB — reset estilos globales de printme (button → padding grande + naranja) */
+button.gsnap-a11y-fab {
+	appearance: none;
+	-webkit-appearance: none;
+	box-sizing: border-box;
+	position: fixed;
+	left: 0.85rem;
+	bottom: 0.85rem;
+	z-index: 90;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	min-width: 40px;
+	min-height: 40px;
+	max-width: 40px;
+	max-height: 40px;
+	margin: 0;
+	padding: 0;
+	border: none;
+	border-radius: 8px;
+	background: var(--gsnap-a11y-accent);
+	color: #fff;
+	font-family: inherit;
+	font-size: 0;
+	font-weight: 400;
+	line-height: 1;
+	letter-spacing: 0;
+	text-transform: none;
+	text-decoration: none;
+	white-space: nowrap;
+	float: none;
+	cursor: pointer;
+	box-shadow: 0 3px 12px rgba(245, 124, 32, 0.35);
+	transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+button.gsnap-a11y-fab:hover,
+button.gsnap-a11y-fab:focus-visible {
+	background: var(--gsnap-a11y-navy);
+	color: #fff;
+	border: none;
+	transform: translateY(-1px);
+	box-shadow: 0 5px 14px rgba(17, 43, 117, 0.28);
+}
+
+button.gsnap-a11y-fab[aria-expanded="true"] {
+	background: var(--gsnap-a11y-navy);
+	color: #fff;
+}
+
+button.gsnap-a11y-fab:focus-visible {
+	outline: 2px solid var(--gsnap-a11y-accent);
+	outline-offset: 2px;
+}
+
+button.gsnap-a11y-fab svg {
+	display: block;
+	width: 22px;
+	height: 22px;
+	flex-shrink: 0;
+	fill: currentColor;
+}
+
+/* Panel */
+.gsnap-a11y-panel {
+	position: fixed;
+	left: 0.85rem;
+	bottom: 3.65rem;
+	z-index: 91;
+	width: min(15.5rem, calc(100vw - 1.75rem));
+	background: #fff;
+	color: #1f2937;
+	border-radius: 12px;
+	border: 1px solid var(--gsnap-a11y-line);
+	box-shadow: 0 10px 32px rgba(17, 43, 117, 0.16);
+	display: none;
+	overflow: hidden;
+	font-family: inherit;
+	font-size: 13px;
+	line-height: 1.35;
+}
+
+.gsnap-a11y-panel.is-open {
+	display: block;
+}
+
+.gsnap-a11y-panel__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5rem;
+	padding: 0.55rem 0.65rem;
+	background: #f8fafc;
+	border-bottom: 1px solid var(--gsnap-a11y-line);
+}
+
+.gsnap-a11y-panel h2 {
+	margin: 0;
+	font-size: 0.8125rem;
+	font-weight: 800;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--gsnap-a11y-navy);
+}
+
+.gsnap-a11y-panel__body {
+	padding: 0.5rem 0.65rem 0.6rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.45rem;
+}
+
+.gsnap-a11y-field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+}
+
+.gsnap-a11y-field--row {
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5rem;
+	padding-top: 0.35rem;
+	border-top: 1px solid var(--gsnap-a11y-line);
+}
+
+.gsnap-a11y-field--row:first-child {
+	border-top: 0;
+	padding-top: 0;
+}
+
+.gsnap-a11y-field__copy {
+	min-width: 0;
+	flex: 1;
+}
+
+.gsnap-a11y-field__label {
+	display: block;
+	font-size: 0.75rem;
+	font-weight: 700;
+	color: var(--gsnap-a11y-navy);
+	line-height: 1.25;
+}
+
+.gsnap-a11y-field__hint {
+	display: block;
+	margin-top: 0.1rem;
+	font-size: 0.6875rem;
+	color: var(--gsnap-a11y-muted);
+	font-weight: 400;
+	line-height: 1.3;
+}
+
+/* Reset botones del tema padre (printme aplica estilos globales a button) */
+.gsnap-a11y-panel button.gsnap-a11y-btn,
+.gsnap-a11y-panel button.gsnap-a11y-close {
+	appearance: none;
+	-webkit-appearance: none;
+	box-sizing: border-box;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+	padding: 0.28rem 0.55rem;
+	min-height: 26px;
+	min-width: 0;
+	width: auto;
+	max-width: none;
+	font-family: inherit;
+	font-size: 0.6875rem;
+	font-weight: 700;
+	line-height: 1.2;
+	letter-spacing: 0.03em;
+	text-transform: none;
+	text-decoration: none;
+	white-space: nowrap;
+	color: var(--gsnap-a11y-navy);
+	background: #f1f4f9;
+	border: 1px solid var(--gsnap-a11y-line);
+	border-radius: 6px;
+	box-shadow: none;
+	cursor: pointer;
+	transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.gsnap-a11y-panel button.gsnap-a11y-btn:hover,
+.gsnap-a11y-panel button.gsnap-a11y-close:hover {
+	background: #e8edf5;
+	border-color: rgba(17, 43, 117, 0.22);
+	color: var(--gsnap-a11y-navy);
+}
+
+.gsnap-a11y-panel button.gsnap-a11y-btn:focus-visible,
+.gsnap-a11y-panel button.gsnap-a11y-close:focus-visible {
+	outline: 2px solid var(--gsnap-a11y-accent);
+	outline-offset: 1px;
+}
+
+.gsnap-a11y-panel button.gsnap-a11y-btn.is-active {
+	background: var(--gsnap-a11y-accent);
+	border-color: var(--gsnap-a11y-accent);
+	color: #fff;
+}
+
+.gsnap-a11y-panel button.gsnap-a11y-close {
+	width: 26px;
+	height: 26px;
+	min-height: 26px;
+	padding: 0;
+	border-radius: 6px;
+	font-size: 1rem;
+	line-height: 1;
+	color: var(--gsnap-a11y-muted);
+	background: transparent;
+	border-color: transparent;
+	flex-shrink: 0;
+}
+
+.gsnap-a11y-panel button.gsnap-a11y-close:hover {
+	background: rgba(17, 43, 117, 0.06);
+	color: var(--gsnap-a11y-navy);
+}
+
+.gsnap-a11y-seg {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 0.3rem;
+}
+
+.gsnap-a11y-seg .gsnap-a11y-btn {
+	width: 100%;
+	padding: 0.32rem 0;
+	font-size: 0.75rem;
+}
+
+.gsnap-a11y-panel button.gsnap-a11y-btn--reset {
+	width: 100%;
+	margin-top: 0.15rem;
+	padding: 0.38rem 0.5rem;
+	font-size: 0.6875rem;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	background: transparent;
+	border-style: dashed;
+	color: var(--gsnap-a11y-muted);
+}
+
+.gsnap-a11y-panel button.gsnap-a11y-btn--reset:hover {
+	background: rgba(17, 43, 117, 0.04);
+	border-color: rgba(17, 43, 117, 0.25);
+	color: var(--gsnap-a11y-navy);
+}
+
+/* Preferencias aplicadas */
+html.gsnap-a11y-text-lg {
+	font-size: 17.6px;
+}
+
+html.gsnap-a11y-text-xl {
+	font-size: 19.2px;
+}
+
+html.gsnap-a11y-spacing :where(p, li, blockquote, .elementor-widget-text-editor) {
+	line-height: 1.85 !important;
+	letter-spacing: 0.02em !important;
+}
+
+html.gsnap-a11y-contrast,
+html.gsnap-a11y-contrast body {
+	background: #000 !important;
+	color: #fff !important;
+}
+
+html.gsnap-a11y-contrast :where(a, button, .wdt-button) {
+	color: #ffcc00 !important;
+}
+
+html.gsnap-a11y-contrast :where(.gsnap-a11y-panel, .gsnap-cookies, .gsnap-cookies-modal__panel) {
+	background: #111 !important;
+	color: #fff !important;
+	border-color: #ffcc00 !important;
+}
+
+html.gsnap-a11y-contrast .gsnap-a11y-panel button.gsnap-a11y-btn {
+	background: #1a1a1a !important;
+	border-color: #ffcc00 !important;
+	color: #fff !important;
+}
+
+html.gsnap-a11y-contrast .gsnap-a11y-panel button.gsnap-a11y-btn.is-active {
+	background: #ffcc00 !important;
+	color: #000 !important;
+}
+
+html.gsnap-a11y-contrast img {
+	filter: grayscale(15%) contrast(115%);
+}
+
+@media (max-width: 640px) {
+	.gsnap-a11y-panel {
+		left: 0.65rem;
+		bottom: 3.35rem;
+		width: min(14.5rem, calc(100vw - 1.3rem));
+	}
+
+	button.gsnap-a11y-fab {
+		left: 0.65rem;
+		bottom: 0.65rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	button.gsnap-a11y-fab,
+	.gsnap-a11y-panel button.gsnap-a11y-btn {
+		transition: none;
+	}
+}

@@ -1,0 +1,95 @@
+/**
+ * Home hero (650305b) — slider visible como ensorlogs.com/gruposnap.
+ */
+
+body.home .inner-wrapper,
+body.page-id-751 .inner-wrapper,
+body.elementor-page-751 .inner-wrapper {
+	overflow: visible !important;
+}
+
+body.home #header-wrapper,
+body.elementor-page-751 #header-wrapper {
+	margin-bottom: 0 !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-650305b {
+	position: relative !important;
+	z-index: 1 !important;
+	overflow: visible !important;
+	/* Evita recorte por margin negativo + overflow del tema */
+	margin-top: 0 !important;
+	padding-top: 210px !important;
+	margin-bottom: 0 !important;
+	min-height: 900px !important;
+	background-color: #c5e4f3 !important;
+	background-position: center center !important;
+	background-repeat: no-repeat !important;
+	background-size: cover !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-650305b > .elementor-background-overlay {
+	display: none !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-650305b .elementor-background-video-container {
+	display: none !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-650305b > .elementor-container {
+	position: relative !important;
+	z-index: 5 !important;
+	min-height: 700px !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-650305b .elementor-element-85b941c > .elementor-element-populated {
+	margin-top: 100px !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-a5d8162,
+.elementor-751 .elementor-element.elementor-element-a5d8162.elementor-hidden-mobile {
+	display: flex !important;
+	visibility: visible !important;
+	opacity: 1 !important;
+	min-height: 1px !important;
+}
+
+@media (max-width: 767px) {
+	.elementor-751 .elementor-element.elementor-element-650305b {
+		padding-top: 120px !important;
+		min-height: 640px !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-a5d8162.elementor-hidden-mobile {
+		display: none !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-47df02b,
+	.elementor-751 .elementor-element.elementor-element-47df02b.elementor-hidden-desktop,
+	.elementor-751 .elementor-element.elementor-element-47df02b.elementor-hidden-tablet {
+		display: flex !important;
+		visibility: visible !important;
+		opacity: 1 !important;
+	}
+}
+
+/* Animaciones Elementor dejan widgets fuera de vista (fadeInDown + invisible) */
+.elementor-751 .elementor-element.elementor-element-650305b .elementor-invisible,
+.elementor-751 .elementor-element.elementor-element-650305b .animated,
+.elementor-751 .elementor-element.elementor-element-650305b [class*="fadeIn"],
+.elementor-751 .elementor-element.elementor-element-650305b .elementor-widget,
+.elementor-751 .elementor-element.elementor-element-650305b .elementor-widget-wrap,
+.elementor-751 .elementor-element.elementor-element-650305b .elementor-widget-container,
+.elementor-751 .elementor-element.elementor-element-650305b .elementor-element,
+.elementor-751 .elementor-element.elementor-element-650305b .wdt-heading-holder,
+.elementor-751 .elementor-element.elementor-element-650305b .wdt-button-holder {
+	visibility: visible !important;
+	opacity: 1 !important;
+	animation: none !important;
+	transform: none !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-650305b .elementor-element-35290fa {
+	z-index: 0 !important;
+	pointer-events: none !important;
+}

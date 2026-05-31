@@ -1,6 +1,6 @@
 <?php
 /**
- * Colores y variables de marca GrupoSnap (tema hijo).
+ * GrupoSnap — carga de estilos CTA (sin recolorear el tema completo).
  *
  * @package Gruposnap
  */
@@ -9,104 +9,82 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+require_once get_stylesheet_directory() . '/inc/cta.php';
+require_once get_stylesheet_directory() . '/inc/home-hero.php';
+require_once get_stylesheet_directory() . '/inc/testimonials.php';
+require_once get_stylesheet_directory() . '/inc/blog.php';
+require_once get_stylesheet_directory() . '/inc/compliance.php';
+require_once get_stylesheet_directory() . '/inc/header.php';
+
 /**
- * @return array<string, string>
+ * CTA styles must load after WDT button + Elementor page CSS (accent #61CE70).
  */
-function gruposnap_brand_colors(): array
+function gruposnap_enqueue_cta_styles(): void
 {
-    return array(
-        'orange'    => '#F26200',
-        'orange_rgb'=> '242, 98, 0',
-        'blue'      => '#061F5E',
-        'blue_rgb'  => '6, 31, 94',
-        'whatsapp'  => '#25D366',
-        'dark'      => '#000000',
+    $deps = array('gruposnap-child');
+
+    foreach (array('wdt-button-css', 'elementor-frontend') as $handle) {
+        if (wp_style_is($handle, 'registered') || wp_style_is($handle, 'enqueued')) {
+            $deps[] = $handle;
+        }
+    }
+
+    wp_enqueue_style(
+        'gruposnap-cta',
+        get_stylesheet_directory_uri() . '/assets/css/cta.css',
+        $deps,
+        GRUPOSNAP_THEME_VERSION
     );
 }
 
-add_filter(
-    'printme_primary_color_css_var',
-    static function (string $css): string {
-        $c = gruposnap_brand_colors();
-        return '--wdtPrimaryColor: ' . $c['orange'] . ';';
+/**
+ * Tras renderizar el primer botón WDT (ahí se encola wdt-button-css).
+ *
+ * @param \Elementor\Widget_Base $widget
+ */
+function gruposnap_cta_enqueue_after_wdt_button($widget): void
+{
+    if ($widget->get_name() !== 'wdt-button') {
+        return;
     }
-);
 
-add_filter(
-    'printme_primary_rgb_color_css_var',
-    static function (string $css): string {
-        $c = gruposnap_brand_colors();
-        return '--wdtPrimaryColorRgb: ' . $c['orange_rgb'] . ';';
+    static $done = false;
+    if ($done) {
+        return;
     }
-);
 
-add_filter(
-    'printme_secondary_color_css_var',
-    static function (string $css): string {
-        $c = gruposnap_brand_colors();
-        return '--wdtSecondaryColor: ' . $c['blue'] . ';';
-    }
-);
+    $done = true;
+    gruposnap_enqueue_cta_styles();
+}
 
-add_filter(
-    'printme_secondary_rgb_color_css_var',
-    static function (string $css): string {
-        $c = gruposnap_brand_colors();
-        return '--wdtSecondaryColorRgb: ' . $c['blue_rgb'] . ';';
-    }
-);
+add_action('elementor/frontend/widget/after_render', 'gruposnap_cta_enqueue_after_wdt_button', 15);
 
-add_filter(
-    'printme_tertiary_color_css_var',
-    static function (string $css): string {
-        $c = gruposnap_brand_colors();
-        return '--wdtTertiaryColor: ' . $c['blue'] . ';';
-    }
-);
-
-add_filter(
-    'printme_tertiary_rgb_color_css_var',
-    static function (string $css): string {
-        $c = gruposnap_brand_colors();
-        return '--wdtTertiaryColorRgb: ' . $c['blue_rgb'] . ';';
-    }
-);
-
-add_filter(
-    'printme_link_hover_color_css_var',
-    static function (string $css): string {
-        $c = gruposnap_brand_colors();
-        return '--wdtLinkHoverColor: ' . $c['orange'] . ';';
-    }
-);
-
-add_filter(
-    'printme_link_hover_rgb_color_css_var',
-    static function (string $css): string {
-        $c = gruposnap_brand_colors();
-        return '--wdtLinkHoverColorRgb: ' . $c['orange_rgb'] . ';';
-    }
+add_action(
+    'wp_print_styles',
+    static function (): void {
+        if (!wp_style_is('gruposnap-cta', 'enqueued') && wp_style_is('wdt-button-css', 'enqueued')) {
+            gruposnap_enqueue_cta_styles();
+        }
+    },
+    999
 );
 
 add_action(
     'wp_enqueue_scripts',
     static function (): void {
-        wp_enqueue_style(
-            'gruposnap-brand',
-            get_stylesheet_directory_uri() . '/assets/css/brand.css',
-            array('gruposnap-child'),
-            GRUPOSNAP_THEME_VERSION
-        );
+        if (!class_exists('\Elementor\Plugin')) {
+            gruposnap_enqueue_cta_styles();
+        }
     },
-    120
+    9999
 );
 
 add_action(
     'elementor/editor/after_enqueue_styles',
     static function (): void {
         wp_enqueue_style(
-            'gruposnap-brand',
-            get_stylesheet_directory_uri() . '/assets/css/brand.css',
+            'gruposnap-cta',
+            get_stylesheet_directory_uri() . '/assets/css/cta.css',
             array(),
             GRUPOSNAP_THEME_VERSION
         );
