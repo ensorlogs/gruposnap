@@ -1,0 +1,255 @@
+/**
+ * Home — feed Instagram (@gruposnap) bajo «Ideas y tendencias».
+ */
+
+.elementor-751 .elementor-element-98071b4 {
+	margin-bottom: 0 !important;
+	padding-bottom: 0 !important;
+}
+
+.gruposnap-instagram {
+	width: 100%;
+	padding: 72px 0 28px;
+	margin-bottom: 0;
+	background: linear-gradient(180deg, #ffffff 0%, #f6f8fc 55%, #ffffff 100%);
+	box-sizing: border-box;
+}
+
+/* Oficinas: entre Instagram y la franja de suscripción */
+.elementor-page-751 .gruposnap-home-offices-wrap {
+	width: 100%;
+	margin: 0;
+	padding: clamp(1.25rem, 3.5vw, 2rem) 0 clamp(0.75rem, 2vw, 1.25rem);
+	background: #ffffff;
+	box-sizing: border-box;
+}
+
+.elementor-page-751 .gruposnap-home-offices-wrap .gruposnap-footer-offices > .elementor-container {
+	max-width: min(720px, 94vw) !important;
+}
+
+/* Sin hueco blanco entre Instagram/oficinas y la franja de suscripción del footer */
+.elementor-page-751 #footer .elementor-985 .elementor-element.elementor-element-f67e719 {
+	margin-top: 0 !important;
+}
+
+.gruposnap-instagram__inner {
+	width: min(1140px, calc(100% - 48px));
+	margin: 0 auto;
+}
+
+.gruposnap-instagram__head {
+	text-align: center;
+	max-width: 720px;
+	margin: 0 auto 40px;
+}
+
+.gruposnap-instagram__eyebrow {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	margin: 0 0 12px;
+	padding: 6px 14px;
+	border-radius: 999px;
+	background: linear-gradient(135deg, #fdf2f8 0%, #eef2ff 100%);
+	color: #112b75;
+	font-size: 0.875rem;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+}
+
+.gruposnap-instagram__eyebrow .gruposnap-instagram__icon-svg {
+	color: #e1306c;
+}
+
+.gruposnap-instagram__title {
+	margin: 0 0 12px;
+	font-size: clamp(1.75rem, 3vw, 2.35rem);
+	font-weight: 800;
+	line-height: 1.15;
+	color: #111111;
+}
+
+.gruposnap-instagram__subtitle {
+	margin: 0;
+	font-size: 1.05rem;
+	line-height: 1.55;
+	color: #5c6478;
+}
+
+.gruposnap-instagram__grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 24px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.gruposnap-instagram__item {
+	margin: 0;
+	padding: 0;
+}
+
+.gruposnap-instagram__card {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	color: inherit;
+	text-decoration: none;
+	border-radius: 14px;
+	overflow: hidden;
+	background: #ffffff;
+	box-shadow: 0 10px 32px rgba(17, 43, 117, 0.08);
+	transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.gruposnap-instagram__card:hover,
+.gruposnap-instagram__card:focus-visible {
+	transform: translateY(-6px);
+	box-shadow: 0 18px 40px rgba(17, 43, 117, 0.14);
+}
+
+.gruposnap-instagram__media {
+	position: relative;
+	display: block;
+	aspect-ratio: 1 / 1;
+	overflow: hidden;
+	background: #e8ecf4;
+}
+
+.gruposnap-instagram__media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 0.45s ease;
+}
+
+.gruposnap-instagram__card:hover .gruposnap-instagram__media img,
+.gruposnap-instagram__card:focus-visible .gruposnap-instagram__media img {
+	transform: scale(1.05);
+}
+
+.gruposnap-instagram__overlay {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	background: linear-gradient(180deg, rgba(17, 43, 117, 0.05) 0%, rgba(17, 43, 117, 0.72) 100%);
+	color: #ffffff;
+	opacity: 0;
+	transition: opacity 0.28s ease;
+}
+
+.gruposnap-instagram__card:hover .gruposnap-instagram__overlay,
+.gruposnap-instagram__card:focus-visible .gruposnap-instagram__overlay {
+	opacity: 1;
+}
+
+.gruposnap-instagram__overlay .gruposnap-instagram__icon-svg {
+	width: 36px;
+	height: 36px;
+}
+
+.gruposnap-instagram__overlay-text {
+	font-size: 0.8125rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+.gruposnap-instagram__caption {
+	display: block;
+	padding: 14px 16px 16px;
+	font-size: 0.9375rem;
+	line-height: 1.45;
+	color: #333333;
+}
+
+.gruposnap-instagram__fallback {
+	text-align: center;
+	color: #5c6478;
+	margin: 0 0 24px;
+}
+
+.gruposnap-instagram__cta-wrap {
+	display: flex;
+	justify-content: center;
+	margin-top: 28px;
+	margin-bottom: 0;
+}
+
+.gruposnap-instagram__cta {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	min-height: 52px;
+	padding: 0 28px;
+	border-radius: 6px;
+	background: #f57c20;
+	color: #ffffff !important;
+	font-size: 0.9375rem;
+	font-weight: 800;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	text-decoration: none;
+	box-shadow: 0 8px 24px rgba(245, 124, 32, 0.35);
+	transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gruposnap-instagram__cta:hover,
+.gruposnap-instagram__cta:focus-visible {
+	background: #112b75;
+	color: #ffffff !important;
+	transform: translateY(-2px);
+	box-shadow: 0 10px 28px rgba(17, 43, 117, 0.28);
+}
+
+.gruposnap-instagram__cta .gruposnap-instagram__icon-svg {
+	color: #ffffff;
+}
+
+@media (max-width: 1024px) {
+	.gruposnap-instagram {
+		padding: 56px 0 20px;
+	}
+
+	.gruposnap-instagram__grid {
+		gap: 18px;
+	}
+}
+
+@media (max-width: 767px) {
+	.gruposnap-instagram {
+		padding: 40px 0 12px;
+	}
+
+	.gruposnap-instagram__cta-wrap {
+		margin-top: 20px;
+	}
+
+	.elementor-page-751 #footer .elementor-985 .elementor-element.elementor-element-f67e719 {
+		padding-top: 1rem !important;
+		padding-bottom: 1rem !important;
+	}
+
+	.gruposnap-instagram__inner {
+		width: min(100%, calc(100% - 32px));
+	}
+
+	.gruposnap-instagram__grid {
+		grid-template-columns: 1fr;
+		max-width: 420px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.gruposnap-instagram__head {
+		margin-bottom: 28px;
+	}
+}

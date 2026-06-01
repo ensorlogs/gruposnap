@@ -1,0 +1,241 @@
+/**
+ * Home — «Sobre GrupoSnap»: sin panel blanco; texto legible sobre el degradado.
+ */
+
+.elementor-751 .elementor-element.elementor-element-46cb44b {
+	padding-bottom: clamp(1.25rem, 3.5vw, 2rem) !important;
+}
+
+.elementor-751 .elementor-top-section.elementor-element-46cb44b:has(.gruposnap-experience__head),
+.elementor-751 .elementor-element.elementor-element-46cb44b:has(.gruposnap-experience__head) {
+	padding-top: clamp(1.25rem, 3.5vw, 2rem) !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-7332389 > .elementor-element-populated {
+	background: transparent !important;
+	border: none !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	padding-bottom: 0 !important;
+}
+
+/* Badge sobre la foto: oculto (va en la columna de texto) */
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-2454fd0,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-95e0f84 {
+	display: none !important;
+	visibility: hidden !important;
+	pointer-events: none !important;
+}
+
+/* Foto: encuadre para no tapar la cara */
+.elementor-751 .elementor-element.elementor-element-fd7205c > .elementor-element-populated {
+	background-position: center 22% !important;
+	background-size: cover !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-fd7205c .elementor-spacer-inner {
+	min-height: clamp(260px, 36vw, 400px) !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-heading {
+	margin: 0 !important;
+	padding: 0 !important;
+	max-width: none !important;
+	text-align: left !important;
+}
+
+/* ——— Encabezado 20+ Años · Impulsando Marcas (sin caja; sobre el degradado) ——— */
+.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__head,
+.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__badge-row {
+	display: flex !important;
+	flex-direction: row !important;
+	align-items: flex-end !important;
+	justify-content: flex-start !important;
+	flex-wrap: wrap !important;
+	gap: clamp(1.15rem, 3vw, 2.25rem) !important;
+	width: 100% !important;
+	max-width: min(52rem, 100%) !important;
+	margin: 0 0 clamp(1.25rem, 3.5vw, 1.75rem) !important;
+	padding: 0 !important;
+	background: none !important;
+	border: none !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-f92bae7 .wdt-about-experience .wdt-heading-holder,
+.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__head.wdt-about-experience {
+	background: none !important;
+	box-shadow: none !important;
+	padding: 0 !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__stat {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: flex-start !important;
+	flex: 0 0 auto !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__number {
+	display: block !important;
+	font-size: clamp(3rem, 8.5vw, 5.25rem) !important;
+	font-weight: 800 !important;
+	line-height: 0.92 !important;
+	letter-spacing: -0.04em !important;
+	color: #0a1f5c !important;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85) !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__stat::after {
+	content: "";
+	display: block;
+	width: min(5rem, 62%);
+	height: 4px;
+	margin: 0.55rem 0 0.4rem;
+	border-radius: 999px;
+	background: linear-gradient(90deg, #f57c20 0%, #ff9f5a 48%, #112b75 100%);
+}
+
+.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__years {
+	display: block !important;
+	font-size: clamp(1.5rem, 3.6vw, 2.35rem) !important;
+	font-weight: 800 !important;
+	line-height: 1.05 !important;
+	letter-spacing: 0.02em !important;
+	color: #0a1f5c !important;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75) !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__tagline {
+	flex: 1 1 10rem !important;
+	margin: 0 0 0.2rem !important;
+	padding: 0 0 0 clamp(0.65rem, 2vw, 1.15rem) !important;
+	border-left: 3px solid rgba(17, 43, 117, 0.22) !important;
+	font-size: clamp(1.25rem, 2.8vw, 1.75rem) !important;
+	font-weight: 800 !important;
+	line-height: 1.15 !important;
+	letter-spacing: 0.06em !important;
+	text-transform: uppercase !important;
+	color: #0a1f5c !important;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__tagline-line {
+	display: block !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-heading > .wdt-heading-content-wrapper {
+	display: block !important;
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+	padding: 0 !important;
+	max-width: 42rem !important;
+	font-size: clamp(1rem, 2.15vw, 1.125rem) !important;
+	font-weight: 500 !important;
+	line-height: 1.72 !important;
+	color: #152a52 !important;
+	text-align: left !important;
+	text-shadow: 0 1px 18px rgba(255, 255, 255, 0.55) !important;
+	-webkit-font-smoothing: antialiased;
+}
+
+.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-heading > .wdt-heading-content-wrapper p {
+	color: inherit !important;
+	margin: 0 0 0.85em !important;
+	font-weight: inherit !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-heading > .wdt-heading-content-wrapper p:last-child {
+	margin-bottom: 0 !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-heading > .wdt-heading-content-wrapper strong {
+	color: #0a1f5c !important;
+	font-weight: 800 !important;
+}
+
+@media (max-width: 1024px) {
+	.elementor-751 .elementor-element.elementor-element-46cb44b {
+		padding: clamp(1rem, 4vw, 1.5rem) clamp(1rem, 4vw, 1.25rem) clamp(0.75rem, 2.5vw, 1rem) !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-7332389 > .elementor-element-populated {
+		padding: 0 clamp(0.75rem, 4vw, 1rem) 0 !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__head,
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__badge-row {
+		justify-content: center !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__stat {
+		align-items: center !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__stat::after {
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__tagline {
+		border-left: none !important;
+		padding-left: 0 !important;
+		text-align: center !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-heading > .wdt-heading-content-wrapper {
+		text-align: center !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
+		max-width: min(34rem, 100%) !important;
+		font-weight: 500 !important;
+	}
+}
+
+@media (max-width: 767px) {
+	.elementor-751 .elementor-element.elementor-element-46cb44b {
+		padding-bottom: 0.65rem !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-heading > .wdt-heading-content-wrapper {
+		font-size: clamp(0.9375rem, 3.6vw, 1.03125rem) !important;
+		line-height: 1.65 !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__head,
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__badge-row {
+		flex-direction: column !important;
+		align-items: center !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__number {
+		font-size: clamp(2.65rem, 11vw, 3.5rem) !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__years {
+		font-size: clamp(1.35rem, 5vw, 1.85rem) !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__tagline {
+		font-size: clamp(1.125rem, 4.5vw, 1.45rem) !important;
+	}
+}
+
+@media (min-width: 1200px) {
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__number {
+		font-size: 5.25rem !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__years {
+		font-size: 2.35rem !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__tagline {
+		font-size: 1.75rem !important;
+	}
+}

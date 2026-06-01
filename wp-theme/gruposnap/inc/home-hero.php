@@ -11,6 +11,9 @@ if (!defined('ABSPATH')) {
 
 const GRUPOSNAP_HOME_HERO_SECTION_ID = '650305b';
 
+/** Widget icon-list oculto en home (+500 marcas / producción personalizada). */
+const GRUPOSNAP_HOME_HERO_HIGHLIGHTS_WIDGET_ID = 'bf70122';
+
 function gruposnap_home_hero_media_urls(): array
 {
     $base = get_template_directory_uri() . '/ocdi/uploads/2023';
@@ -88,17 +91,6 @@ function gruposnap_home_hero_strip_animation_settings(string $html): string
     );
 
     $html = preg_replace($patterns, '', $html) ?? $html;
-
-    /* Quitar clases responsive que ocultan el bloque desktop del slider. */
-    $html = preg_replace_callback(
-        '/class="([^"]*elementor-element-a5d8162[^"]*)"/',
-        static function (array $matches): string {
-            $classes = preg_replace('/\s*elementor-hidden-mobile\s*/', ' ', $matches[1]) ?? $matches[1];
-
-            return 'class="' . trim($classes) . '"';
-        },
-        $html
-    ) ?? $html;
 
     return $html;
 }
@@ -183,13 +175,22 @@ function gruposnap_home_hero_remove_invisible_render_attr($widget): void
     $widget->remove_render_attribute('_wrapper', 'class', 'elementor-invisible');
 }
 
+function gruposnap_home_hero_bust_elementor_cache(): void
+{
+    $version = get_option('gruposnap_home_hero_cache_version');
+    if ($version === GRUPOSNAP_THEME_VERSION) {
+        return;
+    }
+
+    delete_post_meta(751, '_elementor_element_cache');
+    update_option('gruposnap_home_hero_cache_version', GRUPOSNAP_THEME_VERSION, false);
+}
+
 function gruposnap_enqueue_home_hero_assets(): void
 {
     if (!gruposnap_is_home_page()) {
         return;
     }
-
-    $media = gruposnap_home_hero_media_urls();
 
     $deps = array('gruposnap-child');
     foreach (array('elementor-post-751', 'elementor-frontend') as $handle) {
@@ -203,12 +204,6 @@ function gruposnap_enqueue_home_hero_assets(): void
         get_stylesheet_directory_uri() . '/assets/css/home-hero.css',
         $deps,
         GRUPOSNAP_THEME_VERSION
-    );
-
-    wp_add_inline_style(
-        'gruposnap-home-hero',
-        '.elementor-751 .elementor-element-' . GRUPOSNAP_HOME_HERO_SECTION_ID . '{'
-        . 'background-image:url(' . esc_url($media['image']) . ') !important;}'
     );
 }
 
@@ -240,16 +235,46 @@ function gruposnap_home_hero_reveal_script(): void
     }
 
     $section = GRUPOSNAP_HOME_HERO_SECTION_ID;
+    $video   = esc_js(gruposnap_home_hero_media_urls()['video']);
     ?>
     <script id="gruposnap-home-hero-reveal-js">
     (function () {
         var sel = '.elementor-751 .elementor-element-<?php echo esc_js($section); ?>';
+        var videoSrc = '<?php echo $video; ?>';
+
+        function playHeroVideo(hero) {
+            var container = hero.querySelector('.elementor-background-video-container');
+            var video = hero.querySelector('.elementor-background-video-hosted');
+
+            if (!video) {
+                return;
+            }
+
+            if (!video.getAttribute('src')) {
+                video.setAttribute('src', videoSrc);
+            }
+
+            video.muted = true;
+            video.playsInline = true;
+            video.loop = true;
+
+            var playPromise = video.play();
+            if (playPromise && playPromise.catch) {
+                playPromise.catch(function () {});
+            }
+
+            if (container) {
+                container.classList.remove('elementor-loading', 'elementor-invisible');
+            }
+        }
 
         function revealHero() {
             var hero = document.querySelector(sel);
             if (!hero) {
                 return;
             }
+
+            playHeroVideo(hero);
 
             hero.querySelectorAll('.elementor-invisible, .animated').forEach(function (el) {
                 el.classList.remove('elementor-invisible', 'animated');
@@ -276,6 +301,23 @@ function gruposnap_home_hero_reveal_script(): void
     <?php
 }
 
+/**
+ * Oculta el bloque de icon-list del hero en la home.
+ *
+ * @param string               $content
+ * @param \Elementor\Widget_Base $widget
+ */
+function gruposnap_home_hero_hide_highlights_widget(string $content, $widget): string
+{
+    if (!gruposnap_is_home_page() || $widget->get_id() !== GRUPOSNAP_HOME_HERO_HIGHLIGHTS_WIDGET_ID) {
+        return $content;
+    }
+
+    return '';
+}
+
+add_action('init', 'gruposnap_home_hero_bust_elementor_cache', 1);
+add_filter('elementor/widget/render_content', 'gruposnap_home_hero_hide_highlights_widget', 8, 2);
 add_action('wp_head', 'gruposnap_home_hero_reveal_style', 3);
 add_action('wp_enqueue_scripts', 'gruposnap_enqueue_home_hero_assets', 999);
 add_action('elementor/frontend/widget/before_render', 'gruposnap_home_hero_disable_widget_entrance_animation', 1);

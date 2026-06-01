@@ -9,21 +9,18 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+/** Correo único para avisos legales, privacidad y cookies. */
+const GRUPOSNAP_LEGAL_CONTACT_EMAIL = 'contacto@gruposnap.com';
+
 /**
- * @return array<string, string>
+ * @return string
  */
-function gruposnap_legal_cross_labels(): array
+function gruposnap_legal_contact_email(): string
 {
-    return array(
-        'aviso-legal'   => __('Aviso legal', 'gruposnap'),
-        'privacidad'    => __('Privacidad', 'gruposnap'),
-        'cookies'       => __('Cookies', 'gruposnap'),
-        'accesibilidad' => __('Accesibilidad', 'gruposnap'),
-    );
+    return (string) apply_filters('gruposnap_legal_contact_email', GRUPOSNAP_LEGAL_CONTACT_EMAIL);
 }
 
 /**
- * @param string $slug
  * @return string
  */
 function gruposnap_legal_seed_html(string $slug): string
@@ -40,6 +37,48 @@ function gruposnap_legal_seed_html(string $slug): string
         array('href="/legal/', "href='/legal/"),
         array('href="' . $home . 'legal/', "href='" . $home . 'legal/'),
         $html
+    );
+}
+
+/**
+ * Sincroniza el contenido de las páginas /legal/* desde los HTML semilla.
+ */
+function gruposnap_sync_legal_pages_from_seed(): void
+{
+    $version = get_option('gruposnap_legal_content_version');
+    if ($version === GRUPOSNAP_THEME_VERSION) {
+        return;
+    }
+
+    $slugs = array_keys(gruposnap_legal_cross_labels());
+    foreach ($slugs as $slug) {
+        $page = get_page_by_path('legal/' . $slug);
+        $body = gruposnap_legal_seed_html($slug);
+        if (!$page || $body === '') {
+            continue;
+        }
+
+        wp_update_post(
+            array(
+                'ID'           => (int) $page->ID,
+                'post_content' => $body,
+            )
+        );
+    }
+
+    update_option('gruposnap_legal_content_version', GRUPOSNAP_THEME_VERSION, false);
+}
+
+/**
+ * @return array<string, string>
+ */
+function gruposnap_legal_cross_labels(): array
+{
+    return array(
+        'aviso-legal'   => __('Aviso legal', 'gruposnap'),
+        'privacidad'    => __('Privacidad', 'gruposnap'),
+        'cookies'       => __('Cookies', 'gruposnap'),
+        'accesibilidad' => __('Accesibilidad', 'gruposnap'),
     );
 }
 
@@ -122,6 +161,13 @@ function gruposnap_seed_legal_pages(): void
 }
 
 add_action('init', 'gruposnap_seed_legal_pages', 20);
+add_action('init', 'gruposnap_sync_legal_pages_from_seed', 21);
+add_filter(
+    'gruposnap_legal_contact_email',
+    static function (): string {
+        return GRUPOSNAP_LEGAL_CONTACT_EMAIL;
+    }
+);
 
 /**
  * URL de la política de cookies para el banner.

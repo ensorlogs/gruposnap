@@ -1,0 +1,24 @@
+/**
+ * Botón volver arriba — azul Snap (#112b75).
+ */
+
+#back-to-top {
+	background: #112b75 !important;
+	background-image: none !important;
+	border-radius: 4px;
+	box-shadow: 0 4px 16px rgba(17, 43, 117, 0.35);
+}
+
+#back-to-top:hover,
+#back-to-top:focus-visible {
+	background: #f57c20 !important;
+	background-image: none !important;
+}
+
+#back-to-top .back-to-top-icon {
+	color: #ffffff !important;
+}
+
+#back-to-top:after {
+	background-color: #ffffff !important;
+}

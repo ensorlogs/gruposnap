@@ -1,0 +1,214 @@
+/**
+ * Home — títulos de sección: branding GrupoSnap (azul / naranja, línea debajo).
+ */
+
+.elementor-751 .elementor-element-682407d,
+.elementor-751 .elementor-element-4d58045,
+.elementor-751 .elementor-element-efbc9f6,
+.elementor-751 .elementor-element-0330a3d,
+.elementor-751 .elementor-element-424703b {
+	visibility: visible !important;
+	opacity: 1 !important;
+}
+
+.elementor-751 .elementor-element-682407d .wdt-heading-holder,
+.elementor-751 .elementor-element-4d58045 .wdt-heading-holder,
+.elementor-751 .elementor-element-efbc9f6 .wdt-heading-holder,
+.elementor-751 .elementor-element-0330a3d .wdt-heading-holder,
+.elementor-751 .elementor-element-424703b .wdt-heading-holder,
+.gruposnap-marketing-heading .wdt-heading-holder {
+	position: relative;
+	text-align: center;
+	margin: 0 auto;
+	padding: 0 clamp(1rem, 4vw, 1.5rem) clamp(1.5rem, 3.5vw, 2.25rem);
+	max-width: 46rem;
+}
+
+.elementor-751 .elementor-element-682407d .wdt-heading-title,
+.elementor-751 .elementor-element-4d58045 .wdt-heading-title,
+.elementor-751 .elementor-element-efbc9f6 .wdt-heading-title,
+.elementor-751 .elementor-element-0330a3d .wdt-heading-title,
+.elementor-751 .elementor-element-424703b .wdt-heading-title,
+.gruposnap-marketing-heading .wdt-heading-title {
+	display: inline-flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	font-size: clamp(1.625rem, 3.6vw, 2.5rem) !important;
+	font-weight: 800 !important;
+	line-height: 1.18 !important;
+	letter-spacing: -0.025em !important;
+	color: #112b75 !important;
+	text-transform: none !important;
+}
+
+.elementor-751 .elementor-element-682407d .wdt-heading-title::after,
+.elementor-751 .elementor-element-4d58045 .wdt-heading-title::after,
+.elementor-751 .elementor-element-efbc9f6 .wdt-heading-title::after,
+.elementor-751 .elementor-element-0330a3d .wdt-heading-title::after,
+.elementor-751 .elementor-element-424703b .wdt-heading-title::after,
+.gruposnap-marketing-heading .wdt-heading-title::after {
+	content: "" !important;
+	display: block !important;
+	width: min(4.25rem, 20vw) !important;
+	height: 4px !important;
+	margin: 0.7rem auto 0 !important;
+	border-radius: 999px !important;
+	background: linear-gradient(90deg, #f57c20 0%, #ff9f5a 45%, #112b75 100%) !important;
+}
+
+.elementor-751 .elementor-element-682407d .wdt-heading-content-wrapper,
+.elementor-751 .elementor-element-4d58045 .wdt-heading-content-wrapper,
+.elementor-751 .elementor-element-efbc9f6 .wdt-heading-content-wrapper,
+.elementor-751 .elementor-element-0330a3d .wdt-heading-content-wrapper,
+.elementor-751 .elementor-element-424703b .wdt-heading-content-wrapper,
+.gruposnap-marketing-heading .wdt-heading-content-wrapper {
+	margin: 1rem auto 0 !important;
+	padding: 0 !important;
+	max-width: 36rem;
+	font-size: clamp(1rem, 2.1vw, 1.125rem) !important;
+	font-weight: 400 !important;
+	line-height: 1.65 !important;
+	color: #5c6478 !important;
+}
+
+.gruposnap-marketing-heading--about .wdt-heading-content-wrapper,
+.elementor-751 .elementor-element.elementor-element-f92bae7 .wdt-heading-content-wrapper {
+	color: #112b75 !important;
+	font-weight: 600 !important;
+	line-height: 1.68 !important;
+	-webkit-font-smoothing: antialiased;
+}
+
+.elementor-751 .elementor-element-4d58045 .gruposnap-heading-accent,
+.elementor-751 .elementor-element-efbc9f6 .gruposnap-heading-accent,
+.gruposnap-marketing-heading .gruposnap-heading-accent {
+	font-weight: 900;
+	background: linear-gradient(120deg, #f57c20 0%, #ff8c3a 50%, #e56712 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.elementor-751 .elementor-element-4d58045 .wdt-heading-title::after,
+.elementor-751 .elementor-element-efbc9f6 .wdt-heading-title::after,
+.gruposnap-marketing-heading--catalog .wdt-heading-title::after {
+	width: min(5rem, 22vw) !important;
+}
+
+.gruposnap-marketing-heading > .elementor-widget-container {
+	width: 100%;
+}
+
+.gruposnap-marketing-heading .gruposnap-heading-eyebrow {
+	display: none !important;
+}
+
+.gruposnap-marketing-heading .wdt-heading-title-wrapper {
+	display: block;
+	margin: 0;
+}
+
+/* Sin iconos decorativos grandes al lado del título */
+.gruposnap-marketing-heading .wdt-heading-deco-wrapper .wdt-heading-deco-icon,
+.gruposnap-marketing-heading .wdt-heading-deco-wrapper .wdt-heading-deco-image {
+	display: none !important;
+}
+
+.gruposnap-marketing-heading .wdt-heading-title .wdt-heading-deco-inner,
+.elementor-751 .elementor-element-682407d .wdt-heading-title .wdt-heading-deco-inner,
+.elementor-751 .elementor-element-4d58045 .wdt-heading-title .wdt-heading-deco-inner,
+.elementor-751 .elementor-element-efbc9f6 .wdt-heading-title .wdt-heading-deco-inner,
+.elementor-751 .elementor-element-0330a3d .wdt-heading-title .wdt-heading-deco-inner,
+.elementor-751 .elementor-element-424703b .wdt-heading-title .wdt-heading-deco-inner {
+	display: none !important;
+}
+
+.gruposnap-marketing-heading .wdt-heading-subtitle-wrapper {
+	margin-bottom: 0.5rem !important;
+}
+
+.gruposnap-marketing-heading .wdt-heading-subtitle {
+	font-size: clamp(0.6875rem, 1.6vw, 0.75rem) !important;
+	font-weight: 700 !important;
+	letter-spacing: 0.12em !important;
+	text-transform: uppercase !important;
+	color: #f57c20 !important;
+}
+
+.gruposnap-marketing-heading .wdt-heading-content-wrapper strong,
+.elementor-751 .elementor-element-682407d .wdt-heading-content-wrapper strong,
+.elementor-751 .elementor-element-0330a3d .wdt-heading-content-wrapper strong {
+	color: #112b75;
+	font-weight: 700;
+}
+
+.gruposnap-marketing-heading--testimonials .wdt-heading-content-wrapper,
+.elementor-751 .elementor-element-0330a3d .wdt-heading-content-wrapper {
+	max-width: 40rem;
+}
+
+.gruposnap-marketing-heading--blog .wdt-heading-title,
+.elementor-751 .elementor-element-424703b .wdt-heading-title {
+	font-size: clamp(1.5rem, 3.2vw, 2.35rem) !important;
+}
+
+/* Espacio superior en secciones con encabezado marketing */
+.elementor-751 .elementor-top-section:has(.gruposnap-marketing-heading) {
+	padding-top: clamp(2.5rem, 6vw, 4rem) !important;
+}
+
+/* Catálogo 2026 — menos aire arriba/abajo del título */
+.elementor-751 .elementor-top-section:has(.gruposnap-marketing-heading--catalog-2026),
+.elementor-751 .elementor-element.elementor-element-87ef98c {
+	padding-top: clamp(0.75rem, 2vw, 1.25rem) !important;
+	padding-bottom: 0 !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-9d50218 {
+	padding: clamp(0.65rem, 1.8vw, 1rem) clamp(1rem, 3vw, 1.5rem) !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-d5c027d {
+	margin-top: clamp(0.65rem, 1.8vw, 1rem) !important;
+	margin-bottom: 0 !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-57435c6 .wdt-heading-holder,
+.elementor-751 .elementor-element.elementor-element-5d119c5 .wdt-heading-holder,
+.elementor-751 .gruposnap-marketing-heading--catalog-2026 .wdt-heading-holder {
+	padding-top: 0 !important;
+	padding-bottom: clamp(0.25rem, 0.8vw, 0.5rem) !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-57435c6 .wdt-heading-title::after,
+.elementor-751 .elementor-element.elementor-element-5d119c5 .wdt-heading-title::after,
+.elementor-751 .gruposnap-marketing-heading--catalog-2026 .wdt-heading-title::after {
+	margin-top: 0.5rem !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-5d119c5 > .elementor-widget-container {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-57435c6 > .elementor-widget-container,
+.elementor-751 .elementor-element.elementor-element-5d119c5 > .elementor-widget-container {
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+}
+
+@media (max-width: 767px) {
+	.gruposnap-marketing-heading .wdt-heading-holder {
+		padding-bottom: 1.35rem;
+	}
+
+	.gruposnap-marketing-heading .wdt-heading-title {
+		font-size: clamp(1.45rem, 6.5vw, 1.85rem) !important;
+	}
+
+	.gruposnap-marketing-heading .wdt-heading-content-wrapper {
+		font-size: 0.9375rem !important;
+	}
+}

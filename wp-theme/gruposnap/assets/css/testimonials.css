@@ -1,5 +1,5 @@
 /**
- * Testimonios — logos de marca y CTA Google Reviews.
+ * Testimonios — logos de marca y carrusel.
  */
 
 .elementor-element.gruposnap-testimonial .wdt-content-image img {
@@ -39,48 +39,51 @@
 	display: none !important;
 }
 
-.gruposnap-google-reviews-wrap {
-	display: flex;
-	justify-content: center;
+/* Carrusel de testimonios (12 marcas) */
+.elementor-751 .elementor-element.gruposnap-testimonials-carousel-active > .elementor-container {
+	display: block;
 	width: 100%;
-	clear: both;
+	max-width: min(1200px, 96vw);
+	margin-left: auto;
+	margin-right: auto;
 }
 
-.gruposnap-google-reviews-wrap--section {
-	margin: 2.5rem 0 3.5rem;
-	padding: 0 clamp(1rem, 4vw, 2rem);
+.elementor-751 .gruposnap-testimonials-carousel {
+	width: 100%;
+	padding: 0;
+	overflow: hidden;
 }
 
-.gruposnap-google-reviews-btn {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	min-width: min(100%, 300px);
-	padding: 15px 36px;
-	border-radius: 4px;
-	background-color: #112b75;
-	border: 0;
-	color: #ffffff;
-	font-weight: 700;
-	font-size: 0.8125rem;
-	letter-spacing: 0.08em;
-	text-transform: uppercase;
-	text-decoration: none;
-	transition: background-color 0.25s ease, transform 0.2s ease;
-	box-shadow: 0 6px 20px rgba(17, 43, 117, 0.22);
+.elementor-751 .gruposnap-testimonials-carousel .swiper-pagination,
+.elementor-751 .gruposnap-testimonials-carousel__nav {
+	display: none !important;
 }
 
-.gruposnap-google-reviews-btn:hover {
-	transform: translateY(-1px);
+.elementor-751 .gruposnap-testimonials-carousel .swiper-wrapper {
+	align-items: stretch;
 }
 
-.gruposnap-google-reviews-btn:hover,
-.gruposnap-google-reviews-btn:focus {
-	background-color: #0c1e55;
-	color: #ffffff;
+.elementor-751 .gruposnap-testimonials-carousel .swiper-slide {
+	height: auto;
+	display: flex;
 }
 
-.gruposnap-google-reviews-btn:focus-visible {
-	outline: 2px solid #f57c20;
-	outline-offset: 3px;
+.elementor-751 .gruposnap-testimonial-slide__col {
+	width: 100%;
 }
+
+.elementor-751 .gruposnap-testimonial-slide .elementor-widget-wrap {
+	height: 100%;
+	padding: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.elementor-751 .gruposnap-testimonial--carousel .wdt-content-image-wrapper,
+.elementor-751 .gruposnap-testimonial--carousel .wdt-content-image {
+	max-width: 156px;
+}
+
+.elementor-751 .gruposnap-testimonial--carousel .wdt-content-image img {
+	max-height: 84px;
+	padding: 12px 14px;
+}
+

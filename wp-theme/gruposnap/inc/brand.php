@@ -11,10 +11,19 @@ if (!defined('ABSPATH')) {
 
 require_once get_stylesheet_directory() . '/inc/cta.php';
 require_once get_stylesheet_directory() . '/inc/home-hero.php';
+require_once get_stylesheet_directory() . '/inc/home-brands-strip.php';
 require_once get_stylesheet_directory() . '/inc/testimonials.php';
 require_once get_stylesheet_directory() . '/inc/blog.php';
 require_once get_stylesheet_directory() . '/inc/compliance.php';
 require_once get_stylesheet_directory() . '/inc/header.php';
+require_once get_stylesheet_directory() . '/inc/footer-payments.php';
+require_once get_stylesheet_directory() . '/inc/footer-mobile.php';
+require_once get_stylesheet_directory() . '/inc/footer-compact.php';
+require_once get_stylesheet_directory() . '/inc/footer-offices.php'; /* después de footer-compact (constantes columnas) */
+require_once get_stylesheet_directory() . '/inc/instagram.php';
+require_once get_stylesheet_directory() . '/inc/home-services.php';
+require_once get_stylesheet_directory() . '/inc/home-headings.php';
+require_once get_stylesheet_directory() . '/inc/home-about.php';
 
 /**
  * CTA styles must load after WDT button + Elementor page CSS (accent #61CE70).
@@ -90,3 +99,27 @@ add_action(
         );
     }
 );
+
+/**
+ * Botón «volver arriba» en azul corporativo (sin degradado naranja del tema).
+ */
+function gruposnap_enqueue_go_to_top_styles(): void
+{
+    if (is_admin()) {
+        return;
+    }
+
+    $deps = array('gruposnap-child');
+    if (wp_style_is('site-to-top', 'registered') || wp_style_is('site-to-top', 'enqueued')) {
+        $deps[] = 'site-to-top';
+    }
+
+    wp_enqueue_style(
+        'gruposnap-go-to-top',
+        get_stylesheet_directory_uri() . '/assets/css/go-to-top.css',
+        $deps,
+        GRUPOSNAP_THEME_VERSION
+    );
+}
+
+add_action('wp_enqueue_scripts', 'gruposnap_enqueue_go_to_top_styles', 130);

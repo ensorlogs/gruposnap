@@ -1,0 +1,124 @@
+/**
+ * Footer — métodos de pago (VISA, Mastercard, PayPal).
+ */
+
+.elementor-element-c5e544e.gruposnap-payments-wrap,
+.elementor-element-43ca02e.gruposnap-payments-wrap {
+	margin-bottom: 0;
+}
+
+.elementor-element-c5e544e .gruposnap-payments__title {
+	margin: 0 0 10px;
+	font-weight: 700;
+	color: #1a1a1a;
+	letter-spacing: 0.01em;
+}
+
+.gruposnap-payments {
+	max-width: 100%;
+}
+
+.gruposnap-payments__logos {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.gruposnap-payments__logo {
+	margin: 0;
+	padding: 0;
+}
+
+.gruposnap-payments__mark {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 72px;
+	height: 40px;
+	padding: 0 12px;
+	border-radius: 6px;
+	border: 1px solid #e4e8ef;
+	background: #ffffff;
+	box-shadow: 0 1px 3px rgba(17, 43, 117, 0.06);
+	font-size: 15px;
+	font-weight: 800;
+	line-height: 1;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+.gruposnap-payments__logo--visa .gruposnap-payments__mark {
+	color: #1a1f71;
+	font-style: italic;
+	font-size: 17px;
+	letter-spacing: 0.08em;
+}
+
+.gruposnap-payments__logo--paypal .gruposnap-payments__mark {
+	color: #003087;
+	font-size: 14px;
+	font-weight: 700;
+	font-style: normal;
+	letter-spacing: 0;
+	text-transform: none;
+}
+
+.gruposnap-payments__mark--mc {
+	position: relative;
+	min-width: 52px;
+	padding: 0 8px;
+}
+
+.gruposnap-payments__mc-circle {
+	position: absolute;
+	top: 50%;
+	width: 22px;
+	height: 22px;
+	margin-top: -11px;
+	border-radius: 50%;
+	opacity: 0.92;
+}
+
+.gruposnap-payments__mc-circle--red {
+	left: 50%;
+	margin-left: -24px;
+	background: #eb001b;
+}
+
+.gruposnap-payments__mc-circle--yellow {
+	left: 50%;
+	margin-left: -2px;
+	background: #f79e1b;
+}
+
+.gruposnap-payments__labels {
+	margin: 10px 0 0;
+	padding: 0;
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 1.35;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: #5c6478;
+}
+
+@media (max-width: 767px) {
+	.gruposnap-payments__mark {
+		min-width: 64px;
+		height: 36px;
+		font-size: 13px;
+	}
+
+	.gruposnap-payments__logo--visa .gruposnap-payments__mark {
+		font-size: 15px;
+	}
+
+	.gruposnap-payments__labels {
+		font-size: 10px;
+		letter-spacing: 0.1em;
+	}
+}

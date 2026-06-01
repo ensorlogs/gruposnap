@@ -29,6 +29,10 @@ body.gruposnap-blog-single .blog-single-entry.post-minimal .entry-thumb .blog-im
 	width: 100%;
 }
 
+body.gruposnap-blog-single .blog-single-entry.post-minimal > .post-meta {
+	display: none !important;
+}
+
 body.gruposnap-blog-single .blog-single-entry.post-minimal .post-meta {
 	border-bottom-color: var(--gs-blog-border) !important;
 	gap: 0.75rem 1.5rem;
@@ -67,13 +71,18 @@ body.gruposnap-blog-single .gruposnap-article-head {
 
 body.gruposnap-blog-single .gruposnap-article-title {
 	color: var(--gs-blog-navy);
-	font-size: clamp(1.625rem, 2.8vw, 2.25rem);
-	font-weight: 700;
-	line-height: 1.25;
+	font-size: clamp(1.75rem, 3vw, 2.5rem);
+	font-weight: 800;
+	line-height: 1.22;
 	margin: 0;
 	max-width: none;
 	text-align: left;
 	width: 100%;
+}
+
+/* Respaldo: títulos Elementor al inicio que repiten el H1 */
+body.gruposnap-blog-single .single-entry-body > .elementor.elementor[data-elementor-type="wp-post"] > .elementor-section.elementor-top-section:first-of-type .elementor-widget-heading {
+	display: none !important;
 }
 
 /* Contenido Elementor dentro del artículo */

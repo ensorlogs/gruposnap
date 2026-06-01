@@ -20,6 +20,19 @@ function gruposnap_catalog_url(): string
 }
 
 /**
+ * URL del CTA «Pide tu Presupuesto» (header).
+ */
+function gruposnap_header_quote_url(): string
+{
+    $default = 'https://wa.link/dutbmb';
+
+    return (string) apply_filters(
+        'gruposnap_header_quote_url',
+        apply_filters('gruposnap_hero_quote_url', $default)
+    );
+}
+
+/**
  * Sustituye el buscador del header por un CTA al catálogo.
  *
  * @param \Elementor\Widget_Base $widget
@@ -30,19 +43,23 @@ function gruposnap_header_catalog_cta_replace_search(string $content, $widget): 
         return $content;
     }
 
-    $url = esc_url(gruposnap_catalog_url());
+    $catalog_url = esc_url(gruposnap_catalog_url());
+    $quote_url   = esc_url(gruposnap_header_quote_url());
 
     ob_start();
     ?>
     <div class="elementor-widget-container">
-        <div class="gruposnap-header-catalog-wrap">
-            <a class="gruposnap-header-catalog-cta" href="<?php echo $url; ?>" target="_blank" rel="noopener noreferrer">
+        <div class="gruposnap-header-cta-wrap">
+            <a class="gruposnap-header-catalog-cta gruposnap-header-cta--catalog" href="<?php echo $catalog_url; ?>" target="_blank" rel="noopener noreferrer">
                 <span class="gruposnap-header-catalog-cta__icon" aria-hidden="true">
                     <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg" focusable="false">
                         <path d="M542.22 32.05c-54.8 3.11-163.72 14.43-230.96 55.59-4.64 2.84-7.27 7.89-7.27 13.17v363.87c0 11.55 12.63 18.85 23.28 13.49 69.18-34.82 169.23-44.32 218.7-46.92 16.89-.89 30.02-14.43 30.02-30.66V62.75c.01-17.71-15.35-31.74-33.77-30.7zM264.73 87.64C197.5 46.48 88.58 35.17 33.78 32.05 15.36 31.01 0 45.04 0 62.75V400.6c0 16.24 13.13 29.78 30.02 30.66 49.49 2.6 149.59 12.11 218.77 46.95 10.62 5.35 23.21-1.94 23.21-13.46V100.63c0-5.29-2.62-10.14-7.27-12.99z"/>
                     </svg>
                 </span>
                 <span class="gruposnap-header-catalog-cta__text"><?php esc_html_e('Catálogo 2026', 'gruposnap'); ?></span>
+            </a>
+            <a class="gruposnap-header-catalog-cta gruposnap-header-cta--quote" href="<?php echo $quote_url; ?>" target="_blank" rel="noopener noreferrer">
+                <span class="gruposnap-header-catalog-cta__text"><?php esc_html_e('Pide tu Presupuesto', 'gruposnap'); ?></span>
             </a>
         </div>
     </div>
@@ -67,6 +84,18 @@ function gruposnap_enqueue_header_styles(): void
         'gruposnap-header-mobile',
         get_stylesheet_directory_uri() . '/assets/css/header-mobile.css',
         array('gruposnap-header-desktop'),
+        GRUPOSNAP_THEME_VERSION
+    );
+
+    $ticker_deps = array('gruposnap-header-desktop');
+    if (wp_style_is('elementor-post-640', 'registered') || wp_style_is('elementor-post-640', 'enqueued')) {
+        $ticker_deps[] = 'elementor-post-640';
+    }
+
+    wp_enqueue_style(
+        'gruposnap-header-ticker',
+        get_stylesheet_directory_uri() . '/assets/css/header-ticker.css',
+        $ticker_deps,
         GRUPOSNAP_THEME_VERSION
     );
 }

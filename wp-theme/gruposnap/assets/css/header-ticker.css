@@ -1,0 +1,61 @@
+/**
+ * Barra superior — mensajes en marquee (header Elementor 640, sección 321d08d).
+ */
+
+.elementor-640 .elementor-element.elementor-element-321d08d {
+	position: relative;
+	z-index: 20;
+	background-color: #ffffff !important;
+	background-image: none !important;
+	border-bottom: 1px solid rgba(17, 43, 117, 0.12);
+	box-shadow: 0 2px 12px rgba(17, 43, 117, 0.08);
+	padding-top: 12px !important;
+	padding-bottom: 12px !important;
+}
+
+.elementor-640 .elementor-element.elementor-element-321d08d > .elementor-background-overlay {
+	display: none !important;
+}
+
+.elementor-640 .elementor-element.elementor-element-321d08d .wdt-custom-header-ii-animation .wdt-animation-holder {
+	min-height: 28px;
+}
+
+.elementor-640 .wdt-custom-header-ii-animation .wdt-animation-item .wdt-animation-text a {
+	color: #112b75 !important;
+	font-weight: 700 !important;
+	font-size: 0.72rem !important;
+	letter-spacing: 0.12em !important;
+	text-transform: uppercase !important;
+	text-decoration: none !important;
+	transition: color 0.2s ease;
+}
+
+.elementor-640 .wdt-custom-header-ii-animation .wdt-animation-item .wdt-animation-text a:hover,
+.elementor-640 .wdt-custom-header-ii-animation .wdt-animation-item .wdt-animation-text a:focus-visible {
+	color: #f57c20 !important;
+}
+
+.elementor-640 .wdt-custom-header-ii-animation .wdt-animation-item .wdt-animation-text a:after {
+	background-color: #f57c20 !important;
+	width: 5px !important;
+	height: 5px !important;
+	opacity: 0.9;
+}
+
+/* Destacar WhatsApp en el segundo mensaje */
+.elementor-640 .wdt-custom-header-ii-animation .wdt-animation-item:nth-child(2) .wdt-animation-text a {
+	color: #112b75 !important;
+}
+
+@media only screen and (max-width: 767px) {
+	.elementor-640 .elementor-element.elementor-element-321d08d {
+		padding-top: 10px !important;
+		padding-bottom: 10px !important;
+	}
+
+	.elementor-640 .wdt-custom-header-ii-animation .wdt-animation-item .wdt-animation-text a {
+		font-size: 0.65rem !important;
+		letter-spacing: 0.08em !important;
+	}
+}

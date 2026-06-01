@@ -1,0 +1,206 @@
+/**
+ * Home hero — franja de marcas bajo el contenido principal.
+ */
+
+.elementor-751 .elementor-element.elementor-element-650305b .elementor-element-85b941c > .elementor-element-populated {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-bfd27b4.gruposnap-brands-strip__widget {
+	width: 100% !important;
+	max-width: 100% !important;
+	--container-widget-width: 100% !important;
+	margin-top: clamp(1.25rem, 4vw, 2rem) !important;
+	position: relative !important;
+	z-index: 6 !important;
+}
+
+.elementor-751 .gruposnap-brands-strip {
+	width: 100%;
+	max-width: min(1200px, 98vw);
+	margin: 0 auto;
+	padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(0.75rem, 3vw, 1.5rem) 0;
+	text-align: center;
+	background: transparent;
+	border: none;
+	box-shadow: none;
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+
+.elementor-751 .gruposnap-brands-strip__title {
+	display: inline-block;
+	max-width: min(52rem, 100%);
+	margin: 0 auto clamp(0.85rem, 2.5vw, 1.15rem);
+	padding: 0 0.5rem;
+	text-align: center;
+	font-size: clamp(1.125rem, 3.6vw, 1.75rem);
+	font-weight: 800;
+	line-height: 1.28;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: #ffffff;
+	background: transparent;
+	border-radius: 0;
+	box-shadow: none;
+	text-shadow:
+		0 1px 2px rgba(17, 43, 117, 0.55),
+		0 3px 12px rgba(17, 43, 117, 0.28);
+}
+
+.elementor-751 .gruposnap-brands-strip__title::after {
+	content: "";
+	display: block;
+	width: min(5.5rem, 42%);
+	height: 4px;
+	margin: 0.75rem auto 0;
+	border-radius: 999px;
+	background: linear-gradient(90deg, #ff9f5a 0%, #ffffff 50%, #8ecae6 100%);
+}
+
+.elementor-751 .gruposnap-brands-strip__carousel {
+	width: 100%;
+	padding-top: 0.15rem;
+}
+
+.elementor-751 .gruposnap-brands-strip__carousel > .elementor-widget-container {
+	width: 100% !important;
+	max-width: 100% !important;
+	margin: 0 auto !important;
+}
+
+.elementor-751 .gruposnap-brands-strip .elementor-image-carousel-wrapper {
+	width: 100% !important;
+	max-width: 100% !important;
+}
+
+.elementor-751 .gruposnap-brands-strip {
+	--gs-brands-logo-height: clamp(72px, 11vw, 104px);
+	--gs-brands-slide-width: clamp(156px, 19vw, 228px);
+}
+
+.elementor-751 .gruposnap-brands-strip .swiper-slide-image {
+	display: block;
+	width: auto;
+	max-width: 100%;
+	height: auto;
+	max-height: var(--gs-brands-logo-height);
+	opacity: 1;
+	filter: none;
+	object-fit: contain;
+}
+
+.elementor-751 .gruposnap-brands-strip .swiper-slide-inner {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: var(--gs-brands-logo-height);
+	padding: 0.35rem 0;
+}
+
+/* Marquee en loop continuo (sustituye Swiper estático) */
+.elementor-751 .gruposnap-brands-strip .gruposnap-brands-marquee {
+	overflow: hidden !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	mask-image: linear-gradient(
+		90deg,
+		transparent 0%,
+		#000 6%,
+		#000 94%,
+		transparent 100%
+	);
+	-webkit-mask-image: linear-gradient(
+		90deg,
+		transparent 0%,
+		#000 6%,
+		#000 94%,
+		transparent 100%
+	);
+}
+
+.elementor-751 .gruposnap-brands-strip .gruposnap-brands-marquee__track {
+	display: flex !important;
+	flex-wrap: nowrap !important;
+	align-items: center !important;
+	width: max-content !important;
+	gap: 0 !important;
+	animation: gruposnap-brands-marquee-scroll 42s linear infinite !important;
+	will-change: transform;
+}
+
+.elementor-751 .gruposnap-brands-strip .gruposnap-brands-marquee__track:hover {
+	animation-play-state: paused !important;
+}
+
+.elementor-751 .gruposnap-brands-strip .gruposnap-brands-marquee__slide {
+	flex: 0 0 auto !important;
+	width: var(--gs-brands-slide-width) !important;
+	padding: 0 1.5rem !important;
+	box-sizing: content-box !important;
+}
+
+.elementor-751 .gruposnap-brands-strip .gruposnap-brands-marquee__slide .swiper-slide-inner {
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	width: 100% !important;
+	margin: 0 !important;
+	padding: 0.35rem 0 !important;
+}
+
+.elementor-751 .gruposnap-brands-strip .gruposnap-brands-marquee__slide .swiper-slide-image {
+	display: block !important;
+	width: auto !important;
+	max-width: 100% !important;
+	height: auto !important;
+	max-height: var(--gs-brands-logo-height) !important;
+	min-height: clamp(48px, 8vw, 72px) !important;
+	object-fit: contain !important;
+}
+
+@keyframes gruposnap-brands-marquee-scroll {
+	0% {
+		transform: translate3d(0, 0, 0);
+	}
+	100% {
+		transform: translate3d(-50%, 0, 0);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.elementor-751 .gruposnap-brands-strip .gruposnap-brands-marquee__track {
+		animation: none !important;
+		flex-wrap: wrap !important;
+		justify-content: center !important;
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+}
+
+@media (max-width: 767px) {
+	.elementor-751 .gruposnap-brands-strip {
+		--gs-brands-logo-height: clamp(56px, 14vw, 80px);
+		--gs-brands-slide-width: clamp(120px, 28vw, 160px);
+	}
+
+	.elementor-751 .elementor-element.elementor-element-bfd27b4.gruposnap-brands-strip__widget {
+		margin-top: 1rem !important;
+	}
+
+	.elementor-751 .gruposnap-brands-strip__title {
+		font-size: clamp(1rem, 4.8vw, 1.25rem);
+		line-height: 1.32;
+		letter-spacing: 0.04em;
+		padding: 0 0.35rem;
+	}
+}
+
+@media (min-width: 1200px) {
+	.elementor-751 .gruposnap-brands-strip__title {
+		font-size: 1.875rem;
+		letter-spacing: 0.055em;
+	}
+}

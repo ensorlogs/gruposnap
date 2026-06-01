@@ -1,0 +1,365 @@
+/**
+ * Footer 985 — layout compacto: pagos centrados + oficinas RD / Venezuela.
+ */
+
+.elementor-985 .elementor-element.elementor-element-15ddfc8 {
+	padding: clamp(2rem, 5vw, 3rem) 0 clamp(1.5rem, 3vw, 2rem) !important;
+	border-bottom: none !important;
+}
+
+.elementor-985 .elementor-element.elementor-element-b0dd5e1 > .elementor-element-populated {
+	padding: 0 !important;
+}
+
+.elementor-985 .elementor-element.elementor-element-b0dd5e1 > .elementor-element-populated > .elementor-widget-wrap {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	justify-content: center !important;
+	align-items: stretch !important;
+	gap: clamp(0.75rem, 2.5vw, 1.25rem) !important;
+	max-width: min(720px, 94vw) !important;
+	margin: 0 auto !important;
+	padding: 0 clamp(1rem, 4vw, 1.5rem) !important;
+}
+
+.elementor-985 .gruposnap-footer-offices__intro {
+	flex: 0 0 100% !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	margin: 0 0 clamp(0.15rem, 0.8vw, 0.35rem) !important;
+	padding: 0 !important;
+	text-align: center !important;
+}
+
+.elementor-985 .gruposnap-footer-offices__title {
+	margin: 0 !important;
+	padding: 0 !important;
+	font-size: clamp(1.625rem, 3.6vw, 2.5rem) !important;
+	font-weight: 800 !important;
+	line-height: 1.18 !important;
+	letter-spacing: -0.025em !important;
+	color: #112b75 !important;
+}
+
+.elementor-985 .gruposnap-footer-offices__title::after {
+	content: "";
+	display: block;
+	width: min(4.25rem, 20vw);
+	height: 4px;
+	margin: 0.65rem auto 0;
+	border-radius: 999px;
+	background: linear-gradient(90deg, #f57c20 0%, #ff9f5a 45%, #112b75 100%);
+}
+
+@media (max-width: 767px) {
+	.elementor-985 .gruposnap-footer-offices__title {
+		font-size: clamp(1.45rem, 6.5vw, 1.85rem) !important;
+		line-height: 1.22 !important;
+	}
+}
+
+/* Ocultar logo, texto largo, catálogo y redes */
+.elementor-985 .elementor-element.elementor-element-4781760,
+.elementor-985 .elementor-element.elementor-element-045a10a {
+	display: none !important;
+}
+
+/* Bloque principal centrado */
+.elementor-985 .elementor-element.elementor-element-317c69b {
+	padding: 0 !important;
+}
+
+.elementor-985 .elementor-element.elementor-element-317c69b > .elementor-container {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	justify-content: center !important;
+	gap: clamp(1.5rem, 4vw, 2.25rem) !important;
+	max-width: min(720px, 94vw) !important;
+	margin: 0 auto !important;
+	padding: 0 clamp(1rem, 4vw, 1.5rem) !important;
+}
+
+/* Pagos: solo bajo el copyright (columna Elementor oculta) */
+.elementor-985 .elementor-element.elementor-element-2e90e67 {
+	display: none !important;
+}
+
+.elementor-985 .elementor-element.elementor-element-2631571,
+.elementor-985 .elementor-element.elementor-element-0d42af0 {
+	width: 100% !important;
+	max-width: 100% !important;
+	flex: 0 0 auto !important;
+}
+
+.elementor-985 .elementor-element.elementor-element-2e90e67 > .elementor-element-populated,
+.elementor-985 .elementor-element.elementor-element-2631571 > .elementor-element-populated,
+.elementor-985 .elementor-element.elementor-element-0d42af0 > .elementor-element-populated {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+/* ——— Pagos centrados ——— */
+.elementor-985 .elementor-element.elementor-element-2e90e67 .elementor-widget-wrap {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	text-align: center !important;
+}
+
+.elementor-985 .elementor-element.elementor-element-c5e544e,
+.elementor-985 .elementor-element.elementor-element-43ca02e {
+	width: 100% !important;
+	max-width: 100% !important;
+	text-align: center !important;
+}
+
+.elementor-985 .elementor-element.elementor-element-c5e544e .elementor-widget-container,
+.elementor-985 .elementor-element.elementor-element-43ca02e .elementor-widget-container {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+}
+
+.elementor-985 .elementor-element.elementor-element-c5e544e .gruposnap-payments__title,
+.elementor-985 .elementor-element.elementor-element-c5e544e .elementor-heading-title {
+	text-align: center !important;
+	font-size: 1.0625rem !important;
+	color: #112b75 !important;
+	margin-bottom: 0.75rem !important;
+}
+
+.elementor-985 .gruposnap-payments {
+	margin: 0 auto;
+}
+
+.elementor-985 .gruposnap-payments__logos {
+	justify-content: center !important;
+}
+
+.elementor-985 .gruposnap-payments__labels {
+	text-align: center !important;
+}
+
+/* ——— Oficinas lado a lado ——— */
+.elementor-985 .gruposnap-footer-offices > .elementor-container {
+	flex-wrap: wrap !important;
+	justify-content: center !important;
+}
+
+.elementor-985 .elementor-element.elementor-element-2631571,
+.elementor-985 .elementor-element.elementor-element-0d42af0 {
+	flex: 1 1 calc(50% - 0.625rem) !important;
+	max-width: calc(50% - 0.625rem) !important;
+	min-width: min(100%, 260px) !important;
+	box-sizing: border-box !important;
+}
+
+.elementor-985 .gruposnap-footer-office {
+	position: relative !important;
+	overflow: hidden !important;
+	border: 1px solid #e4e8ef !important;
+	border-radius: 14px !important;
+	padding: clamp(0.85rem, 2.5vw, 1.15rem) clamp(2.5rem, 5.5vw, 3rem) !important;
+	box-shadow: 0 8px 24px rgba(17, 43, 117, 0.06) !important;
+	text-align: center !important;
+}
+
+/* República Dominicana — acento rojo/azul + fondo suave */
+.elementor-985 .gruposnap-footer-office--rd {
+	border-left: 4px solid #ce1126 !important;
+	background:
+		radial-gradient(ellipse 85% 70% at 8% 15%, rgba(206, 17, 38, 0.14) 0%, transparent 55%),
+		radial-gradient(ellipse 75% 65% at 92% 88%, rgba(0, 45, 98, 0.12) 0%, transparent 52%),
+		linear-gradient(165deg, #ffffff 0%, #f7f9fd 48%, #f2f6fc 100%) !important;
+}
+
+/* Venezuela — acento amarillo/azul/rojo + fondo suave */
+.elementor-985 .gruposnap-footer-office--ve {
+	border-right: 4px solid #ffcc00 !important;
+	background:
+		radial-gradient(ellipse 80% 60% at 12% 20%, rgba(255, 204, 0, 0.2) 0%, transparent 50%),
+		radial-gradient(ellipse 70% 55% at 88% 75%, rgba(207, 20, 43, 0.1) 0%, transparent 48%),
+		radial-gradient(ellipse 65% 50% at 50% 100%, rgba(0, 36, 125, 0.09) 0%, transparent 55%),
+		linear-gradient(165deg, #ffffff 0%, #fafbfd 50%, #f5f8fc 100%) !important;
+}
+
+.elementor-985 .gruposnap-footer-office--rd > .elementor-element-populated,
+.elementor-985 .gruposnap-footer-office--ve > .elementor-element-populated {
+	position: relative !important;
+	background: transparent !important;
+}
+
+/* Marca de agua bandera (sutil) */
+.elementor-985 .gruposnap-footer-office--rd > .elementor-element-populated::before,
+.elementor-985 .gruposnap-footer-office--ve > .elementor-element-populated::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	z-index: 0;
+	opacity: 0.07;
+	background-repeat: no-repeat;
+	background-position: center 42%;
+	background-size: clamp(5.5rem, 28vw, 8.5rem);
+}
+
+.elementor-985 .gruposnap-footer-office--rd > .elementor-element-populated::before {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 80'%3E%3Crect fill='%23002d62' width='120' height='80'/%3E%3Crect fill='%23fff' x='48' width='24' height='80'/%3E%3Crect fill='%23fff' y='28' width='120' height='24'/%3E%3Crect fill='%23ce1126' x='52' width='16' height='80'/%3E%3Crect fill='%23ce1126' y='32' width='120' height='16'/%3E%3C/svg%3E");
+}
+
+.elementor-985 .gruposnap-footer-office--ve > .elementor-element-populated::before {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 80'%3E%3Crect fill='%23ffcc00' width='120' height='26.67'/%3E%3Crect fill='%2300236b' y='26.67' width='120' height='26.66'/%3E%3Crect fill='%23cf142b' y='53.33' width='120' height='26.67'/%3E%3C/svg%3E");
+}
+
+/* Bandera emoji esquina */
+.elementor-985 .gruposnap-footer-office--rd > .elementor-element-populated::after,
+.elementor-985 .gruposnap-footer-office--ve > .elementor-element-populated::after {
+	position: absolute;
+	top: 0.65rem;
+	font-size: clamp(1.35rem, 3.5vw, 1.65rem);
+	line-height: 1;
+	opacity: 0.92;
+	filter: drop-shadow(0 2px 6px rgba(17, 43, 117, 0.12));
+	pointer-events: none;
+	z-index: 2;
+}
+
+.elementor-985 .gruposnap-footer-office--rd > .elementor-element-populated::after {
+	content: "🇩🇴";
+	left: 0.65rem;
+}
+
+.elementor-985 .gruposnap-footer-office--ve > .elementor-element-populated::after {
+	content: "🇻🇪";
+	right: 0.65rem;
+}
+
+.elementor-985 .gruposnap-footer-office .elementor-widget-wrap {
+	position: relative !important;
+	z-index: 1 !important;
+	align-items: center !important;
+	text-align: center !important;
+}
+
+.elementor-985 .gruposnap-footer-office .elementor-element-874ae8e .elementor-heading-title,
+.elementor-985 .gruposnap-footer-office__country {
+	font-size: 0.9375rem !important;
+	font-weight: 800 !important;
+	color: #112b75 !important;
+	margin: 0 0 0.5rem !important;
+	letter-spacing: 0.02em !important;
+}
+
+.elementor-985 .gruposnap-footer-office--ve .elementor-element-b29effd,
+.elementor-985 .gruposnap-footer-office--ve .elementor-element-69048ef {
+	display: none !important;
+	height: 0 !important;
+	margin: 0 !important;
+	overflow: hidden !important;
+}
+
+.elementor-985 .gruposnap-footer-office .elementor-widget-heading:not(:first-child) .elementor-heading-title,
+.elementor-985 .gruposnap-footer-office__label {
+	font-size: 0.75rem !important;
+	font-weight: 700 !important;
+	color: #f57c20 !important;
+	text-transform: uppercase !important;
+	letter-spacing: 0.08em !important;
+	margin: 0.65rem 0 0.25rem !important;
+}
+
+.elementor-985 .gruposnap-footer-office__block--email {
+	margin-top: 0.15rem !important;
+}
+
+.elementor-985 .gruposnap-footer-office__block--email .gruposnap-footer-office__label {
+	margin-top: 0.65rem !important;
+}
+
+.elementor-985 .gruposnap-footer-office__value {
+	display: inline-block !important;
+	font-size: 0.875rem !important;
+	font-weight: 600 !important;
+	line-height: 1.45 !important;
+	color: #112b75 !important;
+	text-decoration: none !important;
+}
+
+.elementor-985 .gruposnap-footer-office__value:hover {
+	color: #f57c20 !important;
+}
+
+.elementor-985 .gruposnap-footer-office .elementor-icon-list-items {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+.elementor-985 .gruposnap-footer-office .elementor-icon-list-item {
+	justify-content: center !important;
+	text-align: center !important;
+}
+
+.elementor-985 .gruposnap-footer-office .elementor-icon-list-text {
+	font-size: 0.875rem !important;
+	line-height: 1.45 !important;
+	color: #4a5568 !important;
+}
+
+.elementor-985 .gruposnap-footer-office .elementor-icon-list-text a {
+	color: #112b75 !important;
+	text-decoration: none !important;
+	font-weight: 600 !important;
+}
+
+.elementor-985 .gruposnap-footer-office .elementor-icon-list-text a:hover {
+	color: #f57c20 !important;
+}
+
+/* Barra copyright */
+.elementor-985 .elementor-element.elementor-element-f42aad0 {
+	padding: 1rem 0 !important;
+	border-top: 1px solid #e8ecf4 !important;
+}
+
+.elementor-985 .elementor-element.elementor-element-42f81a5 .elementor-widget-container {
+	text-align: center !important;
+}
+
+.elementor-985 .gruposnap-payments-bar {
+	margin-top: 1rem;
+	padding-top: 0.25rem;
+	text-align: center !important;
+}
+
+.elementor-985 .gruposnap-payments-bar .gruposnap-payments__title {
+	margin: 0 0 0.75rem;
+	font-size: 1.0625rem !important;
+	font-weight: 700;
+	color: #112b75 !important;
+	letter-spacing: 0.01em;
+}
+
+.elementor-985 .gruposnap-payments-bar .gruposnap-payments {
+	margin: 0 auto;
+}
+
+.elementor-985 .gruposnap-payments-bar .gruposnap-payments__logos {
+	justify-content: center !important;
+}
+
+.elementor-985 .gruposnap-payments-bar .gruposnap-payments__labels {
+	text-align: center !important;
+}
+
+@media (max-width: 767px) {
+	.elementor-985 .elementor-element.elementor-element-2631571,
+	.elementor-985 .elementor-element.elementor-element-0d42af0 {
+		flex: 0 0 100% !important;
+		max-width: min(400px, 100%) !important;
+	}
+
+	.elementor-985 .elementor-element.elementor-element-15ddfc8 {
+		padding: 1.75rem 0 1.25rem !important;
+	}
+}

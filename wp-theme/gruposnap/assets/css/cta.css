@@ -56,6 +56,90 @@
 	color: var(--gs-cta-white) !important;
 }
 
+/* —— Presupuesto: naranja → hover azul (inverso del catálogo) —— */
+.elementor-element.gruposnap-cta--quote .wdt-button-holder .wdt-button,
+.gruposnap-hero-quote-cta .wdt-button-holder .wdt-button,
+.wdt-button.gruposnap-cta--quote {
+	background-color: var(--gs-cta-orange) !important;
+	border-color: var(--gs-cta-orange) !important;
+	color: var(--gs-cta-white) !important;
+}
+
+.elementor-element.gruposnap-cta--quote .wdt-button-holder .wdt-button:hover,
+.elementor-element.gruposnap-cta--quote .wdt-button-holder .wdt-button:focus,
+.gruposnap-hero-quote-cta .wdt-button-holder .wdt-button:hover,
+.gruposnap-hero-quote-cta .wdt-button-holder .wdt-button:focus,
+.wdt-button.gruposnap-cta--quote:hover {
+	background-color: var(--gs-cta-blue) !important;
+	border-color: var(--gs-cta-blue) !important;
+	color: var(--gs-cta-white) !important;
+}
+
+.elementor-element.gruposnap-cta--quote.wdt-custom-button .wdt-button-holder .wdt-button,
+.elementor-751 .elementor-element-650305b .gruposnap-hero-quote-cta .wdt-button-holder .wdt-button {
+	background-color: var(--gs-cta-orange) !important;
+	border-color: var(--gs-cta-orange) !important;
+	color: var(--gs-cta-white) !important;
+}
+
+.elementor-element.gruposnap-cta--quote.wdt-custom-button .wdt-button-holder .wdt-button:hover,
+.elementor-element.gruposnap-cta--quote.wdt-custom-button .wdt-button-holder .wdt-button:focus,
+.elementor-751 .elementor-element-650305b .gruposnap-hero-quote-cta .wdt-button-holder .wdt-button:hover,
+.elementor-751 .elementor-element-650305b .gruposnap-hero-quote-cta .wdt-button-holder .wdt-button:focus {
+	background-color: var(--gs-cta-blue) !important;
+	border-color: var(--gs-cta-blue) !important;
+	color: var(--gs-cta-white) !important;
+}
+
+.elementor-element.gruposnap-cta--quote .wdt-button-holder .wdt-button:after,
+.elementor-element.gruposnap-cta--quote.wdt-custom-button .wdt-button-holder .wdt-button:after,
+.elementor-751 .elementor-element-650305b .gruposnap-hero-quote-cta .wdt-button-holder .wdt-button:after {
+	background-color: var(--gs-cta-orange) !important;
+	background-image: none !important;
+}
+
+.elementor-element.gruposnap-cta--quote .wdt-button-holder .wdt-button:hover:after,
+.elementor-element.gruposnap-cta--quote .wdt-button-holder .wdt-button:focus:after,
+.elementor-element.gruposnap-cta--quote.wdt-custom-button .wdt-button-holder .wdt-button:hover:after,
+.elementor-element.gruposnap-cta--quote.wdt-custom-button .wdt-button-holder .wdt-button:focus:after,
+.elementor-751 .elementor-element-650305b .gruposnap-hero-quote-cta .wdt-button-holder .wdt-button:hover:after,
+.elementor-751 .elementor-element-650305b .gruposnap-hero-quote-cta .wdt-button-holder .wdt-button:focus:after {
+	background-color: var(--gs-cta-blue) !important;
+	background-image: none !important;
+}
+
+/* Par Catálogo + Presupuesto en el hero */
+.elementor-751 .elementor-element-650305b .gruposnap-hero-cta-pair {
+	display: inline-flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.75rem;
+	max-width: 100%;
+	vertical-align: top;
+}
+
+.elementor-751 .elementor-element-650305b .gruposnap-hero-cta-pair > .elementor-element,
+.elementor-751 .elementor-element-650305b .gruposnap-hero-cta-pair > .gruposnap-hero-quote-cta {
+	width: auto !important;
+	max-width: 100%;
+	flex: 0 1 auto;
+}
+
+.elementor-751 .elementor-element-650305b .gruposnap-hero-cta-pair > .elementor-element > .elementor-widget-container,
+.elementor-751 .elementor-element-650305b .gruposnap-hero-cta-pair > .gruposnap-hero-quote-cta > .elementor-widget-container {
+	padding-top: 20px !important;
+	padding-right: 0 !important;
+	padding-bottom: 0 !important;
+	padding-left: 0 !important;
+}
+
+.elementor-751 .elementor-element-650305b .gruposnap-hero-quote-cta .wdt-button .wdt-button-text {
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-size: var(--gs-cta-font-size);
+	font-weight: 700;
+}
+
 /* —— Secundario: catálogo, ver más (azul) —— */
 .elementor-element.gruposnap-cta--secondary .wdt-button-holder .wdt-button,
 .wdt-button.gruposnap-cta--secondary {
@@ -98,6 +182,34 @@
 .elementor-751 .elementor-element-650305b .gruposnap-cta--secondary .wdt-button-holder .wdt-button {
 	background-color: var(--gs-cta-blue) !important;
 	border-color: var(--gs-cta-blue) !important;
+	color: var(--gs-cta-white) !important;
+}
+
+.elementor-751 .elementor-element-650305b .gruposnap-cta--secondary .wdt-button-holder .wdt-button:hover,
+.elementor-751 .elementor-element-650305b .gruposnap-cta--secondary .wdt-button-holder .wdt-button:focus {
+	background-color: var(--gs-cta-orange) !important;
+	border-color: var(--gs-cta-orange) !important;
+	color: var(--gs-cta-white) !important;
+}
+
+/* Hero slider: anula .wdt-custom-button del tema (naranja por defecto) */
+.elementor-element.gruposnap-cta--secondary.wdt-custom-button .wdt-button-holder .wdt-button,
+.elementor-751 .elementor-element.elementor-element-a35e83e .wdt-button-holder .wdt-button,
+.elementor-751 .elementor-element.elementor-element-09cee4d .wdt-button-holder .wdt-button {
+	background-color: var(--gs-cta-blue) !important;
+	border-color: var(--gs-cta-blue) !important;
+	color: var(--gs-cta-white) !important;
+}
+
+.elementor-element.gruposnap-cta--secondary.wdt-custom-button .wdt-button-holder .wdt-button:hover,
+.elementor-element.gruposnap-cta--secondary.wdt-custom-button .wdt-button-holder .wdt-button:focus,
+.elementor-751 .elementor-element.elementor-element-a35e83e .wdt-button-holder .wdt-button:hover,
+.elementor-751 .elementor-element.elementor-element-a35e83e .wdt-button-holder .wdt-button:focus,
+.elementor-751 .elementor-element.elementor-element-09cee4d .wdt-button-holder .wdt-button:hover,
+.elementor-751 .elementor-element.elementor-element-09cee4d .wdt-button-holder .wdt-button:focus {
+	background-color: var(--gs-cta-orange) !important;
+	border-color: var(--gs-cta-orange) !important;
+	color: var(--gs-cta-white) !important;
 }
 
 .elementor-751 .elementor-element-650305b .gruposnap-cta--whatsapp .wdt-button-holder .wdt-button {
@@ -199,10 +311,27 @@
 }
 
 .elementor-element.gruposnap-cta--secondary .wdt-button-holder[class*="wdt-animation"] .wdt-button:after,
+.elementor-element.gruposnap-cta--secondary.wdt-custom-button .wdt-button-holder .wdt-button:after,
+.elementor-751 .elementor-element.elementor-element-037651e.gruposnap-cta--secondary .wdt-button-holder[class*="wdt-animation"] .wdt-button:after,
+.elementor-751 .elementor-element.elementor-element-465050a.gruposnap-cta--secondary .wdt-button-holder[class*="wdt-animation"] .wdt-button:after,
+.elementor-751 .elementor-element.elementor-element-a35e83e .wdt-button-holder .wdt-button:after,
+.elementor-751 .elementor-element.elementor-element-09cee4d .wdt-button-holder .wdt-button:after {
+	background-color: var(--gs-cta-blue) !important;
+	background-image: none !important;
+}
+
 .elementor-element.gruposnap-cta--secondary .wdt-button-holder[class*="wdt-animation"] .wdt-button:hover:after,
 .elementor-element.gruposnap-cta--secondary .wdt-button-holder[class*="wdt-animation"] .wdt-button:focus:after,
-.elementor-751 .elementor-element.elementor-element-037651e.gruposnap-cta--secondary .wdt-button-holder[class*="wdt-animation"] .wdt-button:after,
-.elementor-751 .elementor-element.elementor-element-465050a.gruposnap-cta--secondary .wdt-button-holder[class*="wdt-animation"] .wdt-button:after {
+.elementor-element.gruposnap-cta--secondary.wdt-custom-button .wdt-button-holder .wdt-button:hover:after,
+.elementor-element.gruposnap-cta--secondary.wdt-custom-button .wdt-button-holder .wdt-button:focus:after,
+.elementor-751 .elementor-element.elementor-element-037651e.gruposnap-cta--secondary .wdt-button-holder[class*="wdt-animation"] .wdt-button:hover:after,
+.elementor-751 .elementor-element.elementor-element-037651e.gruposnap-cta--secondary .wdt-button-holder[class*="wdt-animation"] .wdt-button:focus:after,
+.elementor-751 .elementor-element.elementor-element-465050a.gruposnap-cta--secondary .wdt-button-holder[class*="wdt-animation"] .wdt-button:hover:after,
+.elementor-751 .elementor-element.elementor-element-465050a.gruposnap-cta--secondary .wdt-button-holder[class*="wdt-animation"] .wdt-button:focus:after,
+.elementor-751 .elementor-element.elementor-element-a35e83e .wdt-button-holder .wdt-button:hover:after,
+.elementor-751 .elementor-element.elementor-element-a35e83e .wdt-button-holder .wdt-button:focus:after,
+.elementor-751 .elementor-element.elementor-element-09cee4d .wdt-button-holder .wdt-button:hover:after,
+.elementor-751 .elementor-element.elementor-element-09cee4d .wdt-button-holder .wdt-button:focus:after {
 	background-color: var(--gs-cta-orange) !important;
 	background-image: none !important;
 }

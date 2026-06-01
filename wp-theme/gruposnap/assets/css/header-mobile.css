@@ -5,40 +5,76 @@
 
 @media only screen and (max-width: 1024px) {
 	.elementor-640 .elementor-element.elementor-element-070ddc7 > .elementor-container {
-		justify-content: center !important;
+		justify-content: space-between !important;
 		align-items: center !important;
 		flex-wrap: nowrap !important;
-		gap: clamp(1.25rem, 6vw, 2.75rem) !important;
+		gap: 0.75rem !important;
 		padding-left: clamp(1rem, 4vw, 1.75rem) !important;
 		padding-right: clamp(1rem, 4vw, 1.75rem) !important;
 		max-width: 100%;
 	}
 
-	.elementor-640 .elementor-element.elementor-element-d9112b5,
+	.elementor-640 .elementor-element.elementor-element-070ddc7 > .elementor-container > .elementor-column {
+		width: auto !important;
+	}
+
+	.elementor-640 .elementor-element.elementor-element-d9112b5 {
+		width: auto !important;
+		max-width: none !important;
+		flex: 1 1 auto !important;
+		min-width: 0 !important;
+	}
+
 	.elementor-640 .elementor-element.elementor-element-f41d30a {
 		width: auto !important;
 		max-width: none !important;
-		flex: 0 1 auto !important;
+		flex: 0 0 auto !important;
 	}
 
-	.elementor-640 .elementor-element.elementor-element-d9112b5 > .elementor-widget-wrap,
+	.elementor-640 .elementor-element.elementor-element-d9112b5 > .elementor-widget-wrap {
+		justify-content: flex-start !important;
+	}
+
 	.elementor-640 .elementor-element.elementor-element-f41d30a > .elementor-widget-wrap {
-		justify-content: center !important;
+		justify-content: flex-end !important;
 	}
 
+	/* Anula width fijo de Elementor (218px) + max-height que aplastaba el logo */
 	.elementor-640 .elementor-element.elementor-element-b928f2e {
 		width: auto !important;
-		max-width: min(58vw, 220px) !important;
+		max-width: none !important;
+		--container-widget-width: auto !important;
+		flex-shrink: 1 !important;
+		min-width: 0 !important;
+	}
+
+	.elementor-640 .elementor-element.elementor-element-b928f2e > .elementor-widget-container {
+		width: auto !important;
+		max-width: 100%;
+		margin: 0;
+	}
+
+	.elementor-640 .elementor-element.elementor-element-b928f2e .wdt-logo-container,
+	.elementor-640 .elementor-element.elementor-element-b928f2e .wdt-logo-container a {
+		display: inline-flex;
+		align-items: center;
+		max-width: 100%;
+		line-height: 0;
 	}
 
 	.elementor-640 .elementor-element.elementor-element-b928f2e .wdt-logo-container {
-		text-align: center;
+		text-align: left;
 	}
 
 	.elementor-640 .elementor-element.elementor-element-b928f2e .wdt-logo-container img {
-		width: auto;
-		max-height: 46px;
-		margin: 0 auto;
+		display: block;
+		width: auto !important;
+		height: auto !important;
+		max-width: min(52vw, 200px) !important;
+		max-height: none !important;
+		object-fit: contain;
+		object-position: left center;
+		margin: 0;
 	}
 
 	.elementor-640 .elementor-element.elementor-element-fcfb7aa {
@@ -112,16 +148,12 @@
 
 @media only screen and (max-width: 479px) {
 	.elementor-640 .elementor-element.elementor-element-070ddc7 > .elementor-container {
-		gap: 1rem !important;
+		gap: 0.65rem !important;
 		padding-left: 0.85rem !important;
 		padding-right: 0.85rem !important;
 	}
 
-	.elementor-640 .elementor-element.elementor-element-b928f2e {
-		max-width: min(52vw, 180px) !important;
-	}
-
 	.elementor-640 .elementor-element.elementor-element-b928f2e .wdt-logo-container img {
-		max-height: 40px;
+		max-width: min(58vw, 168px) !important;
 	}
 }

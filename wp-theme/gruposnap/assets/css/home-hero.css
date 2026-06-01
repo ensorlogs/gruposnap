@@ -1,5 +1,5 @@
 /**
- * Home hero (650305b) — slider visible como ensorlogs.com/gruposnap.
+ * Home hero (650305b) — visible en desktop, tablet y móvil.
  */
 
 body.home .inner-wrapper,
@@ -17,23 +17,25 @@ body.elementor-page-751 #header-wrapper {
 	position: relative !important;
 	z-index: 1 !important;
 	overflow: visible !important;
-	/* Evita recorte por margin negativo + overflow del tema */
 	margin-top: 0 !important;
 	padding-top: 210px !important;
 	margin-bottom: 0 !important;
 	min-height: 900px !important;
-	background-color: #c5e4f3 !important;
-	background-position: center center !important;
-	background-repeat: no-repeat !important;
-	background-size: cover !important;
-}
-
-.elementor-751 .elementor-element.elementor-element-650305b > .elementor-background-overlay {
-	display: none !important;
 }
 
 .elementor-751 .elementor-element.elementor-element-650305b .elementor-background-video-container {
-	display: none !important;
+	z-index: 0 !important;
+	opacity: 1 !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-650305b .elementor-background-video-hosted {
+	object-fit: cover !important;
+	width: 100% !important;
+	height: 100% !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-650305b > .elementor-background-overlay {
+	z-index: 1 !important;
 }
 
 .elementor-751 .elementor-element.elementor-element-650305b > .elementor-container {
@@ -46,50 +48,351 @@ body.elementor-page-751 #header-wrapper {
 	margin-top: 100px !important;
 }
 
+/* El hero no usa el estilo de títulos de sección (marketing). */
+.elementor-751 .elementor-element.elementor-element-650305b .gruposnap-marketing-heading .wdt-heading-holder,
+.elementor-751 .elementor-element.elementor-element-650305b .gruposnap-marketing-heading .wdt-heading-title,
+.elementor-751 .elementor-element.elementor-element-650305b .gruposnap-marketing-heading .wdt-heading-content-wrapper {
+	text-align: inherit !important;
+	padding: 0 !important;
+	max-width: none !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-650305b .gruposnap-marketing-heading .gruposnap-heading-eyebrow,
+.elementor-751 .elementor-element.elementor-element-650305b .gruposnap-marketing-heading .wdt-heading-title::after {
+	display: none !important;
+}
+
+/* Presupuesto ya no va en el hero (está en el header). */
+.elementor-751 .elementor-element.elementor-element-650305b .gruposnap-hero-cta-pair,
+.elementor-751 .elementor-element.elementor-element-650305b .gruposnap-hero-quote-cta {
+	display: none !important;
+}
+
+/* Un solo bloque de hero (desktop); el bloque móvil de Elementor rompe el layout */
+.elementor-751 .elementor-element.elementor-element-47df02b {
+	display: none !important;
+}
+
 .elementor-751 .elementor-element.elementor-element-a5d8162,
 .elementor-751 .elementor-element.elementor-element-a5d8162.elementor-hidden-mobile {
 	display: flex !important;
 	visibility: visible !important;
 	opacity: 1 !important;
-	min-height: 1px !important;
+	width: 100% !important;
+	position: relative !important;
+	z-index: 6 !important;
+}
+
+/* Oculto: +500 marcas / Producción personalizada (icon-list bf70122) */
+.elementor-751 .elementor-element.elementor-element-bf70122,
+.elementor-751 .elementor-element.elementor-element-650305b .wdt-custom-home-1-form-iconlist {
+	display: none !important;
+	visibility: hidden !important;
+	height: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	overflow: hidden !important;
+}
+
+/* ——— Carrusel mockups: tamaño contenido, sin min-width de Elementor ——— */
+@media (max-width: 1024px) {
+	.elementor-751 .elementor-element.elementor-element-650305b > .elementor-container {
+		min-height: 560px !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-650305b .elementor-element-85b941c > .elementor-element-populated {
+		margin-top: 0 !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-87e8edf,
+	.elementor-751 .elementor-element.elementor-element-23523f7 {
+		width: 100% !important;
+		max-width: 100% !important;
+		--container-widget-width: 100% !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-87e8edf > .elementor-widget-container,
+	.elementor-751 .elementor-element.elementor-element-23523f7 > .elementor-widget-container {
+		display: flex !important;
+		justify-content: center !important;
+		width: 100% !important;
+		margin: 0 auto !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-87e8edf .wdt-image-box-holder,
+	.elementor-751 .elementor-element.elementor-element-23523f7 .wdt-image-box-holder,
+	.elementor-751 .elementor-element.elementor-element-87e8edf .wdt-image-box-container,
+	.elementor-751 .elementor-element.elementor-element-23523f7 .wdt-image-box-container,
+	.elementor-751 .elementor-element.elementor-element-87e8edf .swiper,
+	.elementor-751 .elementor-element.elementor-element-23523f7 .swiper {
+		width: 100% !important;
+		max-width: min(400px, 90vw) !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-87e8edf .wdt-content-image-wrapper,
+	.elementor-751 .elementor-element.elementor-element-87e8edf .wdt-content-image,
+	.elementor-751 .elementor-element.elementor-element-87e8edf .wdt-content-image > span,
+	.elementor-751 .elementor-element.elementor-element-23523f7 .wdt-content-image-wrapper,
+	.elementor-751 .elementor-element.elementor-element-23523f7 .wdt-content-image,
+	.elementor-751 .elementor-element.elementor-element-23523f7 .wdt-content-image > span,
+	.elementor-751 .elementor-element.elementor-element-87e8edf .wdt-content-item-holder.wdt-rc-template-duotone .wdt-content-item .wdt-content-media-group .wdt-content-elements-group.wdt-media-group .wdt-content-image-wrapper,
+	.elementor-751 .elementor-element.elementor-element-87e8edf .wdt-content-item-holder.wdt-rc-template-duotone .wdt-content-item .wdt-content-media-group .wdt-content-elements-group.wdt-media-group .wdt-content-image-wrapper .wdt-content-image,
+	.elementor-751 .elementor-element.elementor-element-87e8edf .wdt-content-item-holder.wdt-rc-template-duotone .wdt-content-item .wdt-content-media-group .wdt-content-elements-group.wdt-media-group .wdt-content-image-wrapper .wdt-content-image > span,
+	.elementor-751 .elementor-element.elementor-element-23523f7 .wdt-content-item-holder.wdt-rc-template-duotone .wdt-content-item .wdt-content-media-group .wdt-content-elements-group.wdt-media-group .wdt-content-image-wrapper,
+	.elementor-751 .elementor-element.elementor-element-23523f7 .wdt-content-item-holder.wdt-rc-template-duotone .wdt-content-item .wdt-content-media-group .wdt-content-elements-group.wdt-media-group .wdt-content-image-wrapper .wdt-content-image,
+	.elementor-751 .elementor-element.elementor-element-23523f7 .wdt-content-item-holder.wdt-rc-template-duotone .wdt-content-item .wdt-content-media-group .wdt-content-elements-group.wdt-media-group .wdt-content-image-wrapper .wdt-content-image > span {
+		min-width: 0 !important;
+		max-width: 100% !important;
+		width: 100% !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-87e8edf .wdt-content-image img,
+	.elementor-751 .elementor-element.elementor-element-23523f7 .wdt-content-image img {
+		display: block !important;
+		width: 100% !important;
+		max-width: min(400px, 90vw) !important;
+		height: auto !important;
+		margin: 0 auto !important;
+		object-fit: contain !important;
+	}
+}
+
+/* ——— Tablet y móvil: mismo hero que desktop, apilado y centrado ——— */
+@media (max-width: 1024px) {
+	.elementor-751 .elementor-element.elementor-element-650305b {
+		padding-top: 160px !important;
+		min-height: auto !important;
+		padding-bottom: 2rem !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-a5d8162 {
+		padding: 2rem 0 1.5rem !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-a5d8162 > .elementor-container {
+		flex-direction: column !important;
+		flex-wrap: nowrap !important;
+		justify-content: center !important;
+		align-items: center !important;
+		gap: 1.5rem !important;
+		max-width: min(920px, 94vw) !important;
+		margin: 0 auto !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-35290fa {
+		display: block !important;
+		--spacer-size: min(380px, 72vw) !important;
+		width: min(400px, 78vw) !important;
+		max-width: 78vw !important;
+		height: min(380px, 72vw) !important;
+		left: 50% !important;
+		right: auto !important;
+		transform: translateX(-58%) !important;
+		bottom: auto !important;
+		top: 12% !important;
+		border-radius: 50% !important;
+		background-color: rgba(255, 97, 0, 0.68) !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-82f3f66,
+	.elementor-751 .elementor-element.elementor-element-04501ce {
+		width: 100% !important;
+		max-width: 100% !important;
+		flex: 0 0 100% !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-82f3f66 {
+		order: 1 !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-04501ce {
+		order: 2 !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-82f3f66 > .elementor-element-populated,
+	.elementor-751 .elementor-element.elementor-element-04501ce > .elementor-element-populated {
+		padding: 0 clamp(1rem, 3vw, 2rem) !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-title {
+		font-size: clamp(1.75rem, 4.5vw, 2.5rem) !important;
+		line-height: 1.15 !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-content-wrapper {
+		font-size: clamp(0.9375rem, 2vw, 1.0625rem) !important;
+		max-width: 36rem !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-82f3f66 .elementor-widget-wdt-button {
+		display: inline-flex !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-87e8edf {
+		display: block !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-23523f7 {
+		display: none !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-c4dc9ca {
+		display: none !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-8afe48e {
+		display: none !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-82f3f66 > .elementor-element-populated {
+		position: relative !important;
+		padding: clamp(1.25rem, 5vw, 2rem) clamp(1rem, 4vw, 1.5rem) !important;
+		text-align: center !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-82f3f66 .elementor-widget-wrap {
+		display: flex !important;
+		flex-direction: row !important;
+		flex-wrap: wrap !important;
+		justify-content: center !important;
+		align-items: center !important;
+		text-align: center !important;
+		gap: 0.5rem 0.65rem !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-82f3f66 .elementor-widget-wdt-heading {
+		flex: 0 0 100% !important;
+		width: 100% !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-82f3f66 .elementor-widget-wdt-button,
+	.elementor-751 .elementor-element.elementor-element-82f3f66 .gruposnap-cta--whatsapp,
+	.elementor-751 .elementor-element.elementor-element-82f3f66 .gruposnap-cta--secondary {
+		display: inline-flex !important;
+		flex: 0 1 auto !important;
+		width: auto !important;
+		max-width: calc(50% - 0.35rem) !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-holder {
+		text-align: center !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-deco-icon {
+		font-size: clamp(3rem, 12vw, 5rem) !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-deco-icon .wdt-content-icon span {
+		width: auto !important;
+		height: auto !important;
+		font-size: inherit !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-title {
+		color: #111111 !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-subtitle,
+	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-content-wrapper {
+		color: #222222 !important;
+	}
 }
 
 @media (max-width: 767px) {
 	.elementor-751 .elementor-element.elementor-element-650305b {
-		padding-top: 120px !important;
-		min-height: 640px !important;
+		margin-top: 0 !important;
+		padding-top: 100px !important;
+		padding-bottom: 1.5rem !important;
+		min-height: auto !important;
+		overflow: visible !important;
 	}
 
-	.elementor-751 .elementor-element.elementor-element-a5d8162.elementor-hidden-mobile {
-		display: none !important;
+	.elementor-751 .elementor-element.elementor-element-650305b > .elementor-container {
+		min-height: 0 !important;
 	}
 
-	.elementor-751 .elementor-element.elementor-element-47df02b,
-	.elementor-751 .elementor-element.elementor-element-47df02b.elementor-hidden-desktop,
-	.elementor-751 .elementor-element.elementor-element-47df02b.elementor-hidden-tablet {
-		display: flex !important;
-		visibility: visible !important;
-		opacity: 1 !important;
+	.elementor-751 .elementor-element.elementor-element-650305b > .elementor-background-overlay {
+		opacity: 0.55 !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-85b941c > .elementor-element-populated {
+		margin-top: 0 !important;
+		padding: 0 clamp(0.75rem, 4vw, 1rem) !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-35290fa {
+		display: block !important;
+		--spacer-size: min(320px, 88vw) !important;
+		width: min(320px, 88vw) !important;
+		max-width: 88vw !important;
+		height: min(320px, 88vw) !important;
+		left: 50% !important;
+		transform: translateX(-50%) !important;
+		top: 8% !important;
+		bottom: auto !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-title {
+		font-size: clamp(1.5rem, 7vw, 1.85rem) !important;
+		line-height: 1.2 !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-subtitle {
+		font-size: 0.6875rem !important;
+		letter-spacing: 0.04em !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-content-wrapper {
+		font-size: 0.9375rem !important;
+		line-height: 1.45 !important;
+		max-width: 28rem !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-87e8edf .wdt-image-box-holder,
+	.elementor-751 .elementor-element.elementor-element-87e8edf .swiper {
+		max-width: min(300px, 82vw) !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-87e8edf .wdt-content-image img {
+		max-width: min(300px, 82vw) !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-bfd27b4 {
+		max-width: 100% !important;
+		width: 100% !important;
+		--container-widget-width: 100% !important;
 	}
 }
 
-/* Animaciones Elementor dejan widgets fuera de vista (fadeInDown + invisible) */
+/* Animaciones Elementor dejan widgets fuera de vista */
 .elementor-751 .elementor-element.elementor-element-650305b .elementor-invisible,
 .elementor-751 .elementor-element.elementor-element-650305b .animated,
 .elementor-751 .elementor-element.elementor-element-650305b [class*="fadeIn"],
-.elementor-751 .elementor-element.elementor-element-650305b .elementor-widget,
+.elementor-751 .elementor-element.elementor-element-650305b .elementor-widget:not(.gruposnap-brands-strip__widget),
 .elementor-751 .elementor-element.elementor-element-650305b .elementor-widget-wrap,
 .elementor-751 .elementor-element.elementor-element-650305b .elementor-widget-container,
-.elementor-751 .elementor-element.elementor-element-650305b .elementor-element,
 .elementor-751 .elementor-element.elementor-element-650305b .wdt-heading-holder,
 .elementor-751 .elementor-element.elementor-element-650305b .wdt-button-holder {
 	visibility: visible !important;
 	opacity: 1 !important;
 	animation: none !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-650305b .elementor-element:not(.elementor-element-35290fa) {
 	transform: none !important;
 }
 
 .elementor-751 .elementor-element.elementor-element-650305b .elementor-element-35290fa {
 	z-index: 0 !important;
 	pointer-events: none !important;
+}
+
+@media (max-width: 767px) {
+	.elementor-751 .elementor-element.elementor-element-650305b .elementor-element-35290fa {
+		display: none !important;
+	}
 }
