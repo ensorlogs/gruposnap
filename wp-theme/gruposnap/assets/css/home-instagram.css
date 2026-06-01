@@ -28,9 +28,26 @@
 	max-width: min(720px, 94vw) !important;
 }
 
-/* Sin hueco blanco entre Instagram/oficinas y la franja de suscripción del footer */
-.elementor-page-751 #footer .elementor-985 .elementor-element.elementor-element-f67e719 {
+/* Suscripción (Mailchimp): debajo de oficinas, conservando estilos del footer 985 */
+.elementor-page-751 .gruposnap-home-newsletter-wrap {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.elementor-page-751 .gruposnap-home-offices-wrap + .gruposnap-home-newsletter-wrap {
+	margin-top: 0;
+}
+
+.elementor-page-751 .gruposnap-home-newsletter-wrap .elementor-element.elementor-element-f67e719 {
 	margin-top: 0 !important;
+}
+
+.elementor-page-751 .gruposnap-home-newsletter-wrap .elementor-element.elementor-element-f67e719 > .elementor-container {
+	max-width: min(1140px, 94vw);
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .gruposnap-instagram__inner {
@@ -233,9 +250,9 @@
 		margin-top: 20px;
 	}
 
-	.elementor-page-751 #footer .elementor-985 .elementor-element.elementor-element-f67e719 {
-		padding-top: 1rem !important;
-		padding-bottom: 1rem !important;
+	.elementor-page-751 .gruposnap-home-newsletter-wrap .elementor-element.elementor-element-f67e719 {
+		padding-top: 28px !important;
+		padding-bottom: 28px !important;
 	}
 
 	.gruposnap-instagram__inner {

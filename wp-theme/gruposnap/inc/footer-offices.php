@@ -284,49 +284,110 @@ function gruposnap_footer_offices_relocate_after_instagram_script(): void
         }
 
         /**
-         * Home: Instagram → Nuestras oficinas → Suscripción.
-         * Oficinas se insertan en el footer justo encima del newsletter.
+         * Home: Instagram → Nuestras oficinas → Email marketing (newsletter).
          */
-        function relocateOfficesAboveNewsletter() {
+        function findOfficesSection() {
             var footer = document.getElementById('footer');
+            var scoped = document.querySelector('.gruposnap-home-offices-wrap .gruposnap-footer-offices');
+
+            if (scoped) {
+                return scoped;
+            }
+
             if (!footer) {
-                return;
+                return null;
             }
 
-            var offices =
+            return (
                 footer.querySelector('.elementor-element-' + officesSectionId + '.gruposnap-footer-offices') ||
-                footer.querySelector('.gruposnap-footer-offices');
+                footer.querySelector('.gruposnap-footer-offices')
+            );
+        }
 
-            if (!offices || offices.closest('.gruposnap-home-offices-wrap')) {
-                return;
+        function findNewsletterSection() {
+            var node = document.querySelector('.elementor-element-' + newsletterSectionId);
+
+            if (!node) {
+                return null;
             }
 
-            var newsletter =
-                footer.querySelector('.elementor-top-section.elementor-element-' + newsletterSectionId) ||
-                footer.querySelector('.elementor-element-' + newsletterSectionId);
+            return node.closest('.elementor-top-section') || node;
+        }
 
-            var wrap = document.createElement('div');
+        function getOrCreateOfficesWrap(offices) {
+            var wrap = offices.closest('.gruposnap-home-offices-wrap');
+
+            if (wrap) {
+                return wrap;
+            }
+
+            wrap = document.createElement('div');
             wrap.className = 'gruposnap-home-offices-wrap elementor elementor-985';
-            wrap.setAttribute('data-gruposnap-offices-placement', 'above-newsletter');
+            wrap.setAttribute('data-gruposnap-offices-placement', 'after-instagram');
             offices.parentNode.removeChild(offices);
             wrap.appendChild(offices);
 
-            if (newsletter && newsletter.parentNode) {
-                newsletter.parentNode.insertBefore(wrap, newsletter);
-            } else {
-                footer.insertBefore(wrap, footer.firstChild);
+            return wrap;
+        }
+
+        function getOrCreateNewsletterWrap(newsletter) {
+            var wrap = newsletter.closest('.gruposnap-home-newsletter-wrap');
+
+            if (wrap) {
+                return wrap;
+            }
+
+            wrap = document.createElement('div');
+            wrap.className = 'gruposnap-home-newsletter-wrap elementor elementor-985';
+            wrap.setAttribute('data-gruposnap-newsletter-placement', 'after-offices');
+            newsletter.parentNode.removeChild(newsletter);
+            wrap.appendChild(newsletter);
+
+            return wrap;
+        }
+
+        function relocateHomeBottomStack() {
+            var instagram = document.getElementById('instagram');
+            var offices = findOfficesSection();
+
+            if (!instagram || !offices) {
+                return false;
+            }
+
+            var officesWrap = getOrCreateOfficesWrap(offices);
+
+            if (instagram.nextElementSibling !== officesWrap) {
+                instagram.insertAdjacentElement('afterend', officesWrap);
+            }
+
+            var newsletter = findNewsletterSection();
+
+            if (newsletter) {
+                var newsletterWrap = getOrCreateNewsletterWrap(newsletter);
+
+                if (officesWrap.nextElementSibling !== newsletterWrap) {
+                    officesWrap.insertAdjacentElement('afterend', newsletterWrap);
+                }
             }
 
             hideEmptyOfficesShell();
+            return true;
         }
 
-        relocateOfficesAboveNewsletter();
-        document.addEventListener('DOMContentLoaded', relocateOfficesAboveNewsletter);
-        window.addEventListener('load', relocateOfficesAboveNewsletter);
+        function scheduleRelocate() {
+            relocateHomeBottomStack();
+        }
+
+        scheduleRelocate();
+        document.addEventListener('DOMContentLoaded', scheduleRelocate);
+        window.addEventListener('load', scheduleRelocate);
+        [120, 350, 700, 1200].forEach(function (delay) {
+            window.setTimeout(scheduleRelocate, delay);
+        });
 
         if (window.jQuery) {
             window.jQuery(window).on('elementor/frontend/init', function () {
-                window.setTimeout(relocateOfficesAboveNewsletter, 150);
+                window.setTimeout(scheduleRelocate, 150);
             });
         }
     })();
@@ -345,7 +406,22 @@ function gruposnap_footer_offices_bust_elementor_cache(): void
     update_option('gruposnap_footer_offices_cache_version', GRUPOSNAP_THEME_VERSION, false);
 }
 
+/**
+ * Asegura los estilos del footer 985 en home (newsletter fuera de #footer).
+ */
+function gruposnap_enqueue_home_bottom_stack_styles(): void
+{
+    if (!gruposnap_footer_offices_should_relocate_after_instagram()) {
+        return;
+    }
+
+    if (wp_style_is('elementor-post-985', 'registered') && !wp_style_is('elementor-post-985', 'enqueued')) {
+        wp_enqueue_style('elementor-post-985');
+    }
+}
+
 add_action('init', 'gruposnap_footer_offices_bust_elementor_cache', 1);
+add_action('wp_enqueue_scripts', 'gruposnap_enqueue_home_bottom_stack_styles', 120);
 add_action('elementor/frontend/column/before_render', 'gruposnap_footer_offices_render_intro', 5);
 add_action('elementor/frontend/column/before_render', 'gruposnap_footer_office_column_country_class', 6);
 add_filter('elementor/widget/render_content', 'gruposnap_footer_office_widget_content', 12, 2);
