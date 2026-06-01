@@ -74,6 +74,16 @@
 			},
 		};
 
+		carouselEl.querySelectorAll('.gruposnap-brand-logo, .wdt-content-image img').forEach(function (img) {
+			img.removeAttribute('width');
+			img.removeAttribute('height');
+			img.style.setProperty('width', 'auto', 'important');
+			img.style.setProperty('height', 'auto', 'important');
+			img.style.setProperty('max-width', '100%', 'important');
+			img.style.setProperty('max-height', '100%', 'important');
+			img.style.setProperty('object-fit', 'contain', 'important');
+		});
+
 		var instance = new SwiperCtor(carouselEl, options);
 		if (instance && typeof instance.then === 'function') {
 			instance.then(function (swiper) {

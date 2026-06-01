@@ -14,6 +14,7 @@ const GRUPOSNAP_HOME_SERVICES_PORTFOLIO_SECTION_IDS = array(
     'edfa8e2',
     '0f7d283',
     '1d1ab7d',
+    '5ae8011',
 );
 
 /** Catálogo: desktop (1d1ab7d + 4d58045) vs móvil/tablet (5ae8011 + efbc9f6). */
@@ -46,6 +47,43 @@ function gruposnap_enqueue_home_services_styles(): void
         get_stylesheet_directory_uri() . '/assets/css/home-services.css',
         array_values(array_unique($deps)),
         GRUPOSNAP_THEME_VERSION
+    );
+
+    $catalog_sections = array(
+        GRUPOSNAP_HOME_CATALOG_MOBILE_SECTION_ID,
+        '0f7d283',
+        'acaee6e',
+    );
+
+    $catalog_scope = array();
+    foreach ($catalog_sections as $section_id) {
+        $catalog_scope[] = '.elementor-751 .elementor-element-' . $section_id;
+    }
+
+    $catalog_scope = implode(', ', $catalog_scope);
+
+    wp_add_inline_style(
+        'gruposnap-home-services',
+        '@media (max-width:767px){'
+        . $catalog_scope . ' .elementor-widget.elementor-widget-wdt-image-box{'
+        . 'width:100%!important;max-width:100%!important;--container-widget-width:100%!important;}'
+        . $catalog_scope . ' .elementor-widget-wdt-image-box>.elementor-widget-container{'
+        . 'width:100%!important;max-width:min(440px,92vw)!important;margin-left:auto!important;margin-right:auto!important;}'
+        . $catalog_scope . ' .wdt-custom-portfolio-image-box .wdt-content-item,'
+        . $catalog_scope . ' .wdt-custom-portfolio-image-box .wdt-image-box-holder{'
+        . 'display:block!important;height:auto!important;min-height:0!important;}'
+        . $catalog_scope . ' .wdt-custom-portfolio-image-box .wdt-content-detail-group{'
+        . 'position:static!important;height:auto!important;min-height:0!important;padding:0!important;margin-top:.4rem!important;}'
+        . $catalog_scope . ' .wdt-media-image-overlay>.wdt-media-image-overlay-container{display:none!important;height:0!important;}'
+        . $catalog_scope . ' .wdt-content-image-wrapper .wdt-content-image,'
+        . $catalog_scope . ' .wdt-content-image-wrapper .wdt-content-image>a,'
+        . $catalog_scope . ' .wdt-content-image-wrapper .wdt-content-image>span{'
+        . 'width:100%!important;min-width:100%!important;min-height:clamp(11.25rem,54vw,15.5rem)!important;}'
+        . '.elementor-751 .elementor-element-acaee6e .wdt-column-gap-custom{'
+        . 'display:flex!important;flex-direction:column!important;margin:0!important;padding:0!important;gap:.7rem!important;}'
+        . '.elementor-751 .elementor-element-acaee6e .wdt-column-gap-custom .wdt-column{'
+        . 'width:100%!important;max-width:100%!important;padding:0!important;}'
+        . '}'
     );
 }
 
@@ -194,5 +232,5 @@ function gruposnap_home_services_link_to_nosotros_script(): void
     <?php
 }
 
-add_action('wp_enqueue_scripts', 'gruposnap_enqueue_home_services_styles', 130);
+add_action('wp_enqueue_scripts', 'gruposnap_enqueue_home_services_styles', 999);
 add_action('wp_footer', 'gruposnap_home_services_link_to_nosotros_script', 14);

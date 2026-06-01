@@ -2,21 +2,94 @@
  * Testimonios — logos de marca y carrusel.
  */
 
-.elementor-element.gruposnap-testimonial .wdt-content-image img {
-	width: 100%;
-	height: 100%;
-	max-height: 72px;
-	object-fit: contain;
-	object-position: left center;
-	background: #ffffff;
-	border-radius: 6px;
-	padding: 10px 12px;
-	box-sizing: border-box;
+/* Contenedor del logo: caja fija; la imagen escala con proporción original. */
+.elementor-element.gruposnap-testimonial .wdt-content-media-group,
+.elementor-751 .wdt-custom-testmonial.gruposnap-testimonial .wdt-content-media-group {
+	display: flex !important;
+	align-items: center !important;
+	flex-wrap: nowrap !important;
 }
 
+.elementor-element.gruposnap-testimonial .gruposnap-testimonial-logo-wrap,
+.elementor-element.gruposnap-testimonial .wdt-content-image-wrapper {
+	flex: 0 0 auto !important;
+	margin-right: 1.25rem !important;
+	margin-bottom: 0 !important;
+}
+
+.elementor-element.gruposnap-testimonial .gruposnap-testimonial-logo-wrap,
+.elementor-element.gruposnap-testimonial .gruposnap-testimonial-logo-wrap .wdt-content-image,
 .elementor-element.gruposnap-testimonial .wdt-content-image-wrapper,
+.elementor-element.gruposnap-testimonial .wdt-content-image-wrapper .wdt-content-image,
 .elementor-element.gruposnap-testimonial .wdt-content-image {
-	max-width: 140px;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	width: 148px !important;
+	min-width: 0 !important;
+	max-width: 148px !important;
+	height: 80px !important;
+	min-height: 80px !important;
+	max-height: 80px !important;
+	overflow: hidden !important;
+	box-sizing: border-box !important;
+	background: #ffffff !important;
+	border-radius: 6px !important;
+	padding: 8px 10px !important;
+}
+
+/* Anula Elementor (72px circular) y reglas WDT que estiran el logo. */
+.elementor-751 .elementor-element-25b718d .gruposnap-testimonial .wdt-content-image-wrapper,
+.elementor-751 .elementor-element-25b718d .gruposnap-testimonial .wdt-content-image,
+.elementor-751 .elementor-element-25b718d .gruposnap-testimonial .wdt-content-image > a,
+.elementor-751 .elementor-element-25b718d .gruposnap-testimonial .wdt-content-image > span,
+.elementor-751 .elementor-element-25b718d .gruposnap-testimonial [class*="wdt-content-image"] {
+	min-width: 0 !important;
+}
+
+.elementor-element.gruposnap-testimonial .wdt-content-image > a,
+.elementor-element.gruposnap-testimonial .wdt-content-image > span {
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	width: 100% !important;
+	height: 100% !important;
+	min-width: 0 !important;
+	max-width: 100% !important;
+	border-radius: 6px !important;
+	overflow: hidden !important;
+}
+
+.elementor-element.gruposnap-testimonial .wdt-content-image img,
+.elementor-element.gruposnap-testimonial .wdt-content-image > a img,
+.elementor-element.gruposnap-testimonial .wdt-content-image > span img,
+.elementor-element.gruposnap-testimonial .wdt-content-image img.gruposnap-brand-logo {
+	display: block !important;
+	width: auto !important;
+	height: auto !important;
+	max-width: 100% !important;
+	max-height: 100% !important;
+	object-fit: contain !important;
+	object-position: center center !important;
+	background: transparent !important;
+	border-radius: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	flex: 0 0 auto !important;
+}
+
+.elementor-element.gruposnap-testimonial .gruposnap-testimonial-logo--fallback {
+	align-items: center !important;
+	justify-content: center !important;
+}
+
+.elementor-element.gruposnap-testimonial .gruposnap-testimonial-logo__fallback {
+	font-size: 0.75rem !important;
+	font-weight: 700 !important;
+	line-height: 1.15 !important;
+	text-align: center !important;
+	color: #112b75 !important;
+	padding: 0 4px !important;
 }
 
 .elementor-element.gruposnap-testimonial .wdt-content-elements-group.wdt-media-group .wdt-content-title h5,
@@ -77,13 +150,36 @@
 	padding: clamp(1.25rem, 2.5vw, 1.75rem);
 }
 
+.elementor-751 .gruposnap-testimonial--carousel .gruposnap-testimonial-logo-wrap,
+.elementor-751 .gruposnap-testimonial--carousel .gruposnap-testimonial-logo-wrap .wdt-content-image,
 .elementor-751 .gruposnap-testimonial--carousel .wdt-content-image-wrapper,
 .elementor-751 .gruposnap-testimonial--carousel .wdt-content-image {
-	max-width: 156px;
+	width: 156px !important;
+	min-width: 0 !important;
+	max-width: 156px !important;
+	height: 84px !important;
+	min-height: 84px !important;
+	max-height: 84px !important;
+	padding: 10px 12px !important;
 }
 
-.elementor-751 .gruposnap-testimonial--carousel .wdt-content-image img {
-	max-height: 84px;
-	padding: 12px 14px;
+.elementor-751 .gruposnap-testimonial--carousel .wdt-content-image img,
+.elementor-751 .gruposnap-testimonial--carousel .wdt-content-image img.gruposnap-brand-logo {
+	width: auto !important;
+	height: auto !important;
+	max-width: 100% !important;
+	max-height: 100% !important;
+	object-fit: contain !important;
 }
 
+@media (max-width: 767px) {
+	.elementor-751 .gruposnap-testimonial--carousel .wdt-content-image-wrapper,
+	.elementor-751 .gruposnap-testimonial--carousel .wdt-content-image {
+		width: min(140px, 38vw) !important;
+		min-width: 120px !important;
+		max-width: 140px !important;
+		height: 76px !important;
+		min-height: 76px !important;
+		max-height: 76px !important;
+	}
+}

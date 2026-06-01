@@ -86,23 +86,14 @@ add_action('after_setup_theme', 'gruposnap_sync_brand_logo_assets', 20);
  */
 function gruposnap_brand_logo_url(string $slug): string
 {
-    $extension = ($slug === 'coca-cola') ? 'svg' : null;
-    $png_slugs = array('banesco', 'forbes', 'carolx-farmacia', 'frito-lay', 'ars-universal');
+    $brand_dir = get_stylesheet_directory() . '/assets/images/brands';
+    $extensions = array('svg', 'png');
 
-    if (in_array($slug, $png_slugs, true)) {
-        $extension = 'png';
-    }
-
-    if ($extension === null && isset(gruposnap_brand_svg_upload_sources()[$slug])) {
-        $extension = 'svg';
-    }
-
-    if ($extension !== null) {
-        $theme_file = get_stylesheet_directory() . '/assets/images/brands/' . $slug . '.' . $extension;
+    foreach ($extensions as $extension) {
+        $theme_file = $brand_dir . '/' . $slug . '.' . $extension;
         if (is_file($theme_file)) {
-            $url = get_stylesheet_directory_uri() . '/assets/images/brands/' . $slug . '.' . $extension;
-
-            return $url . '?v=' . (string) filemtime($theme_file);
+            return get_stylesheet_directory_uri() . '/assets/images/brands/' . $slug . '.' . $extension
+                . '?v=' . (string) filemtime($theme_file);
         }
     }
 
@@ -112,6 +103,30 @@ function gruposnap_brand_logo_url(string $slug): string
     }
 
     return '';
+}
+
+/**
+ * Bloque HTML del logo en testimonios (sin fotos demo ni atributos que estiran).
+ *
+ * @param array{company:string,name:string,role:string,text:string,logo:string} $item
+ */
+function gruposnap_testimonial_logo_image_markup(array $item): string
+{
+    $company = esc_html($item['company']);
+    $alt     = esc_attr($item['company']);
+    $logo    = esc_url($item['logo']);
+
+    if ($logo !== '') {
+        return '<div class="wdt-content-image-wrapper gruposnap-testimonial-logo-wrap">'
+            . '<div class="wdt-content-image gruposnap-testimonial-logo">'
+            . '<img class="gruposnap-brand-logo" loading="lazy" decoding="async" src="' . $logo . '" alt="' . $alt . '" />'
+            . '</div></div>';
+    }
+
+    return '<div class="wdt-content-image-wrapper gruposnap-testimonial-logo-wrap">'
+        . '<div class="wdt-content-image gruposnap-testimonial-logo gruposnap-testimonial-logo--fallback" role="img" aria-label="' . $alt . '">'
+        . '<span class="gruposnap-testimonial-logo__fallback">' . $company . '</span>'
+        . '</div></div>';
 }
 
 /**
@@ -248,8 +263,6 @@ function gruposnap_testimonial_slide_markup(array $item, string $slug): string
     $company = esc_html($item['company']);
     $meta    = esc_html($item['role'] . ' · ' . $item['name']);
     $text    = esc_html($item['text']);
-    $logo    = esc_url($item['logo']);
-    $alt     = esc_attr($item['company']);
 
     return sprintf(
         '<div class="swiper-slide gruposnap-testimonial-slide" data-brand="%1$s">'
@@ -261,20 +274,16 @@ function gruposnap_testimonial_slide_markup(array $item, string $slug): string
         . '<div class="wdt-column-wrapper wdt-column-gap-no"><div class="wdt-column">'
         . '<div class="wdt-content-item">'
         . '<div class="wdt-content-media-group">'
-        . '<div class="wdt-content-image-wrapper"><div class="wdt-content-image">'
-        . '<img loading="lazy" decoding="async" width="500" height="500" src="%2$s" alt="%3$s" />'
-        . '</div></div>'
+        . gruposnap_testimonial_logo_image_markup($item)
         . '<div class="wdt-content-elements-group wdt-media-group wdt-media-image-default">'
-        . '<div class="wdt-content-title"><h5>%4$s</h5></div>'
-        . '<div class="wdt-content-subtitle">%5$s</div>'
+        . '<div class="wdt-content-title"><h5>%2$s</h5></div>'
+        . '<div class="wdt-content-subtitle">%3$s</div>'
         . '</div>'
-        . '%6$s'
+        . '%4$s'
         . '</div>'
-        . '<div class="wdt-content-detail-group"><div class="wdt-content-description">%7$s</div></div>'
+        . '<div class="wdt-content-detail-group"><div class="wdt-content-description">%5$s</div></div>'
         . '</div></div></div></div></div></div></div></div></div>',
         esc_attr($slug),
-        $logo,
-        $alt,
         $company,
         $meta,
         gruposnap_testimonial_quote_icon_markup(),
@@ -376,7 +385,6 @@ function gruposnap_testimonial_replace_content(string $content, $widget): string
     $company = esc_html($item['company']);
     $meta    = esc_html($item['role'] . ' · ' . $item['name']);
     $text    = esc_html($item['text']);
-    $logo    = esc_url($item['logo']);
 
     $patterns = array(
         '#(<div class="wdt-content-title"><h5><a[^>]*>)[^<]*(</a></h5></div>)#' => '$1' . $company . '$2',
@@ -391,34 +399,16 @@ function gruposnap_testimonial_replace_content(string $content, $widget): string
         }
     }
 
-    if ($logo !== '') {
-        $content = preg_replace(
-            '#(<div class="wdt-content-image"><a[^>]*><img[^>]*\s)src="[^"]+"#',
-            '$1src="' . $logo . '"',
-            $content,
-            1
-        );
-        $content = preg_replace(
-            '#(<div class="wdt-content-image"><a[^>]*><img[^>]*\s)srcset="[^"]*"#',
-            '$1',
-            $content,
-            1
-        );
-        $content = preg_replace(
-            '#(<div class="wdt-content-image"><a[^>]*><img[^>]*\s)sizes="[^"]*"#',
-            '$1',
-            $content,
-            1
-        );
-        $updated = preg_replace(
-            '/(<div class="wdt-content-image"><a[^>]*><img[^>]+)alt="[^"]*"/',
-            '$1alt="' . esc_attr($item['company']) . '"',
-            $content,
-            1
-        );
-        if (is_string($updated)) {
-            $content = $updated;
-        }
+    $logo_markup = gruposnap_testimonial_logo_image_markup($item);
+    $replaced    = preg_replace(
+        '#<div class="wdt-content-image-wrapper"[^>]*>\s*<div class="wdt-content-image"[^>]*>.*?</div>\s*</div>#s',
+        $logo_markup,
+        $content,
+        1
+    );
+
+    if (is_string($replaced) && $replaced !== '') {
+        $content = $replaced;
     }
 
     return $content;

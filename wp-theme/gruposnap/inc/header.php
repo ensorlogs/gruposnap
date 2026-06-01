@@ -115,7 +115,7 @@ function gruposnap_header_menu_label_script(): void
     <script>
     (function () {
         function labelMenuTriggers() {
-            document.querySelectorAll('.elementor-640 .menu-trigger > span').forEach(function (el) {
+            document.querySelectorAll('#header-wrapper .menu-trigger > span').forEach(function (el) {
                 if (el.textContent.trim().toLowerCase() === 'menu') {
                     el.textContent = 'MENU';
                 }

@@ -91,50 +91,6 @@
 		float: none !important;
 	}
 
-	.elementor-640 .mobile-nav-container .menu-trigger {
-		display: inline-flex !important;
-		align-items: center;
-		justify-content: center;
-		gap: 0.55rem;
-		height: auto !important;
-		min-height: 44px;
-		line-height: 1.2 !important;
-		padding: 0.45rem 0.95rem 0.45rem 0.8rem;
-		border: 1px solid rgba(17, 43, 117, 0.22);
-		border-radius: 999px;
-		background: rgba(255, 255, 255, 0.92);
-		box-shadow: 0 4px 14px rgba(17, 43, 117, 0.12);
-		color: #112b75 !important;
-	}
-
-	.elementor-640 .mobile-nav-container .menu-trigger:hover,
-	.elementor-640 .mobile-nav-container .menu-trigger:focus-visible {
-		color: #f57c20 !important;
-		border-color: rgba(245, 124, 32, 0.45);
-	}
-
-	.elementor-640 .mobile-nav-container .menu-trigger > i {
-		flex-shrink: 0;
-		margin: 0;
-	}
-
-	.elementor-640 .mobile-nav-container .menu-trigger > span {
-		display: inline-block !important;
-		font-size: 0.72rem !important;
-		font-weight: 800 !important;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-		color: #112b75;
-		vertical-align: middle;
-		line-height: 1;
-		padding: 0;
-	}
-
-	.elementor-640 .mobile-nav-container .menu-trigger:hover > span,
-	.elementor-640 .mobile-nav-container .menu-trigger:focus-visible > span {
-		color: #f57c20;
-	}
-
 	.elementor-640 .mobile-menu .wdt-header-menu .wdt-primary-nav > li > a {
 		transition: color 0.2s ease;
 	}
@@ -151,6 +107,70 @@
 		opacity: 0 !important;
 		visibility: hidden !important;
 		pointer-events: none !important;
+	}
+}
+
+/*
+ * Printme muestra el burger hasta 1280px y oculta el texto «MENU» en tablet/móvil.
+ * Misma pastilla blanca + etiqueta MENU en todo ese rango (no solo ≤1024px).
+ */
+@media only screen and (max-width: 1280px) {
+	#header-wrapper .elementor-640 .mobile-nav-container .menu-trigger,
+	#header-wrapper .mobile-nav-container .menu-trigger {
+		display: inline-flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		gap: 0.55rem !important;
+		width: auto !important;
+		height: auto !important;
+		min-height: 44px !important;
+		line-height: 1.2 !important;
+		padding: 0.45rem 0.95rem 0.45rem 0.8rem !important;
+		border: 1px solid rgba(17, 43, 117, 0.22) !important;
+		border-radius: 999px !important;
+		background: rgba(255, 255, 255, 0.96) !important;
+		box-shadow: 0 4px 14px rgba(17, 43, 117, 0.12) !important;
+		color: #112b75 !important;
+		text-decoration: none !important;
+		vertical-align: middle !important;
+	}
+
+	#header-wrapper .elementor-640 .mobile-nav-container .menu-trigger:hover,
+	#header-wrapper .elementor-640 .mobile-nav-container .menu-trigger:focus-visible,
+	#header-wrapper .mobile-nav-container .menu-trigger:hover,
+	#header-wrapper .mobile-nav-container .menu-trigger:focus-visible {
+		color: #f57c20 !important;
+		border-color: rgba(245, 124, 32, 0.45) !important;
+		background: #ffffff !important;
+	}
+
+	#header-wrapper .elementor-640 .mobile-nav-container .menu-trigger > i,
+	#header-wrapper .mobile-nav-container .menu-trigger > i {
+		display: inline-block !important;
+		flex-shrink: 0 !important;
+		margin: 0 !important;
+		font-size: 0 !important;
+		vertical-align: middle !important;
+	}
+
+	#header-wrapper .elementor-640 .mobile-nav-container .menu-trigger > span,
+	#header-wrapper .mobile-nav-container .menu-trigger > span {
+		display: inline-block !important;
+		font-size: 0.72rem !important;
+		font-weight: 800 !important;
+		letter-spacing: 0.14em !important;
+		text-transform: uppercase !important;
+		color: #112b75 !important;
+		vertical-align: middle !important;
+		line-height: 1 !important;
+		padding: 0 !important;
+	}
+
+	#header-wrapper .elementor-640 .mobile-nav-container .menu-trigger:hover > span,
+	#header-wrapper .elementor-640 .mobile-nav-container .menu-trigger:focus-visible > span,
+	#header-wrapper .mobile-nav-container .menu-trigger:hover > span,
+	#header-wrapper .mobile-nav-container .menu-trigger:focus-visible > span {
+		color: #f57c20 !important;
 	}
 }
 

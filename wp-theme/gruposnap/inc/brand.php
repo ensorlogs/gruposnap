@@ -17,7 +17,6 @@ require_once get_stylesheet_directory() . '/inc/testimonials.php';
 require_once get_stylesheet_directory() . '/inc/blog.php';
 require_once get_stylesheet_directory() . '/inc/compliance.php';
 require_once get_stylesheet_directory() . '/inc/header.php';
-require_once get_stylesheet_directory() . '/inc/header-mobile-menu.php';
 require_once get_stylesheet_directory() . '/inc/footer-payments.php';
 require_once get_stylesheet_directory() . '/inc/footer-mobile.php';
 require_once get_stylesheet_directory() . '/inc/footer-compact.php';
