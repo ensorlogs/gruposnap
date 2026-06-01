@@ -127,29 +127,112 @@
 	display: block !important;
 }
 
-.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-heading > .wdt-heading-content-wrapper {
+.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-heading > .wdt-heading-content-wrapper,
+.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-intro {
 	display: block !important;
 	margin-top: 0 !important;
 	margin-bottom: 0 !important;
 	padding: 0 !important;
 	max-width: 42rem !important;
 	font-size: clamp(1rem, 2.15vw, 1.125rem) !important;
-	font-weight: 500 !important;
+	font-weight: 600 !important;
 	line-height: 1.72 !important;
-	color: #152a52 !important;
+	color: #0a1f5c !important;
 	text-align: left !important;
-	text-shadow: 0 1px 18px rgba(255, 255, 255, 0.55) !important;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.95), 0 2px 24px rgba(255, 255, 255, 0.65) !important;
 	-webkit-font-smoothing: antialiased;
 }
 
-.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-heading > .wdt-heading-content-wrapper p {
-	color: inherit !important;
-	margin: 0 0 0.85em !important;
-	font-weight: inherit !important;
+.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-heading > .wdt-heading-content-wrapper p,
+.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-intro__text,
+.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-intro p {
+	color: #0a1f5c !important;
+	margin: 0 !important;
+	font-weight: 600 !important;
+	font-size: inherit !important;
+	line-height: inherit !important;
 }
 
 .elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-heading > .wdt-heading-content-wrapper p:last-child {
 	margin-bottom: 0 !important;
+}
+
+/* ——— Contacto bajo el párrafo (icon-box Elementor) ——— */
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact {
+	width: 100% !important;
+	max-width: min(28rem, 100%) !important;
+	margin: clamp(1.25rem, 4vw, 1.75rem) 0 0 !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact__bar {
+	display: inline-flex !important;
+	align-items: center !important;
+	gap: 0.5rem !important;
+	padding: 0.5rem 1rem !important;
+	margin: 0 0 1rem !important;
+	background: #112b75 !important;
+	color: #ffffff !important;
+	font-size: 0.8125rem !important;
+	font-weight: 800 !important;
+	letter-spacing: 0.12em !important;
+	text-transform: uppercase !important;
+	border-radius: 2px !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact__grid {
+	display: flex !important;
+	flex-direction: column !important;
+	gap: 0.85rem !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .elementor-element-a233653,
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .elementor-element-b9714b1 {
+	width: 100% !important;
+	max-width: 100% !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .elementor-widget-container {
+	padding: 0 !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .wdt-content-item {
+	display: flex !important;
+	align-items: center !important;
+	gap: 0.75rem !important;
+	text-align: left !important;
+	justify-content: flex-start !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .wdt-content-icon-wrapper {
+	flex: 0 0 auto !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .wdt-content-icon span {
+	background: #111111 !important;
+	color: #ffffff !important;
+	border-radius: 50% !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .wdt-content-title,
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .wdt-content-item-title,
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact a.wdt-content-item-link .wdt-content-title {
+	color: #f57c20 !important;
+	font-weight: 800 !important;
+	font-size: clamp(1rem, 3.5vw, 1.125rem) !important;
+	line-height: 1.25 !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .wdt-content-subtitle,
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .wdt-content-item-subtitle {
+	color: #0a1f5c !important;
+	font-weight: 700 !important;
+	font-size: 0.9375rem !important;
+	text-transform: none !important;
+	opacity: 1 !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .wdt-content-item a {
+	color: #f57c20 !important;
 }
 
 .elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-heading > .wdt-heading-content-wrapper strong {
@@ -188,23 +271,40 @@
 		text-align: center !important;
 	}
 
-	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-heading > .wdt-heading-content-wrapper {
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-heading > .wdt-heading-content-wrapper,
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-intro {
 		text-align: center !important;
 		margin-left: auto !important;
 		margin-right: auto !important;
 		max-width: min(34rem, 100%) !important;
-		font-weight: 500 !important;
+		font-weight: 600 !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact {
+		margin-left: auto !important;
+		margin-right: auto !important;
 	}
 }
 
 @media (max-width: 767px) {
 	.elementor-751 .elementor-element.elementor-element-46cb44b {
-		padding-bottom: 0.65rem !important;
+		padding-bottom: 1.25rem !important;
 	}
 
-	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-heading > .wdt-heading-content-wrapper {
-		font-size: clamp(0.9375rem, 3.6vw, 1.03125rem) !important;
-		line-height: 1.65 !important;
+	/* En móvil la foto lateral deja un hueco vacío; el contacto va ahí. */
+	.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-fd7205c {
+		display: none !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-2772ae5 {
+		margin-top: 0 !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-heading > .wdt-heading-content-wrapper,
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-intro {
+		font-size: clamp(0.9375rem, 3.8vw, 1.0625rem) !important;
+		line-height: 1.62 !important;
+		padding: 0.15rem 0 !important;
 	}
 
 	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__head,
@@ -223,6 +323,51 @@
 
 	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__tagline {
 		font-size: clamp(1.125rem, 4.5vw, 1.45rem) !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact {
+		display: block !important;
+		max-width: min(22rem, 92vw) !important;
+		margin-top: 1.35rem !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact__bar {
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .wdt-content-item {
+		justify-content: center !important;
+		text-align: center !important;
+		flex-wrap: wrap !important;
+	}
+
+	/* Si el wrap PHP no corrió, forzar visibilidad de los icon-box sueltos. */
+	.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-a233653,
+	.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-b9714b1 {
+		display: block !important;
+		visibility: visible !important;
+		opacity: 1 !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		margin-top: 0.75rem !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-a233653 .wdt-content-title,
+	.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-a233653 .wdt-content-item-title,
+	.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-a233653 a,
+	.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-b9714b1 .wdt-content-title,
+	.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-b9714b1 .wdt-content-item-title,
+	.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-b9714b1 a {
+		color: #f57c20 !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-a233653 .wdt-content-subtitle,
+	.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-a233653 .wdt-content-item-subtitle,
+	.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-b9714b1 .wdt-content-subtitle,
+	.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-b9714b1 .wdt-content-item-subtitle {
+		color: #0a1f5c !important;
+		opacity: 1 !important;
 	}
 }
 

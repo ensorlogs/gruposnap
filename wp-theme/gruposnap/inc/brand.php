@@ -9,6 +9,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+require_once get_stylesheet_directory() . '/inc/loader.php';
 require_once get_stylesheet_directory() . '/inc/cta.php';
 require_once get_stylesheet_directory() . '/inc/home-hero.php';
 require_once get_stylesheet_directory() . '/inc/home-brands-strip.php';
@@ -16,6 +17,7 @@ require_once get_stylesheet_directory() . '/inc/testimonials.php';
 require_once get_stylesheet_directory() . '/inc/blog.php';
 require_once get_stylesheet_directory() . '/inc/compliance.php';
 require_once get_stylesheet_directory() . '/inc/header.php';
+require_once get_stylesheet_directory() . '/inc/header-mobile-menu.php';
 require_once get_stylesheet_directory() . '/inc/footer-payments.php';
 require_once get_stylesheet_directory() . '/inc/footer-mobile.php';
 require_once get_stylesheet_directory() . '/inc/footer-compact.php';

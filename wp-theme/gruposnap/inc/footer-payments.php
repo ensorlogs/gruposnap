@@ -61,7 +61,6 @@ function gruposnap_render_footer_payments_block(): void
                 <span class="gruposnap-payments__mark" aria-hidden="true">PayPal</span>
             </li>
         </ul>
-        <p class="gruposnap-payments__labels">VISA · MASTERCARD · PAYPAL</p>
     </div>
     <?php
 }
@@ -102,7 +101,7 @@ function gruposnap_footer_payments_heading_content(string $content, $widget): st
 }
 
 /**
- * Sustituye la imagen compuesta por el bloque con marcas y texto inferior.
+ * Sustituye la imagen compuesta por el bloque con marcas de pago.
  *
  * @param string               $content
  * @param \Elementor\Widget_Base $widget

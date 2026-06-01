@@ -144,6 +144,14 @@
 	.elementor-640 .mobile-menu .wdt-header-menu .wdt-primary-nav > li > a:focus-visible {
 		color: #f57c20 !important;
 	}
+
+	/* Printme clona el menú en body; el placeholder del widget debe quedar oculto */
+	.elementor-640 .wdt-header-menu > .mobile-nav-container > .mobile-menu {
+		display: none !important;
+		opacity: 0 !important;
+		visibility: hidden !important;
+		pointer-events: none !important;
+	}
 }
 
 @media only screen and (max-width: 479px) {

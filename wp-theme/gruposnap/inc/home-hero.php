@@ -43,7 +43,18 @@ function gruposnap_widget_in_home_hero($element): bool
     $current = $element;
 
     while ($current) {
-        if (method_exists($current, 'get_id') && $current->get_id() === GRUPOSNAP_HOME_HERO_SECTION_ID) {
+        if (
+            method_exists($current, 'get_id')
+            && in_array(
+                $current->get_id(),
+                array(
+                    GRUPOSNAP_HOME_HERO_SECTION_ID,
+                    'a5d8162',
+                    '47df02b',
+                ),
+                true
+            )
+        ) {
             return true;
         }
 
@@ -82,6 +93,21 @@ function gruposnap_home_hero_strip_invisible_class(string $content, $widget): st
 function gruposnap_home_hero_strip_animation_settings(string $html): string
 {
     $html = str_replace('elementor-invisible', '', $html);
+
+    // Solo el bloque móvil (47df02b): quitar hidden-desktop/tablet para que el HTML en caché se vea en teléfono.
+    $html = preg_replace_callback(
+        '#(<section\b[^>]*\belementor-element-47df02b\b[^>]*\bclass=")([^"]*)(")#i',
+        static function (array $m): string {
+            $classes = preg_replace(
+                '/\belementor-hidden-(?:desktop|tablet|tablet_extra|laptop|widescreen)\b/',
+                '',
+                $m[2]
+            ) ?? $m[2];
+
+            return $m[1] . trim(preg_replace('/\s+/', ' ', $classes) ?? $classes) . $m[3];
+        },
+        $html
+    ) ?? $html;
 
     $patterns = array(
         '/,&quot;_animation&quot;:&quot;[^&]*&quot;/',
@@ -156,11 +182,41 @@ function gruposnap_home_hero_fix_section_html(string $content): string
     }
 
     $hero_html = substr($content, $section_start, $section_end - $section_start);
-    $fixed     = gruposnap_home_hero_patch_media(
+    $fixed = gruposnap_home_hero_patch_media(
         gruposnap_home_hero_strip_animation_settings($hero_html)
     );
 
     return substr($content, 0, $section_start) . $fixed . substr($content, $section_end);
+}
+
+/**
+ * Elementor: a5d8162 = desktop/tablet, 47df02b = solo móvil. Ajustamos el bloque móvil al renderizar.
+ *
+ * @param \Elementor\Element_Base $element
+ */
+function gruposnap_home_hero_prepare_section($element): void
+{
+    if (!gruposnap_is_home_page() || !method_exists($element, 'get_id')) {
+        return;
+    }
+
+    $id = $element->get_id();
+
+    if ($id === '47df02b') {
+        $element->set_settings('hide_mobile', '');
+        $element->set_settings('hide_desktop', 'hidden-desktop');
+        $element->set_settings('hide_tablet', 'hidden-tablet');
+
+        foreach (
+            array(
+                'elementor-hidden-desktop',
+                'elementor-hidden-tablet',
+            ) as $class
+        ) {
+            $element->remove_render_attribute('_wrapper', 'class', $class);
+        }
+    }
+
 }
 
 /**
@@ -216,13 +272,73 @@ function gruposnap_home_hero_reveal_style(): void
     $section = GRUPOSNAP_HOME_HERO_SECTION_ID;
     ?>
     <style id="gruposnap-home-hero-critical">
-    .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-widget,
+    @media (max-width: 1024px) {
+        .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> {
+            margin-top: 0 !important;
+            overflow: visible !important;
+        }
+        .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> > .elementor-container {
+            z-index: 5 !important;
+            position: relative !important;
+            min-height: 480px !important;
+        }
+    }
+    @media (max-width: 767px) {
+        .elementor.elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-a5d8162 {
+            display: none !important;
+        }
+        .elementor.elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-47df02b,
+        .elementor.elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-47df02b.elementor-hidden-desktop,
+        .elementor.elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-47df02b.elementor-hidden-tablet,
+        body.home .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-47df02b,
+        body.page-id-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-47df02b {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+        .elementor-751 .elementor-section.elementor-element-47df02b.wdt-section-wrap-col > .elementor-container,
+        .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-47df02b > .elementor-container {
+            flex-flow: column nowrap !important;
+            display: flex !important;
+        }
+        .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-47df02b > .elementor-container > .elementor-column {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+            width: 100% !important;
+        }
+        .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-f428155,
+        .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-f428155 .wdt-heading-holder {
+            visibility: visible !important;
+            opacity: 1 !important;
+            color: #111 !important;
+        }
+    }
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-47df02b {
+            display: none !important;
+        }
+        .elementor.elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-a5d8162 {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+        .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-a5d8162 > .elementor-container {
+            flex-flow: column nowrap !important;
+            display: flex !important;
+        }
+        .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-a5d8162 > .elementor-container > .elementor-column {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+            width: 100% !important;
+        }
+    }
     .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-invisible,
-    .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .animated {
+    .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .animated,
+    .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-8082631 .wdt-heading-holder,
+    .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-f428155 .wdt-heading-holder {
         visibility: visible !important;
         opacity: 1 !important;
         animation: none !important;
-        transform: none !important;
     }
     </style>
     <?php
@@ -268,6 +384,62 @@ function gruposnap_home_hero_reveal_script(): void
             }
         }
 
+        function stackHeroSection(section) {
+            if (!section) {
+                return;
+            }
+
+            section.classList.remove('elementor-hidden-desktop', 'elementor-hidden-tablet');
+            section.style.setProperty('display', 'block', 'important');
+            section.style.setProperty('visibility', 'visible', 'important');
+            section.style.setProperty('opacity', '1', 'important');
+
+            var row = section.querySelector(':scope > .elementor-container');
+            if (row) {
+                row.style.setProperty('display', 'flex', 'important');
+                row.style.setProperty('flex-flow', 'column nowrap', 'important');
+                row.style.setProperty('flex-direction', 'column', 'important');
+            }
+
+            section.querySelectorAll(':scope > .elementor-container > .elementor-column').forEach(function (col) {
+                col.style.setProperty('flex', '0 0 100%', 'important');
+                col.style.setProperty('max-width', '100%', 'important');
+                col.style.setProperty('width', '100%', 'important');
+                col.style.setProperty('min-width', '0', 'important');
+            });
+        }
+
+        function forceMobileHeroLayout(hero) {
+            if (!hero) {
+                return;
+            }
+
+            var main = hero.querySelector(':scope > .elementor-container');
+            if (main) {
+                main.style.setProperty('position', 'relative', 'important');
+                main.style.setProperty('z-index', '5', 'important');
+            }
+
+            hero.querySelectorAll('.elementor-background-video-container, .elementor-background-overlay').forEach(function (el) {
+                el.style.setProperty('z-index', '0', 'important');
+            });
+
+            var desktop = hero.querySelector('.elementor-element-a5d8162');
+            var mobile = hero.querySelector('.elementor-element-47df02b');
+
+            if (window.innerWidth <= 767) {
+                if (desktop) {
+                    desktop.style.setProperty('display', 'none', 'important');
+                }
+                stackHeroSection(mobile);
+            } else if (window.innerWidth <= 1024) {
+                if (mobile) {
+                    mobile.style.setProperty('display', 'none', 'important');
+                }
+                stackHeroSection(desktop);
+            }
+        }
+
         function revealHero() {
             var hero = document.querySelector(sel);
             if (!hero) {
@@ -280,7 +452,11 @@ function gruposnap_home_hero_reveal_script(): void
                 el.classList.remove('elementor-invisible', 'animated');
             });
 
-            hero.querySelectorAll('.elementor-widget, .elementor-element, .wdt-heading-holder, .wdt-button-holder').forEach(function (el) {
+            forceMobileHeroLayout(hero);
+
+            hero.querySelectorAll(
+                '.elementor-element-8082631, .elementor-element-f428155, .gruposnap-cta--whatsapp, .gruposnap-cta--secondary, .wdt-heading-holder, .wdt-button-holder'
+            ).forEach(function (el) {
                 el.style.setProperty('visibility', 'visible', 'important');
                 el.style.setProperty('opacity', '1', 'important');
             });
@@ -296,6 +472,13 @@ function gruposnap_home_hero_reveal_script(): void
         if (window.jQuery) {
             window.jQuery(window).on('elementor/frontend/init', revealHero);
         }
+
+        window.addEventListener('resize', function () {
+            var hero = document.querySelector(sel);
+            if (hero) {
+                forceMobileHeroLayout(hero);
+            }
+        });
     })();
     </script>
     <?php
@@ -317,9 +500,10 @@ function gruposnap_home_hero_hide_highlights_widget(string $content, $widget): s
 }
 
 add_action('init', 'gruposnap_home_hero_bust_elementor_cache', 1);
+add_action('elementor/frontend/section/before_render', 'gruposnap_home_hero_prepare_section', 1);
 add_filter('elementor/widget/render_content', 'gruposnap_home_hero_hide_highlights_widget', 8, 2);
-add_action('wp_head', 'gruposnap_home_hero_reveal_style', 3);
-add_action('wp_enqueue_scripts', 'gruposnap_enqueue_home_hero_assets', 999);
+add_action('wp_head', 'gruposnap_home_hero_reveal_style', 99);
+add_action('wp_enqueue_scripts', 'gruposnap_enqueue_home_hero_assets', 9999);
 add_action('elementor/frontend/widget/before_render', 'gruposnap_home_hero_disable_widget_entrance_animation', 1);
 add_action('elementor/frontend/widget/before_render', 'gruposnap_home_hero_remove_invisible_render_attr', 99);
 add_filter('elementor/widget/render_content', 'gruposnap_home_hero_strip_invisible_class', 5, 2);

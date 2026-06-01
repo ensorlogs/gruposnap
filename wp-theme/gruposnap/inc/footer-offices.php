@@ -102,7 +102,7 @@ function gruposnap_footer_office_ve_title_markup(): string
  */
 function gruposnap_footer_offices_intro_markup(): string
 {
-    return '<div class="gruposnap-footer-offices__intro">'
+    return '<div class="gruposnap-footer-offices__intro" id="oficinas">'
         . '<h3 id="gruposnap-footer-offices-title" class="gruposnap-footer-offices__title">'
         . esc_html__('Nuestras oficinas', 'gruposnap')
         . '</h3>'
@@ -323,6 +323,7 @@ function gruposnap_footer_offices_relocate_after_instagram_script(): void
 
             wrap = document.createElement('div');
             wrap.className = 'gruposnap-home-offices-wrap elementor elementor-985';
+            wrap.id = 'gruposnap-home-oficinas';
             wrap.setAttribute('data-gruposnap-offices-placement', 'after-instagram');
             offices.parentNode.removeChild(offices);
             wrap.appendChild(offices);

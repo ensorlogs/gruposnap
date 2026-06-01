@@ -1,11 +1,170 @@
 /**
- * Home — servicios en móvil/tablet: tarjetas horizontales compactas (estilo «Activación de eventos»).
+ * Home — servicios: tarjetas portfolio en desktop y compactas en móvil/tablet.
  */
+
+/* Desktop: igualar proporciones de tarjetas portfolio en el grid de servicios. */
+@media (min-width: 1281px) {
+	/* «Activación de eventos» → como «Catálogos y brochures» (640×580). */
+	.elementor-751 .elementor-element.elementor-element-0a88f17 .wdt-content-item .wdt-content-image-wrapper .wdt-content-image {
+		aspect-ratio: 640 / 580;
+		width: 100%;
+		overflow: hidden;
+	}
+
+	/* «Pendones y posters» / «Uniformes y textil» → como «Branding de espacios» (552×930). */
+	.elementor-751 .elementor-element.elementor-element-f6d4d5a,
+	.elementor-751 .elementor-element.elementor-element-e65dc9f {
+		width: 100% !important;
+		max-width: 100% !important;
+		--container-widget-width: 100% !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-f6d4d5a .wdt-content-item,
+	.elementor-751 .elementor-element.elementor-element-e65dc9f .wdt-content-item {
+		aspect-ratio: 552 / 930;
+		width: 100%;
+		overflow: hidden;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-f6d4d5a .wdt-content-item .wdt-content-media-group,
+	.elementor-751 .elementor-element.elementor-element-e65dc9f .wdt-content-item .wdt-content-media-group {
+		min-height: 100%;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-f6d4d5a .wdt-content-item .wdt-content-image-wrapper,
+	.elementor-751 .elementor-element.elementor-element-f6d4d5a .wdt-content-item .wdt-content-image-wrapper .wdt-content-image,
+	.elementor-751 .elementor-element.elementor-element-e65dc9f .wdt-content-item .wdt-content-image-wrapper,
+	.elementor-751 .elementor-element.elementor-element-e65dc9f .wdt-content-item .wdt-content-image-wrapper .wdt-content-image {
+		width: 100%;
+		height: 100%;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-0a88f17 .wdt-content-item .wdt-content-image-wrapper .wdt-content-image img,
+	.elementor-751 .elementor-element.elementor-element-f6d4d5a .wdt-content-item .wdt-content-image-wrapper .wdt-content-image img,
+	.elementor-751 .elementor-element.elementor-element-e65dc9f .wdt-content-item .wdt-content-image-wrapper .wdt-content-image img {
+		width: 100% !important;
+		height: 100% !important;
+		max-height: none !important;
+		object-fit: cover !important;
+		object-position: center center !important;
+	}
+}
+
+.elementor-751 #servicios .wdt-custom-home-image-box .wdt-content-item.gruposnap-service-card--link-nosotros,
+.elementor-751 #servicios .wdt-custom-portfolio-image-box .wdt-content-item.gruposnap-service-card--link-nosotros,
+.elementor-751 .elementor-element-693ab46 .wdt-custom-home-image-box .wdt-content-item.gruposnap-service-card--link-nosotros,
+.elementor-751 .elementor-element-693ab46 .wdt-custom-portfolio-image-box .wdt-content-item.gruposnap-service-card--link-nosotros,
+.elementor-751 .elementor-element-acaee6e .wdt-custom-home-image-box .wdt-content-item.gruposnap-service-card--link-nosotros,
+.elementor-751 .elementor-element-acaee6e .wdt-custom-portfolio-image-box .wdt-content-item.gruposnap-service-card--link-nosotros,
+.elementor-751 .elementor-element-edfa8e2 .wdt-custom-portfolio-image-box .wdt-content-item.gruposnap-service-card--link-nosotros,
+.elementor-751 .elementor-element-0f7d283 .wdt-custom-portfolio-image-box .wdt-content-item.gruposnap-service-card--link-nosotros,
+.elementor-751 .elementor-element-1d1ab7d .wdt-custom-portfolio-image-box .wdt-content-item.gruposnap-service-card--link-nosotros {
+	cursor: pointer;
+}
+
+.elementor-751 #servicios .wdt-custom-home-image-box .wdt-content-item.gruposnap-service-card--link-nosotros a,
+.elementor-751 #servicios .wdt-custom-portfolio-image-box .wdt-content-item.gruposnap-service-card--link-nosotros a,
+.elementor-751 .elementor-element-693ab46 .wdt-custom-home-image-box .wdt-content-item.gruposnap-service-card--link-nosotros a,
+.elementor-751 .elementor-element-693ab46 .wdt-custom-portfolio-image-box .wdt-content-item.gruposnap-service-card--link-nosotros a,
+.elementor-751 .elementor-element-acaee6e .wdt-custom-home-image-box .wdt-content-item.gruposnap-service-card--link-nosotros a,
+.elementor-751 .elementor-element-acaee6e .wdt-custom-portfolio-image-box .wdt-content-item.gruposnap-service-card--link-nosotros a,
+.elementor-751 .elementor-element-edfa8e2 .wdt-custom-portfolio-image-box .wdt-content-item.gruposnap-service-card--link-nosotros a,
+.elementor-751 .elementor-element-0f7d283 .wdt-custom-portfolio-image-box .wdt-content-item.gruposnap-service-card--link-nosotros a,
+.elementor-751 .elementor-element-1d1ab7d .wdt-custom-portfolio-image-box .wdt-content-item.gruposnap-service-card--link-nosotros a {
+	cursor: pointer;
+	text-decoration: none;
+	color: inherit;
+}
+
+.elementor-751 #servicios .wdt-custom-home-image-box .wdt-content-item.gruposnap-service-card--link-nosotros:focus-visible,
+.elementor-751 #servicios .wdt-custom-portfolio-image-box .wdt-content-item.gruposnap-service-card--link-nosotros:focus-visible,
+.elementor-751 .elementor-element-693ab46 .wdt-custom-home-image-box .wdt-content-item.gruposnap-service-card--link-nosotros:focus-visible,
+.elementor-751 .elementor-element-693ab46 .wdt-custom-portfolio-image-box .wdt-content-item.gruposnap-service-card--link-nosotros:focus-visible,
+.elementor-751 .elementor-element-acaee6e .wdt-custom-home-image-box .wdt-content-item.gruposnap-service-card--link-nosotros:focus-visible,
+.elementor-751 .elementor-element-acaee6e .wdt-custom-portfolio-image-box .wdt-content-item.gruposnap-service-card--link-nosotros:focus-visible,
+.elementor-751 .elementor-element-edfa8e2 .wdt-custom-portfolio-image-box .wdt-content-item.gruposnap-service-card--link-nosotros:focus-visible,
+.elementor-751 .elementor-element-0f7d283 .wdt-custom-portfolio-image-box .wdt-content-item.gruposnap-service-card--link-nosotros:focus-visible,
+.elementor-751 .elementor-element-1d1ab7d .wdt-custom-portfolio-image-box .wdt-content-item.gruposnap-service-card--link-nosotros:focus-visible {
+	outline: 3px solid rgba(17, 43, 117, 0.45);
+	outline-offset: 4px;
+}
 
 .elementor-751 .elementor-element.elementor-element-693ab46,
 .elementor-751 .elementor-element.elementor-element-acaee6e {
 	padding-top: 2rem !important;
 	padding-bottom: 2rem !important;
+}
+
+/*
+ * Catálogo/servicios: 1d1ab7d = desktop (título 4d58045), 5ae8011 = móvil/tablet (título efbc9f6).
+ * No forzar 1d1ab7d en móvil — duplicaba «Te impulsamos en un SNAP!».
+ */
+@media (max-width: 1024px) {
+	.elementor-751 .elementor-element.elementor-element-1d1ab7d,
+	.elementor-751 .elementor-element.elementor-element-1d1ab7d.elementor-hidden-tablet,
+	.elementor-751 .elementor-element.elementor-element-1d1ab7d.elementor-hidden-mobile {
+		display: none !important;
+		visibility: hidden !important;
+		height: 0 !important;
+		min-height: 0 !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		overflow: hidden !important;
+		pointer-events: none !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-4d58045,
+	.elementor-751 .elementor-element.elementor-element-071b17c {
+		display: none !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-5ae8011,
+	.elementor-751 .elementor-element.elementor-element-5ae8011.elementor-hidden-desktop {
+		display: block !important;
+		visibility: visible !important;
+		overflow: visible !important;
+		height: auto !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-efbc9f6 {
+		display: block !important;
+		visibility: visible !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-edfa8e2.elementor-hidden-mobile {
+		display: none !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-0f7d283.elementor-hidden-desktop,
+	.elementor-751 .elementor-element.elementor-element-0f7d283.elementor-hidden-tablet {
+		display: block !important;
+		visibility: visible !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-acaee6e.elementor-hidden-desktop,
+	.elementor-751 .elementor-element.elementor-element-acaee6e.elementor-hidden-tablet {
+		display: block !important;
+		visibility: visible !important;
+	}
+
+	.elementor-751 #servicios.elementor-hidden-mobile,
+	.elementor-751 .elementor-element.elementor-element-693ab46.elementor-hidden-mobile {
+		display: none !important;
+	}
+
+	.elementor-751 .elementor-element-0f7d283 .wdt-custom-portfolio-image-box .wdt-content-item .wdt-content-image-wrapper .wdt-content-image,
+	.elementor-751 .elementor-element-acaee6e .wdt-custom-portfolio-image-box .wdt-content-item .wdt-content-image-wrapper .wdt-content-image {
+		width: 100%;
+		overflow: hidden;
+	}
+
+	.elementor-751 .elementor-element-0f7d283 .wdt-custom-portfolio-image-box .wdt-content-image-wrapper .wdt-content-image img,
+	.elementor-751 .elementor-element-acaee6e .wdt-custom-portfolio-image-box .wdt-content-image-wrapper .wdt-content-image img {
+		width: 100% !important;
+		height: 100% !important;
+		object-fit: cover !important;
+		object-position: center center !important;
+	}
 }
 
 @media (max-width: 1280px) {

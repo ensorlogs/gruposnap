@@ -1,6 +1,10 @@
 /**
- * Home — títulos de sección: branding GrupoSnap (azul / naranja, línea debajo).
+ * Home — títulos de sección: branding GrupoSnap (negro como Instagram, línea debajo).
  */
+
+.elementor-751 {
+	--gs-section-heading-color: #111111;
+}
 
 .elementor-751 .elementor-element-682407d,
 .elementor-751 .elementor-element-4d58045,
@@ -29,18 +33,20 @@
 .elementor-751 .elementor-element-efbc9f6 .wdt-heading-title,
 .elementor-751 .elementor-element-0330a3d .wdt-heading-title,
 .elementor-751 .elementor-element-424703b .wdt-heading-title,
+.elementor-751 .elementor-element-57435c6 .wdt-heading-title,
+.elementor-751 .elementor-element-5d119c5 .wdt-heading-title,
 .gruposnap-marketing-heading .wdt-heading-title {
-	display: inline-flex !important;
-	flex-direction: column !important;
-	align-items: center !important;
+	display: inline-block !important;
 	margin: 0 !important;
 	padding: 0 !important;
 	font-size: clamp(1.625rem, 3.6vw, 2.5rem) !important;
 	font-weight: 800 !important;
-	line-height: 1.18 !important;
+	line-height: 1.22 !important;
 	letter-spacing: -0.025em !important;
-	color: #112b75 !important;
+	color: var(--gs-section-heading-color, #111111) !important;
 	text-transform: none !important;
+	text-align: center !important;
+	max-width: 100%;
 }
 
 .elementor-751 .elementor-element-682407d .wdt-heading-title::after,
@@ -81,14 +87,21 @@
 	-webkit-font-smoothing: antialiased;
 }
 
-.elementor-751 .elementor-element-4d58045 .gruposnap-heading-accent,
-.elementor-751 .elementor-element-efbc9f6 .gruposnap-heading-accent,
+.elementor-751 .gruposnap-heading-accent,
 .gruposnap-marketing-heading .gruposnap-heading-accent {
-	font-weight: 900;
-	background: linear-gradient(120deg, #f57c20 0%, #ff8c3a 50%, #e56712 100%);
-	-webkit-background-clip: text;
-	background-clip: text;
-	-webkit-text-fill-color: transparent;
+	display: inline !important;
+	margin-left: 0.15em;
+	font-size: 1.55em !important;
+	font-weight: 900 !important;
+	line-height: 1 !important;
+	letter-spacing: -0.02em !important;
+	color: #f57c20 !important;
+	-webkit-text-fill-color: #f57c20 !important;
+	background: none !important;
+	background-clip: unset !important;
+	-webkit-background-clip: unset !important;
+	vertical-align: baseline;
+	white-space: nowrap;
 }
 
 .elementor-751 .elementor-element-4d58045 .wdt-heading-title::after,

@@ -38,7 +38,7 @@
 	font-weight: 800 !important;
 	line-height: 1.18 !important;
 	letter-spacing: -0.025em !important;
-	color: #112b75 !important;
+	color: #111111 !important;
 }
 
 .elementor-985 .gruposnap-footer-offices__title::after {
@@ -135,10 +135,6 @@
 
 .elementor-985 .gruposnap-payments__logos {
 	justify-content: center !important;
-}
-
-.elementor-985 .gruposnap-payments__labels {
-	text-align: center !important;
 }
 
 /* ——— Oficinas lado a lado ——— */
@@ -346,10 +342,6 @@
 
 .elementor-985 .gruposnap-payments-bar .gruposnap-payments__logos {
 	justify-content: center !important;
-}
-
-.elementor-985 .gruposnap-payments-bar .gruposnap-payments__labels {
-	text-align: center !important;
 }
 
 @media (max-width: 767px) {

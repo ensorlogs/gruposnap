@@ -147,15 +147,16 @@
 	font-size: clamp(0.9375rem, 1.75vw, 1.0625rem) !important;
 	font-weight: 700 !important;
 	line-height: 1.38 !important;
+	color: #000000 !important;
 }
 
 .elementor-751 .elementor-element-98071b4 .blog-entry .entry-title h4 a {
-	color: #112b75 !important;
+	color: #000000 !important;
 	text-decoration: none !important;
 }
 
 .elementor-751 .elementor-element-98071b4 .blog-entry .entry-title h4 a:hover {
-	color: #f57c20 !important;
+	color: #000000 !important;
 }
 
 .elementor-751 .elementor-element-98071b4 .blog-entry:hover .entry-thumb img {
@@ -254,6 +255,19 @@
 	.elementor-751 .elementor-element-98071b4 .wdt-simple-style.wdt-post-entry.entry-grid-layout .has-post-thumbnail.blog-entry {
 		width: 100% !important;
 		max-width: 100% !important;
+	}
+
+	/* Móvil: un solo artículo en «Ideas y tendencias» (bloque 25079f7 / widget 1984522) */
+	.elementor-751 .elementor-element-25079f7 .tpl-blog-holder > .wdt-post-entry.entry-grid-layout:not(.grid-sizer) ~ .wdt-post-entry.entry-grid-layout:not(.grid-sizer),
+	.elementor-751 .elementor-element-98071b4 .elementor-element-25079f7 .tpl-blog-holder > .wdt-post-entry.entry-grid-layout:not(.grid-sizer) ~ .wdt-post-entry.entry-grid-layout:not(.grid-sizer) {
+		display: none !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		min-height: 0 !important;
+		height: 0 !important;
+		overflow: hidden !important;
+		visibility: hidden !important;
+		pointer-events: none !important;
 	}
 }
 

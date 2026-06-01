@@ -12,6 +12,9 @@ if (!defined('ABSPATH')) {
 const GRUPOSNAP_HOME_ABOUT_SECTION_ID = '46cb44b';
 const GRUPOSNAP_HOME_ABOUT_COLUMN_ID  = '7332389';
 const GRUPOSNAP_HOME_ABOUT_HEADING_ID      = 'f92bae7';
+const GRUPOSNAP_HOME_ABOUT_PHONE_WIDGET_ID = 'a233653';
+const GRUPOSNAP_HOME_ABOUT_EMAIL_WIDGET_ID = 'b9714b1';
+const GRUPOSNAP_HOME_ABOUT_PHOTO_COLUMN_ID = 'fd7205c';
 const GRUPOSNAP_HOME_EXPERIENCE_WIDGET_IDS = array('2454fd0', '95e0f84');
 
 /**
@@ -30,6 +33,141 @@ function gruposnap_should_style_home_about(): bool
     $page_id = (int) (get_queried_object_id() ?: get_the_ID());
 
     return $page_id === 751 || (is_front_page() && (int) get_option('page_on_front') === 751);
+}
+
+/**
+ * Párrafo introductorio de la sección Nosotros (sin texto adicional de Elementor).
+ *
+ * @return string
+ */
+function gruposnap_home_about_intro_text(): string
+{
+    return (string) apply_filters(
+        'gruposnap_home_about_intro_text',
+        'Más de 20 años impulsando marcas a nivel internacional. En GrupoSnap combinamos diseño, producción y ejecución para crear soluciones publicitarias que conectan con los clientes y generan impacto real.'
+    );
+}
+
+/**
+ * @return string
+ */
+function gruposnap_home_about_intro_markup(): string
+{
+    return '<div class="wdt-heading-content-wrapper gruposnap-about-intro">'
+        . '<p class="gruposnap-about-intro__text">' . esc_html(gruposnap_home_about_intro_text()) . '</p>'
+        . '</div>';
+}
+
+/**
+ * @return string
+ */
+function gruposnap_home_about_phone(): string
+{
+    return (string) apply_filters('gruposnap_home_about_phone', '+1 (809) 865-4576');
+}
+
+/**
+ * @return string
+ */
+function gruposnap_home_about_email(): string
+{
+    if (function_exists('gruposnap_legal_contact_email')) {
+        return (string) apply_filters('gruposnap_home_about_email', gruposnap_legal_contact_email());
+    }
+
+    return (string) apply_filters('gruposnap_home_about_email', 'contacto@gruposnap.com');
+}
+
+/**
+ * @return string
+ */
+function gruposnap_home_about_contact_bar_markup(): string
+{
+    return '<div class="gruposnap-about-contact__bar" role="heading" aria-level="3">'
+        . esc_html__('CONTÁCTANOS', 'gruposnap')
+        . '</div>';
+}
+
+/**
+ * Envuelve teléfono + email bajo el párrafo en Nosotros.
+ *
+ * @param string               $content
+ * @param \Elementor\Widget_Base $widget
+ */
+function gruposnap_home_about_contact_wrap_start(string $content, $widget): string
+{
+    if (!gruposnap_should_style_home_about() || $widget->get_id() !== GRUPOSNAP_HOME_ABOUT_PHONE_WIDGET_ID) {
+        return $content;
+    }
+
+    if (str_contains($content, 'gruposnap-about-contact')) {
+        return $content;
+    }
+
+    return '<div class="gruposnap-about-contact" id="gruposnap-about-contact">'
+        . gruposnap_home_about_contact_bar_markup()
+        . '<div class="gruposnap-about-contact__grid">' . $content;
+}
+
+/**
+ * @param string               $content
+ * @param \Elementor\Widget_Base $widget
+ */
+function gruposnap_home_about_contact_wrap_end(string $content, $widget): string
+{
+    if (!gruposnap_should_style_home_about() || $widget->get_id() !== GRUPOSNAP_HOME_ABOUT_EMAIL_WIDGET_ID) {
+        return $content;
+    }
+
+    return $content . '</div></div>';
+}
+
+/**
+ * Corrige enlaces y textos de los icon-box de contacto.
+ *
+ * @param string               $content
+ * @param \Elementor\Widget_Base $widget
+ */
+function gruposnap_home_about_contact_content(string $content, $widget): string
+{
+    if (!gruposnap_should_style_home_about()) {
+        return $content;
+    }
+
+    $id = $widget->get_id();
+
+    if ($id === GRUPOSNAP_HOME_ABOUT_PHONE_WIDGET_ID) {
+        $content = preg_replace(
+            '/>\s*\+?1?\s*\(?809\)?[^<]*865[^<]*4576\s*</',
+            '>' . esc_html(gruposnap_home_about_phone()) . '<',
+            $content,
+            1
+        ) ?? $content;
+        $content = preg_replace(
+            '/href="tel:[^"]*"/',
+            'href="tel:+18098654576"',
+            $content,
+            1
+        ) ?? $content;
+    }
+
+    if ($id === GRUPOSNAP_HOME_ABOUT_EMAIL_WIDGET_ID) {
+        $email = gruposnap_home_about_email();
+        $content = preg_replace(
+            '/href="mailto:[^"]*"/',
+            'href="mailto:' . esc_attr($email) . '"',
+            $content,
+            1
+        ) ?? $content;
+        $content = preg_replace(
+            '/>[^<]*@[^<]*</',
+            '>' . esc_html($email) . '<',
+            $content,
+            1
+        ) ?? $content;
+    }
+
+    return $content;
 }
 
 /**
@@ -89,6 +227,32 @@ function gruposnap_home_about_heading_content(string $content, $widget): string
         'class="wdt-heading-holder gruposnap-about-heading"',
         $replaced
     );
+}
+
+/**
+ * Deja solo el párrafo introductorio en el cuerpo del heading Nosotros.
+ *
+ * @param string               $content
+ * @param \Elementor\Widget_Base $widget
+ */
+function gruposnap_home_about_intro_content(string $content, $widget): string
+{
+    if (!gruposnap_should_style_home_about() || $widget->get_id() !== GRUPOSNAP_HOME_ABOUT_HEADING_ID) {
+        return $content;
+    }
+
+    if (str_contains($content, 'gruposnap-about-intro')) {
+        return $content;
+    }
+
+    $replaced = preg_replace(
+        '/<div class="wdt-heading-content-wrapper"[^>]*>[\s\S]*?<\/div>/',
+        gruposnap_home_about_intro_markup(),
+        $content,
+        1
+    );
+
+    return is_string($replaced) && $replaced !== '' ? $replaced : $content;
 }
 
 /**
@@ -156,6 +320,47 @@ function gruposnap_home_experience_dom_fallback(): void
     ?>
     <script id="gruposnap-experience-badge-fallback">
     (function () {
+        var introHtml = <?php echo wp_json_encode(gruposnap_home_about_intro_markup()); ?>;
+
+        function patchAboutIntro() {
+            var about = document.querySelector('.elementor-element-<?php echo esc_js(GRUPOSNAP_HOME_ABOUT_HEADING_ID); ?> .wdt-heading-holder');
+            if (!about) {
+                return;
+            }
+
+            var body = about.querySelector('.wdt-heading-content-wrapper');
+            if (!body) {
+                return;
+            }
+
+            if (!body.classList.contains('gruposnap-about-intro')) {
+                body.outerHTML = introHtml;
+            } else {
+                var p = body.querySelector('.gruposnap-about-intro__text, p');
+                if (p) {
+                    p.textContent = <?php echo wp_json_encode(gruposnap_home_about_intro_text()); ?>;
+                }
+            }
+        }
+
+        function patchAboutContact() {
+            var phone = document.querySelector('.elementor-element-<?php echo esc_js(GRUPOSNAP_HOME_ABOUT_PHONE_WIDGET_ID); ?>');
+            var email = document.querySelector('.elementor-element-<?php echo esc_js(GRUPOSNAP_HOME_ABOUT_EMAIL_WIDGET_ID); ?>');
+            if (!phone || !email || document.getElementById('gruposnap-about-contact')) {
+                return;
+            }
+
+            var wrap = document.createElement('div');
+            wrap.className = 'gruposnap-about-contact';
+            wrap.id = 'gruposnap-about-contact';
+            wrap.innerHTML = <?php echo wp_json_encode(gruposnap_home_about_contact_bar_markup()); ?>
+                + '<div class="gruposnap-about-contact__grid"></div>';
+            var grid = wrap.querySelector('.gruposnap-about-contact__grid');
+            phone.parentNode.insertBefore(wrap, phone);
+            grid.appendChild(phone);
+            grid.appendChild(email);
+        }
+
         function patchAboutTitle() {
             var about = document.querySelector('.elementor-element-<?php echo esc_js(GRUPOSNAP_HOME_ABOUT_HEADING_ID); ?> .wdt-heading-holder');
             if (!about || about.querySelector('.gruposnap-experience__head')) {
@@ -189,9 +394,13 @@ function gruposnap_home_experience_dom_fallback(): void
         }
 
         patchAboutTitle();
+        patchAboutIntro();
+        patchAboutContact();
         patchExperienceBadge();
         document.addEventListener('DOMContentLoaded', function () {
             patchAboutTitle();
+            patchAboutIntro();
+            patchAboutContact();
             patchExperienceBadge();
         });
     })();
@@ -201,6 +410,10 @@ function gruposnap_home_experience_dom_fallback(): void
 
 add_action('init', 'gruposnap_home_about_bust_elementor_cache', 1);
 add_filter('elementor/widget/render_content', 'gruposnap_home_about_heading_content', 10, 2);
-add_filter('elementor/widget/render_content', 'gruposnap_home_experience_heading_content', 11, 2);
+add_filter('elementor/widget/render_content', 'gruposnap_home_about_intro_content', 11, 2);
+add_filter('elementor/widget/render_content', 'gruposnap_home_about_contact_wrap_start', 12, 2);
+add_filter('elementor/widget/render_content', 'gruposnap_home_about_contact_content', 13, 2);
+add_filter('elementor/widget/render_content', 'gruposnap_home_about_contact_wrap_end', 14, 2);
+add_filter('elementor/widget/render_content', 'gruposnap_home_experience_heading_content', 15, 2);
 add_action('wp_enqueue_scripts', 'gruposnap_enqueue_home_about_styles', 1005);
 add_action('wp_footer', 'gruposnap_home_experience_dom_fallback', 8);

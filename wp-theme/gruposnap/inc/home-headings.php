@@ -139,7 +139,8 @@ function gruposnap_marketing_heading_enhance_content(string $content, $widget): 
     $content = (string) preg_replace_callback(
         '/(<span class="wdt-heading-title">)(.*?)(<\/span>)/s',
         static function (array $matches): string {
-            $title = gruposnap_marketing_friendly_title(wp_strip_all_tags($matches[2]));
+            $inner = (string) preg_replace('/<br\s*\/?>\s*/i', ' ', $matches[2]);
+            $title = gruposnap_marketing_friendly_title(wp_strip_all_tags($inner));
             $title = esc_html($title);
             $title = gruposnap_marketing_highlight_snap($title);
 
