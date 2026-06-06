@@ -969,6 +969,11 @@ function gruposnap_home_hero_reveal_script(): void
                     main.style.setProperty('max-width', '100%', 'important');
                     main.style.setProperty('margin-left', '0', 'important');
                     main.style.setProperty('margin-right', '0', 'important');
+                } else {
+                    main.style.removeProperty('width');
+                    main.style.removeProperty('max-width');
+                    main.style.removeProperty('margin-left');
+                    main.style.removeProperty('margin-right');
                 }
             }
 
@@ -1039,9 +1044,15 @@ function gruposnap_home_hero_reveal_script(): void
             if (heroColumn) {
                 heroColumn.style.setProperty('position', 'relative', 'important');
                 heroColumn.style.setProperty('z-index', '20', 'important');
-                heroColumn.style.setProperty('flex', '1 1 100%', 'important');
-                heroColumn.style.removeProperty('width');
-                heroColumn.style.removeProperty('max-width');
+                if (window.innerWidth <= 767) {
+                    heroColumn.style.setProperty('flex', '1 1 100%', 'important');
+                    heroColumn.style.removeProperty('width');
+                    heroColumn.style.removeProperty('max-width');
+                } else {
+                    heroColumn.style.removeProperty('flex');
+                    heroColumn.style.removeProperty('width');
+                    heroColumn.style.removeProperty('max-width');
+                }
             }
 
             var desktopBlock = hero.querySelector('.elementor-element-a5d8162 > .elementor-container');
