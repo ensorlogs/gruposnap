@@ -249,6 +249,87 @@ body.gruposnap-blog-single .blog-single-entry.post-minimal .single-entry-body .w
 	text-transform: none;
 }
 
+/* Valoración por estrellas */
+body.gruposnap-blog-single .gruposnap-post-rating {
+	border-top: 1px solid var(--gs-blog-border);
+	margin: 2.75rem auto 0;
+	max-width: var(--gs-blog-read-max);
+	padding-top: 2.25rem;
+	text-align: center;
+}
+
+body.gruposnap-blog-single .gruposnap-post-rating__title {
+	color: var(--gs-blog-text);
+	font-size: clamp(1.125rem, 2.2vw, 1.375rem);
+	font-weight: 700;
+	line-height: 1.35;
+	margin: 0 0 0.65rem;
+}
+
+body.gruposnap-blog-single .gruposnap-post-rating__hint,
+body.gruposnap-blog-single .gruposnap-post-rating__status {
+	color: var(--gs-blog-muted);
+	font-size: 0.9375rem;
+	line-height: 1.5;
+	margin: 0;
+}
+
+body.gruposnap-blog-single .gruposnap-post-rating__hint {
+	margin-bottom: 1.35rem;
+}
+
+body.gruposnap-blog-single .gruposnap-post-rating__status {
+	margin-top: 1.15rem;
+}
+
+body.gruposnap-blog-single .gruposnap-post-rating__stars {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+	justify-content: center;
+}
+
+body.gruposnap-blog-single .gruposnap-post-rating__star {
+	appearance: none;
+	background: transparent;
+	border: 0;
+	cursor: pointer;
+	line-height: 0;
+	padding: 0.15rem;
+	transition: transform 0.15s ease;
+}
+
+body.gruposnap-blog-single .gruposnap-post-rating__star:hover:not(:disabled),
+body.gruposnap-blog-single .gruposnap-post-rating__star:focus-visible:not(:disabled) {
+	transform: scale(1.08);
+}
+
+body.gruposnap-blog-single .gruposnap-post-rating__star:focus-visible {
+	outline: 2px solid var(--gs-blog-orange);
+	outline-offset: 2px;
+}
+
+body.gruposnap-blog-single .gruposnap-post-rating__star:disabled {
+	cursor: default;
+}
+
+body.gruposnap-blog-single .gruposnap-post-rating__star-icon {
+	display: block;
+	fill: #c5ceda;
+	height: 2rem;
+	width: 2rem;
+}
+
+body.gruposnap-blog-single .gruposnap-post-rating__star.is-active .gruposnap-post-rating__star-icon,
+body.gruposnap-blog-single .gruposnap-post-rating.has-voted .gruposnap-post-rating__star.is-active .gruposnap-post-rating__star-icon {
+	fill: #f5b301;
+}
+
+body.gruposnap-blog-single .gruposnap-post-rating.is-submitting {
+	opacity: 0.75;
+	pointer-events: none;
+}
+
 /* Relacionados del tema (debajo del contenido) */
 body.gruposnap-blog-single .blog-single-entry.post-minimal .entry-related-posts {
 	margin-top: 2.5rem;

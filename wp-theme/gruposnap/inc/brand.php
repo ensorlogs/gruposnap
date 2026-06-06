@@ -15,6 +15,7 @@ require_once get_stylesheet_directory() . '/inc/home-hero.php';
 require_once get_stylesheet_directory() . '/inc/home-brands-strip.php';
 require_once get_stylesheet_directory() . '/inc/testimonials.php';
 require_once get_stylesheet_directory() . '/inc/blog.php';
+require_once get_stylesheet_directory() . '/inc/blog-rating.php';
 require_once get_stylesheet_directory() . '/inc/compliance.php';
 require_once get_stylesheet_directory() . '/inc/header.php';
 require_once get_stylesheet_directory() . '/inc/footer-payments.php';
@@ -25,6 +26,7 @@ require_once get_stylesheet_directory() . '/inc/instagram.php';
 require_once get_stylesheet_directory() . '/inc/home-services.php';
 require_once get_stylesheet_directory() . '/inc/home-headings.php';
 require_once get_stylesheet_directory() . '/inc/home-about.php';
+require_once get_stylesheet_directory() . '/inc/home-responsive.php';
 
 /**
  * CTA styles must load after WDT button + Elementor page CSS (accent #61CE70).

@@ -172,11 +172,16 @@
 	padding-top: clamp(2.5rem, 6vw, 4rem) !important;
 }
 
-/* Catálogo 2026 — menos aire arriba/abajo del título */
+/* Catálogo 2026 — menos aire arriba del título; espacio abajo antes de «Te impulsamos». */
 .elementor-751 .elementor-top-section:has(.gruposnap-marketing-heading--catalog-2026),
 .elementor-751 .elementor-element.elementor-element-87ef98c {
 	padding-top: clamp(0.75rem, 2vw, 1.25rem) !important;
-	padding-bottom: 0 !important;
+	padding-bottom: clamp(0.75rem, 2.5vw, 1.25rem) !important;
+}
+
+/* «Te impulsamos en un SNAP!» — separación del catálogo Flipsnack. */
+.elementor-751 .elementor-element.elementor-element-1d1ab7d {
+	padding-top: clamp(2rem, 5vw, 3.25rem) !important;
 }
 
 .elementor-751 .elementor-element.elementor-element-9d50218 {
@@ -201,11 +206,6 @@
 	margin-top: 0.5rem !important;
 }
 
-.elementor-751 .elementor-element.elementor-element-5d119c5 > .elementor-widget-container {
-	padding-left: 0 !important;
-	padding-right: 0 !important;
-}
-
 .elementor-751 .elementor-element.elementor-element-57435c6 > .elementor-widget-container,
 .elementor-751 .elementor-element.elementor-element-5d119c5 > .elementor-widget-container {
 	margin-top: 0 !important;
@@ -213,7 +213,16 @@
 }
 
 @media (max-width: 767px) {
-	.gruposnap-marketing-heading .wdt-heading-holder {
+	.elementor-751 .elementor-element.elementor-element-9d50218 {
+		padding: 0.35rem var(--gs-home-catalog-gutter, 0.5rem) 0 !important;
+	}
+
+	.gruposnap-marketing-heading .wdt-heading-holder,
+	.elementor-751 .elementor-element-4d58045 .wdt-heading-holder,
+	.elementor-751 .elementor-element-57435c6 .wdt-heading-holder,
+	.elementor-751 .elementor-element-5d119c5 .wdt-heading-holder {
+		padding-left: clamp(1.125rem, 5.5vw, 1.35rem) !important;
+		padding-right: clamp(1.125rem, 5.5vw, 1.35rem) !important;
 		padding-bottom: 1.35rem;
 	}
 
@@ -221,7 +230,10 @@
 		font-size: clamp(1.45rem, 6.5vw, 1.85rem) !important;
 	}
 
-	.gruposnap-marketing-heading .wdt-heading-content-wrapper {
+	.gruposnap-marketing-heading .wdt-heading-content-wrapper,
+	.elementor-751 .elementor-element-4d58045 .wdt-heading-content-wrapper {
 		font-size: 0.9375rem !important;
+		padding-left: 0.15rem !important;
+		padding-right: 0.15rem !important;
 	}
 }

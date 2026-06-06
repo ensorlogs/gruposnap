@@ -103,6 +103,73 @@ function gruposnap_marketing_highlight_snap(string $html): string
 }
 
 /**
+ * Resalta «Experiencias» en el hero (mismo acento que «SNAP!»).
+ */
+function gruposnap_hero_heading_highlight(string $html): string
+{
+    if (!str_contains($html, 'Experiencias')) {
+        return $html;
+    }
+
+    $html = (string) preg_replace(
+        '/^20 años/u',
+        '<span class="gruposnap-heading-accent-navy">20 años</span>',
+        $html,
+        1
+    );
+
+    return (string) preg_replace(
+        '/Experiencias/u',
+        '<span class="gruposnap-heading-accent">Experiencias</span>',
+        $html,
+        1
+    );
+}
+
+/**
+ * @param \Elementor\Widget_Base $widget
+ */
+function gruposnap_hero_heading_wrapper_class($widget): void
+{
+    if (!gruposnap_should_style_home_headings()) {
+        return;
+    }
+
+    if ($widget->get_name() !== 'wdt-heading' || !in_array($widget->get_id(), GRUPOSNAP_HOME_HERO_HEADING_IDS, true)) {
+        return;
+    }
+
+    $widget->add_render_attribute('_wrapper', 'class', 'gruposnap-hero-heading');
+}
+
+/**
+ * @param string               $content
+ * @param \Elementor\Widget_Base $widget
+ */
+function gruposnap_hero_heading_enhance_content(string $content, $widget): string
+{
+    if (!gruposnap_should_style_home_headings()) {
+        return $content;
+    }
+
+    if ($widget->get_name() !== 'wdt-heading' || !in_array($widget->get_id(), GRUPOSNAP_HOME_HERO_HEADING_IDS, true)) {
+        return $content;
+    }
+
+    return (string) preg_replace_callback(
+        '/(<span class="wdt-heading-title">)(.*?)(<\/span>)/s',
+        static function (array $matches): string {
+            $inner = (string) preg_replace('/<br\s*\/?>\s*/i', ' ', $matches[2]);
+            $title = esc_html(wp_strip_all_tags($inner));
+            $title = gruposnap_hero_heading_highlight($title);
+
+            return $matches[1] . $title . $matches[3];
+        },
+        $content
+    );
+}
+
+/**
  * @param \Elementor\Widget_Base $widget
  */
 function gruposnap_marketing_heading_wrapper_class($widget): void
@@ -186,5 +253,7 @@ function gruposnap_home_headings_bust_elementor_cache(): void
 
 add_action('init', 'gruposnap_home_headings_bust_elementor_cache', 1);
 add_action('wp_enqueue_scripts', 'gruposnap_enqueue_home_headings_styles', 105);
+add_action('elementor/frontend/widget/before_render', 'gruposnap_hero_heading_wrapper_class', 6);
 add_action('elementor/frontend/widget/before_render', 'gruposnap_marketing_heading_wrapper_class', 6);
+add_filter('elementor/widget/render_content', 'gruposnap_hero_heading_enhance_content', 19, 2);
 add_filter('elementor/widget/render_content', 'gruposnap_marketing_heading_enhance_content', 20, 2);

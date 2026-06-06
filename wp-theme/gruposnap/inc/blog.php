@@ -221,8 +221,89 @@ add_filter('body_class', 'gruposnap_blog_body_class');
 /** Botones «See all Blogs» en la home (Elementor 751) — desktop y móvil. */
 const GRUPOSNAP_HOME_SEE_ALL_BLOG_WIDGET_IDS = array('d1800c7', 'c5d3e4f');
 
-/** Carrusel de entradas en home. */
-const GRUPOSNAP_HOME_BLOG_POSTS_WIDGET_IDS = array('bf2da19', '1984522');
+/** Widget blog desktop (3 columnas) dentro de 98071b4. */
+const GRUPOSNAP_HOME_BLOG_DESKTOP_WIDGET_ID = 'bf2da19';
+
+/** Sección + widget blog móvil (1 artículo) dentro de 98071b4. */
+const GRUPOSNAP_HOME_BLOG_MOBILE_SECTION_ID = '25079f7';
+const GRUPOSNAP_HOME_BLOG_MOBILE_WIDGET_ID  = '1984522';
+
+/** Carrusel de entradas en home (desktop + móvil). */
+const GRUPOSNAP_HOME_BLOG_POSTS_WIDGET_IDS = array(
+    GRUPOSNAP_HOME_BLOG_DESKTOP_WIDGET_ID,
+    GRUPOSNAP_HOME_BLOG_MOBILE_WIDGET_ID,
+);
+
+/**
+ * Evita duplicar «Ideas y tendencias»: desktop usa bf2da19; móvil usa 25079f7/1984522.
+ */
+function gruposnap_home_blog_fix_elementor_data(): void
+{
+    $raw = get_post_meta(751, '_elementor_data', true);
+    if (!is_string($raw) || $raw === '') {
+        return;
+    }
+
+    $data = json_decode($raw, true);
+    if (!is_array($data)) {
+        return;
+    }
+
+    $needs_save = false;
+
+    $walk = static function (array &$nodes) use (&$walk, &$needs_save): void {
+        foreach ($nodes as &$node) {
+            if (!is_array($node)) {
+                continue;
+            }
+
+            $id       = $node['id'] ?? '';
+            $settings = &$node['settings'];
+
+            if ($id === GRUPOSNAP_HOME_BLOG_DESKTOP_WIDGET_ID) {
+                if (($settings['hide_mobile'] ?? '') !== 'hidden-mobile') {
+                    $settings['hide_mobile'] = 'hidden-mobile';
+                    $needs_save              = true;
+                }
+                if (!empty($settings['hide_desktop'])) {
+                    unset($settings['hide_desktop']);
+                    $needs_save = true;
+                }
+                if (!empty($settings['hide_tablet'])) {
+                    unset($settings['hide_tablet']);
+                    $needs_save = true;
+                }
+            } elseif ($id === GRUPOSNAP_HOME_BLOG_MOBILE_SECTION_ID || $id === GRUPOSNAP_HOME_BLOG_MOBILE_WIDGET_ID) {
+                if (($settings['hide_desktop'] ?? '') !== 'hidden-desktop') {
+                    $settings['hide_desktop'] = 'hidden-desktop';
+                    $needs_save               = true;
+                }
+                if (($settings['hide_tablet'] ?? '') !== 'hidden-tablet') {
+                    $settings['hide_tablet'] = 'hidden-tablet';
+                    $needs_save              = true;
+                }
+                if (!empty($settings['hide_mobile'])) {
+                    unset($settings['hide_mobile']);
+                    $needs_save = true;
+                }
+            }
+
+            if (!empty($node['elements']) && is_array($node['elements'])) {
+                $walk($node['elements']);
+            }
+        }
+    };
+
+    $walk($data);
+
+    if (!$needs_save) {
+        return;
+    }
+
+    update_post_meta(751, '_elementor_data', wp_slash(wp_json_encode($data)));
+    delete_post_meta(751, '_elementor_element_cache');
+    delete_post_meta(751, '_elementor_css');
+}
 
 /**
  * @return bool
@@ -292,6 +373,8 @@ function gruposnap_home_blog_bust_elementor_cache(): void
     update_option('gruposnap_home_blog_cache_version', GRUPOSNAP_THEME_VERSION, false);
 }
 
+add_action('init', 'gruposnap_home_blog_fix_elementor_data', 0);
+add_action('admin_init', 'gruposnap_home_blog_fix_elementor_data', 0);
 add_action('init', 'gruposnap_home_blog_bust_elementor_cache', 1);
 
 /**

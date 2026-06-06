@@ -132,3 +132,51 @@ function gruposnap_header_menu_label_script(): void
 }
 
 add_action('wp_footer', 'gruposnap_header_menu_label_script', 5);
+
+/**
+ * Barra superior: una sola línea en móvil (marquee no debe partir el texto).
+ */
+function gruposnap_header_ticker_single_line_script(): void
+{
+    if (is_admin()) {
+        return;
+    }
+    ?>
+    <script id="gruposnap-header-ticker-single-line">
+    (function () {
+        var mq = window.matchMedia('(max-width: 767px)');
+
+        function clampTickerHeight() {
+            if (!mq.matches) {
+                return;
+            }
+
+            document.querySelectorAll('.elementor-640 .wdt-custom-header-ii-animation .wdt-animation-text a').forEach(function (link) {
+                link.style.whiteSpace = 'nowrap';
+            });
+
+            document.querySelectorAll('.elementor-640 .wdt-custom-header-ii-animation .wdt-animation-holder').forEach(function (holder) {
+                holder.style.minHeight = '18px';
+                holder.style.maxHeight = '22px';
+                holder.style.height = '22px';
+            });
+
+            document.querySelectorAll('.elementor-640 .wdt-custom-header-ii-animation .wdt-animation-item').forEach(function (item) {
+                item.style.height = 'auto';
+                item.style.maxHeight = '22px';
+            });
+        }
+
+        clampTickerHeight();
+        document.addEventListener('DOMContentLoaded', clampTickerHeight);
+        window.addEventListener('load', clampTickerHeight);
+        [120, 500, 1200].forEach(function (ms) {
+            window.setTimeout(clampTickerHeight, ms);
+        });
+        mq.addEventListener('change', clampTickerHeight);
+    })();
+    </script>
+    <?php
+}
+
+add_action('wp_footer', 'gruposnap_header_ticker_single_line_script', 6);

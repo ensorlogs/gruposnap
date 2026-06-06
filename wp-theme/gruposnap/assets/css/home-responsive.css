@@ -1,0 +1,217 @@
+/**
+ * Home — márgenes simétricos, centrado y embeds (Flipsnack) en móvil/tablet.
+ */
+
+.elementor-751 {
+	--gs-home-gutter: clamp(1.125rem, 5vw, 1.5rem);
+	--gs-home-content-max: min(560px, calc(100vw - (2 * var(--gs-home-gutter))));
+}
+
+body.elementor-page-751 {
+	overflow-x: clip;
+}
+
+.elementor-751 .elementor-section-wrap,
+.elementor-751 .e-con-inner {
+	max-width: 100%;
+}
+
+@media (max-width: 1024px) {
+	/* Secciones de contenido (no hero a sangre ni Nosotros, que ya tienen márgenes propios). */
+	.elementor-751 .elementor-top-section:not(.elementor-element-650305b):not(.elementor-element-a5d8162):not(.elementor-element-47df02b):not(.elementor-element-46cb44b):not(.elementor-element-a783519):not(.elementor-element-87ef98c) > .elementor-container {
+		padding-left: var(--gs-home-gutter) !important;
+		padding-right: var(--gs-home-gutter) !important;
+		box-sizing: border-box !important;
+	}
+
+	.elementor-751 .elementor-top-section:not(.elementor-element-650305b):not(.elementor-element-a5d8162):not(.elementor-element-47df02b):not(.elementor-element-46cb44b):not(.elementor-element-a783519):not(.elementor-element-87ef98c) .elementor-column-gap-default > .elementor-column > .elementor-element-populated,
+	.elementor-751 .elementor-top-section:not(.elementor-element-650305b):not(.elementor-element-a5d8162):not(.elementor-element-47df02b):not(.elementor-element-46cb44b):not(.elementor-element-a783519):not(.elementor-element-87ef98c) .elementor-column-gap-narrow > .elementor-column > .elementor-element-populated,
+	.elementor-751 .elementor-top-section:not(.elementor-element-650305b):not(.elementor-element-a5d8162):not(.elementor-element-47df02b):not(.elementor-element-46cb44b):not(.elementor-element-a783519):not(.elementor-element-87ef98c) .elementor-column-gap-extended > .elementor-column > .elementor-element-populated {
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
+
+	/* Anula anchos fijos de Elementor que desbordan en pantallas estrechas. */
+	.elementor-751 .elementor-element-071b17c,
+	.elementor-751 .elementor-element-23523f7,
+	.elementor-751 .elementor-element-57435c6,
+	.elementor-751 .elementor-element-4d58045,
+	.elementor-751 .elementor-element-47796ac,
+	.elementor-751 .elementor-element-682407d {
+		width: 100% !important;
+		max-width: 100% !important;
+		--container-widget-width: 100% !important;
+	}
+
+	.elementor-751 .wdt-content-item-holder .wdt-content-image-wrapper,
+	.elementor-751 .wdt-content-item .wdt-content-image-wrapper .wdt-content-image,
+	.elementor-751 .wdt-content-item .wdt-content-image-wrapper .wdt-content-image > a,
+	.elementor-751 .wdt-content-item .wdt-content-image-wrapper .wdt-content-image > span,
+	.elementor-751 .wdt-content-item-holder.wdt-rc-template-duotone .wdt-content-item .wdt-content-media-group .wdt-content-elements-group.wdt-media-group .wdt-content-image-wrapper,
+	.elementor-751 .wdt-content-item-holder.wdt-rc-template-duotone .wdt-content-item .wdt-content-media-group .wdt-content-elements-group.wdt-media-group .wdt-content-image-wrapper .wdt-content-image,
+	.elementor-751 .wdt-content-item-holder.wdt-rc-template-duotone .wdt-content-item .wdt-content-media-group .wdt-content-elements-group.wdt-media-group .wdt-content-image-wrapper .wdt-content-image > span {
+		min-width: 0 !important;
+		max-width: 100% !important;
+	}
+}
+
+@media (max-width: 767px) {
+	.elementor-751 {
+		--gs-home-gutter: clamp(1.125rem, 5.5vw, 1.35rem);
+		--gs-home-catalog-gutter: clamp(0.35rem, 2vw, 0.65rem);
+	}
+
+	/* Títulos de sección: más aire lateral y texto centrado. */
+	.elementor-751 .gruposnap-marketing-heading .wdt-heading-holder,
+	.elementor-751 .elementor-element-682407d .wdt-heading-holder,
+	.elementor-751 .elementor-element-4d58045 .wdt-heading-holder,
+	.elementor-751 .elementor-element-efbc9f6 .wdt-heading-holder,
+	.elementor-751 .elementor-element-0330a3d .wdt-heading-holder,
+	.elementor-751 .elementor-element-424703b .wdt-heading-holder,
+	.elementor-751 .elementor-element-57435c6 .wdt-heading-holder,
+	.elementor-751 .elementor-element-5d119c5 .wdt-heading-holder {
+		padding-left: var(--gs-home-gutter) !important;
+		padding-right: var(--gs-home-gutter) !important;
+		box-sizing: border-box !important;
+	}
+
+	.elementor-751 .gruposnap-marketing-heading .wdt-heading-content-wrapper,
+	.elementor-751 .elementor-element-4d58045 .wdt-heading-content-wrapper,
+	.elementor-751 .elementor-element-57435c6 .wdt-heading-content-wrapper,
+	.elementor-751 .elementor-element-5d119c5 .wdt-heading-content-wrapper {
+		padding-left: 0.15rem !important;
+		padding-right: 0.15rem !important;
+		max-width: 36rem !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
+		text-align: center !important;
+	}
+
+	.elementor-751 .gruposnap-marketing-heading .wdt-heading-title,
+	.elementor-751 .elementor-element-4d58045 .wdt-heading-title {
+		max-width: calc(100vw - (2 * var(--gs-home-gutter))) !important;
+	}
+
+	/* Catálogo 2026 + embed Flipsnack. */
+	.elementor-751 .elementor-top-section:has(.gruposnap-marketing-heading--catalog-2026),
+	.elementor-751 .elementor-top-section:has(.elementor-element-57435c6) {
+		overflow: hidden !important;
+	}
+
+	.elementor-751 .elementor-top-section:has(.gruposnap-marketing-heading--catalog-2026) > .elementor-container,
+	.elementor-751 .elementor-top-section:has(.elementor-element-57435c6) > .elementor-container,
+	.elementor-751 .elementor-element.elementor-element-87ef98c > .elementor-container,
+	.elementor-751 .elementor-element-9d50218:has(.elementor-element-57435c6),
+	.elementor-751 .elementor-element.elementor-element-9d50218,
+	.elementor-751 .elementor-element.elementor-element-d5c027d > .elementor-container,
+	.elementor-751 .elementor-element.elementor-element-f2e289b > .elementor-element-populated,
+	.elementor-751 .elementor-element-c580f30 > .elementor-element-populated {
+		padding-left: var(--gs-home-catalog-gutter) !important;
+		padding-right: var(--gs-home-catalog-gutter) !important;
+		box-sizing: border-box !important;
+	}
+
+	.elementor-751 .elementor-top-section:has(.gruposnap-marketing-heading--catalog-2026) .elementor-column > .elementor-element-populated,
+	.elementor-751 .elementor-top-section:has(.elementor-element-57435c6) .elementor-column > .elementor-element-populated,
+	.elementor-751 .elementor-element-c580f30 > .elementor-element-populated {
+		display: flex !important;
+		flex-direction: column !important;
+		align-items: center !important;
+		width: 100% !important;
+	}
+
+	.elementor-751 .elementor-top-section:has(.gruposnap-marketing-heading--catalog-2026) .elementor-widget-html,
+	.elementor-751 .elementor-top-section:has(.gruposnap-marketing-heading--catalog-2026) .elementor-widget-shortcode,
+	.elementor-751 .elementor-top-section:has(.elementor-element-57435c6) .elementor-widget-html,
+	.elementor-751 .elementor-top-section:has(.elementor-element-57435c6) .elementor-widget-shortcode,
+	.elementor-751 .elementor-element-c580f30 .elementor-widget-html,
+	.elementor-751 .elementor-element-c580f30 .elementor-widget-shortcode,
+	.elementor-751 .elementor-element.elementor-element-e9c953b,
+	.elementor-751 .elementor-element.elementor-element-e9c953b.elementor-widget__width-initial,
+	.elementor-751 .elementor-element.elementor-element-e9c953b.elementor-widget-mobile__width-initial {
+		width: 100% !important;
+		max-width: 100% !important;
+		--container-widget-width: 100% !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	.elementor-751 .elementor-top-section:has(.gruposnap-marketing-heading--catalog-2026) .elementor-widget-html > .elementor-widget-container,
+	.elementor-751 .elementor-top-section:has(.gruposnap-marketing-heading--catalog-2026) .elementor-widget-shortcode > .elementor-widget-container,
+	.elementor-751 .elementor-top-section:has(.elementor-element-57435c6) .elementor-widget-html > .elementor-widget-container,
+	.elementor-751 .elementor-top-section:has(.elementor-element-57435c6) .elementor-widget-shortcode > .elementor-widget-container,
+	.elementor-751 .elementor-element-c580f30 .elementor-widget-html > .elementor-widget-container,
+	.elementor-751 .elementor-element-c580f30 .elementor-widget-shortcode > .elementor-widget-container {
+		width: 100% !important;
+		max-width: 100% !important;
+		margin: 0 auto !important;
+		padding: 0 !important;
+		overflow: hidden !important;
+		text-align: center !important;
+	}
+
+	/* Servicios / soluciones — ancho útil centrado (solo móvil). */
+	.elementor-751 #servicios .wdt-custom-home-image-box .wdt-column-wrapper,
+	.elementor-751 .elementor-element-693ab46 .wdt-custom-home-image-box .wdt-column-wrapper {
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+		max-width: var(--gs-home-content-max) !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	.elementor-751 .elementor-element-9a378ea.elementor-widget-wdt-image-box,
+	.elementor-751 .elementor-element-9a378ea > .elementor-widget-container {
+		max-width: var(--gs-home-content-max) !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	.elementor-751 iframe[src*="flipsnack"],
+	.elementor-751 iframe[src*="player.flipsnack"],
+	.elementor-751 .elementor-widget-html iframe,
+	.elementor-751 .elementor-widget-shortcode iframe,
+	.elementor-751 .elementor-top-section:has(.gruposnap-marketing-heading--catalog-2026) iframe,
+	.elementor-751 .elementor-top-section:has(.elementor-element-57435c6) iframe,
+	.elementor-751 .elementor-element-c580f30 iframe {
+		display: block !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		min-width: 0 !important;
+		height: min(72vh, 540px) !important;
+		min-height: min(62vh, 480px) !important;
+		margin: 0 auto !important;
+		border: 0 !important;
+	}
+
+	.elementor-751 .elementor-top-section:has(.gruposnap-marketing-heading--catalog-2026) [class*="flipsnack"],
+	.elementor-751 .elementor-top-section:has(.elementor-element-57435c6) [class*="flipsnack"],
+	.elementor-751 .elementor-element-c580f30 [class*="flipsnack"],
+	.elementor-751 .elementor-top-section:has(.gruposnap-marketing-heading--catalog-2026) .fs-object-wrapper,
+	.elementor-751 .elementor-top-section:has(.elementor-element-57435c6) .fs-object-wrapper {
+		width: 100% !important;
+		max-width: 100% !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
+		overflow: hidden !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-e9c953b > .elementor-widget-container {
+		width: 100% !important;
+		max-width: 100% !important;
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+
+	/* Grid «Te impulsamos en un SNAP!» — márgenes simétricos. */
+	.elementor-751 .elementor-element-1d1ab7d > .elementor-container {
+		padding-left: var(--gs-home-gutter) !important;
+		padding-right: var(--gs-home-gutter) !important;
+		box-sizing: border-box !important;
+	}
+
+	.elementor-751 .elementor-element-1d1ab7d .elementor-widget-wdt-image-box > .elementor-widget-container {
+		max-width: var(--gs-home-content-max) !important;
+	}
+
+}

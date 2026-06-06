@@ -17,8 +17,23 @@
 	display: none !important;
 }
 
+.elementor-640 .elementor-element.elementor-element-321d08d .wdt-custom-header-ii-animation .wdt-animation-holder,
+.elementor-640 .elementor-element.elementor-element-321d08d .wdt-custom-header-ii-animation .wdt-animation-wrapper {
+	overflow: hidden !important;
+}
+
 .elementor-640 .elementor-element.elementor-element-321d08d .wdt-custom-header-ii-animation .wdt-animation-holder {
-	min-height: 28px;
+	min-height: 22px;
+	max-height: 28px;
+}
+
+.elementor-640 .wdt-custom-header-ii-animation .wdt-animation-item,
+.elementor-640 .wdt-custom-header-ii-animation .wdt-animation-text,
+.elementor-640 .wdt-custom-header-ii-animation .wdt-animation-text a {
+	white-space: nowrap !important;
+	word-break: keep-all !important;
+	overflow: visible !important;
+	line-height: 1.2 !important;
 }
 
 .elementor-640 .wdt-custom-header-ii-animation .wdt-animation-item .wdt-animation-text a {
@@ -41,6 +56,14 @@
 	width: 5px !important;
 	height: 5px !important;
 	opacity: 0.9;
+	right: -30px !important;
+	top: -3px !important;
+}
+
+/* Mitad del margen lateral que aplica el widget WDT (por defecto 10px). */
+.elementor-640 .wdt-custom-header-ii-animation .wdt-animation-item {
+	margin-left: 5px !important;
+	margin-right: 5px !important;
 }
 
 /* Destacar WhatsApp en el segundo mensaje */
@@ -50,12 +73,27 @@
 
 @media only screen and (max-width: 767px) {
 	.elementor-640 .elementor-element.elementor-element-321d08d {
-		padding-top: 10px !important;
-		padding-bottom: 10px !important;
+		padding-top: 5px !important;
+		padding-bottom: 5px !important;
+	}
+
+	.elementor-640 .elementor-element.elementor-element-321d08d .wdt-custom-header-ii-animation .wdt-animation-holder {
+		min-height: 18px !important;
+		max-height: 22px !important;
 	}
 
 	.elementor-640 .wdt-custom-header-ii-animation .wdt-animation-item .wdt-animation-text a {
-		font-size: 0.65rem !important;
-		letter-spacing: 0.08em !important;
+		font-size: 0.6rem !important;
+		letter-spacing: 0.05em !important;
+		line-height: 1.15 !important;
+	}
+
+	.elementor-640 .wdt-custom-header-ii-animation .wdt-animation-item .wdt-animation-text a:after {
+		right: -20px !important;
+	}
+
+	.elementor-640 .wdt-custom-header-ii-animation .wdt-animation-item {
+		margin-left: 4px !important;
+		margin-right: 4px !important;
 	}
 }

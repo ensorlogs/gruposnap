@@ -5,6 +5,12 @@
 	--gsnap-a11y-navy: #112b75;
 	--gsnap-a11y-muted: #6b7280;
 	--gsnap-a11y-line: rgba(17, 43, 117, 0.1);
+	--gsnap-fab-size: 40px;
+	--gsnap-fab-inset: 0.85rem;
+	--gsnap-fab-stack-gap: 0.5rem;
+	--gsnap-fab-panel-gap: 0.3rem;
+	--gsnap-whatsapp: #25d366;
+	--gsnap-whatsapp-hover: #1da851;
 }
 
 .gsnap-skip-link {
@@ -39,18 +45,18 @@ button.gsnap-a11y-fab {
 	-webkit-appearance: none;
 	box-sizing: border-box;
 	position: fixed;
-	left: 0.85rem;
-	bottom: 0.85rem;
+	left: var(--gsnap-fab-inset);
+	bottom: var(--gsnap-fab-inset);
 	z-index: 90;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	width: 40px;
-	height: 40px;
-	min-width: 40px;
-	min-height: 40px;
-	max-width: 40px;
-	max-height: 40px;
+	width: var(--gsnap-fab-size);
+	height: var(--gsnap-fab-size);
+	min-width: var(--gsnap-fab-size);
+	min-height: var(--gsnap-fab-size);
+	max-width: var(--gsnap-fab-size);
+	max-height: var(--gsnap-fab-size);
 	margin: 0;
 	padding: 0;
 	border: none;
@@ -98,11 +104,65 @@ button.gsnap-a11y-fab svg {
 	fill: currentColor;
 }
 
+/* FAB WhatsApp — mismo tamaño, apilado encima del de accesibilidad */
+a.gsnap-whatsapp-fab {
+	box-sizing: border-box;
+	position: fixed;
+	left: var(--gsnap-fab-inset);
+	bottom: calc(var(--gsnap-fab-inset) + var(--gsnap-fab-size) + var(--gsnap-fab-stack-gap));
+	z-index: 90;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: var(--gsnap-fab-size);
+	height: var(--gsnap-fab-size);
+	min-width: var(--gsnap-fab-size);
+	min-height: var(--gsnap-fab-size);
+	max-width: var(--gsnap-fab-size);
+	max-height: var(--gsnap-fab-size);
+	margin: 0;
+	padding: 0;
+	border: none;
+	border-radius: 8px;
+	background: var(--gsnap-whatsapp);
+	color: #fff;
+	font-size: 0;
+	line-height: 1;
+	text-decoration: none;
+	float: none;
+	cursor: pointer;
+	box-shadow: 0 3px 12px rgba(37, 211, 102, 0.35);
+	transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+a.gsnap-whatsapp-fab:hover,
+a.gsnap-whatsapp-fab:focus-visible {
+	background: var(--gsnap-whatsapp-hover);
+	color: #fff;
+	transform: translateY(-1px);
+	box-shadow: 0 5px 14px rgba(29, 168, 81, 0.32);
+}
+
+a.gsnap-whatsapp-fab:focus-visible {
+	outline: 2px solid var(--gsnap-whatsapp);
+	outline-offset: 2px;
+}
+
+a.gsnap-whatsapp-fab svg {
+	display: block;
+	width: 22px;
+	height: 22px;
+	flex-shrink: 0;
+	fill: currentColor;
+}
+
 /* Panel */
 .gsnap-a11y-panel {
 	position: fixed;
-	left: 0.85rem;
-	bottom: 3.65rem;
+	left: var(--gsnap-fab-inset);
+	bottom: calc(
+		var(--gsnap-fab-inset) + (var(--gsnap-fab-size) + var(--gsnap-fab-stack-gap)) * 2 + var(--gsnap-fab-panel-gap)
+	);
 	z-index: 91;
 	width: min(15.5rem, calc(100vw - 1.75rem));
 	background: #fff;
@@ -335,20 +395,23 @@ html.gsnap-a11y-contrast img {
 }
 
 @media (max-width: 640px) {
+	:root {
+		--gsnap-fab-inset: 0.65rem;
+	}
+
 	.gsnap-a11y-panel {
-		left: 0.65rem;
-		bottom: 3.35rem;
 		width: min(14.5rem, calc(100vw - 1.3rem));
 	}
 
-	button.gsnap-a11y-fab {
-		left: 0.65rem;
-		bottom: 0.65rem;
+	button.gsnap-a11y-fab,
+	a.gsnap-whatsapp-fab {
+		left: var(--gsnap-fab-inset);
 	}
 }
 
 @media (prefers-reduced-motion: reduce) {
 	button.gsnap-a11y-fab,
+	a.gsnap-whatsapp-fab,
 	.gsnap-a11y-panel button.gsnap-a11y-btn {
 		transition: none;
 	}

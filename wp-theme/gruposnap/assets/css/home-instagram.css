@@ -266,6 +266,11 @@
 		margin-right: auto;
 	}
 
+	/* Móvil: una sola publicación; escritorio/tablet mantienen las 3. */
+	.gruposnap-instagram__item:not(:first-child) {
+		display: none !important;
+	}
+
 	.gruposnap-instagram__head {
 		margin-bottom: 28px;
 	}

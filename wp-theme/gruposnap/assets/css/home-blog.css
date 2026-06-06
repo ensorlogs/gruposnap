@@ -22,6 +22,21 @@
 	padding-bottom: 0 !important;
 }
 
+/* Desktop/tablet: solo bf2da19 (evita duplicar las 3 tarjetas). */
+@media (min-width: 768px) {
+	.elementor-751 .elementor-element-25079f7,
+	.elementor-751 .elementor-element-1984522 {
+		display: none !important;
+	}
+}
+
+/* Móvil: solo 25079f7/1984522 (un artículo). */
+@media (max-width: 767px) {
+	.elementor-751 .elementor-element-bf2da19 {
+		display: none !important;
+	}
+}
+
 .elementor-751 .elementor-element.elementor-element-98071b4 {
 	padding-bottom: 0 !important;
 }

@@ -2,6 +2,15 @@
  * Home — «Sobre GrupoSnap»: sin panel blanco; texto legible sobre el degradado.
  */
 
+/* Degradado naranja–azul de Nosotros (mismo que Elementor en la sección #nosotros). */
+.elementor-751 .elementor-element.elementor-element-46cb44b:not(.elementor-motion-effects-element-type-background),
+.elementor-751 .elementor-element.elementor-element-46cb44b > .elementor-motion-effects-container > .elementor-motion-effects-layer,
+.elementor-751 #nosotros:not(.elementor-motion-effects-element-type-background),
+.elementor-751 #nosotros > .elementor-motion-effects-container > .elementor-motion-effects-layer {
+	background-color: transparent !important;
+	background-image: linear-gradient(80deg, #6ec1e4 16%, #ff6101 69%) !important;
+}
+
 .elementor-751 .elementor-element.elementor-element-46cb44b {
 	padding-bottom: clamp(1.25rem, 3.5vw, 2rem) !important;
 }
@@ -38,10 +47,19 @@
 }
 
 .elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-heading {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: flex-start !important;
+	gap: clamp(0.55rem, 1.8vw, 0.9rem) !important;
 	margin: 0 !important;
 	padding: 0 !important;
 	max-width: none !important;
 	text-align: left !important;
+}
+
+/* Anula margen superior de Elementor (50px) en el bloque Nosotros */
+.elementor-751 .elementor-element.elementor-element-f92bae7 .wdt-heading-holder.gruposnap-about-heading {
+	margin: 0 !important;
 }
 
 /* ——— Encabezado 20+ Años · Impulsando Marcas (sin caja; sobre el degradado) ——— */
@@ -55,7 +73,7 @@
 	gap: clamp(1.15rem, 3vw, 2.25rem) !important;
 	width: 100% !important;
 	max-width: min(52rem, 100%) !important;
-	margin: 0 0 clamp(1.25rem, 3.5vw, 1.75rem) !important;
+	margin: 0 !important;
 	padding: 0 !important;
 	background: none !important;
 	border: none !important;
@@ -260,7 +278,66 @@
 	justify-content: center !important;
 	flex: 1 1 auto !important;
 	min-width: 0 !important;
-	gap: 0.2rem !important;
+	gap: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+/* WDT/Printme añaden 20px entre bloques; aquí solo queremos dos líneas pegadas */
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .wdt-content-item > div,
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .wdt-content-item .wdt-content-media-group > div,
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .wdt-content-item .wdt-content-detail-group > div,
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .wdt-content-item .wdt-content-elements-group > div,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-a233653 .wdt-content-item > div,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-a233653 .wdt-content-item .wdt-content-media-group > div,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-a233653 .wdt-content-item .wdt-content-detail-group > div,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-a233653 .wdt-content-item .wdt-content-elements-group > div,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-b9714b1 .wdt-content-item > div,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-b9714b1 .wdt-content-item .wdt-content-media-group > div,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-b9714b1 .wdt-content-item .wdt-content-detail-group > div,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-b9714b1 .wdt-content-item .wdt-content-elements-group > div {
+	margin: 0 !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .wdt-content-item .wdt-content-media-group,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-a233653 .wdt-content-item .wdt-content-media-group,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-b9714b1 .wdt-content-item .wdt-content-media-group {
+	margin: 0 !important;
+	align-self: center !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .wdt-content-item .wdt-content-title,
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .wdt-content-item .wdt-content-subtitle,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-a233653 .wdt-content-item .wdt-content-title,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-a233653 .wdt-content-item .wdt-content-subtitle,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-b9714b1 .wdt-content-item .wdt-content-title,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-b9714b1 .wdt-content-item .wdt-content-subtitle {
+	margin: 0 !important;
+	padding: 0 !important;
+	width: auto !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .wdt-content-item .wdt-content-title + .wdt-content-subtitle,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-a233653 .wdt-content-item .wdt-content-title + .wdt-content-subtitle,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-b9714b1 .wdt-content-item .wdt-content-title + .wdt-content-subtitle {
+	margin-top: 0.1rem !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .wdt-content-item .wdt-content-title h5,
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .wdt-content-item .wdt-content-subtitle h5,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-a233653 .wdt-content-item .wdt-content-title h5,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-a233653 .wdt-content-item .wdt-content-subtitle h5,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-b9714b1 .wdt-content-item .wdt-content-title h5,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-b9714b1 .wdt-content-item .wdt-content-subtitle h5 {
+	margin: 0 !important;
+	padding: 0 !important;
+	line-height: 1.15 !important;
+	font-size: inherit !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-a233653 > .elementor-widget-container,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-b9714b1 > .elementor-widget-container {
+	padding: 0 !important;
 }
 
 .elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .wdt-custom-conatact-box .wdt-content-item .wdt-content-media-group,
@@ -327,14 +404,18 @@
 }
 
 .elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .wdt-content-group,
-.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .wdt-content-elements-group:not(.wdt-media-group) {
+.elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .wdt-content-elements-group:not(.wdt-media-group),
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-a233653 .wdt-content-group,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-b9714b1 .wdt-content-group {
 	display: flex !important;
 	flex-direction: column !important;
 	align-items: flex-start !important;
 	justify-content: center !important;
-	gap: 0.2rem !important;
+	gap: 0.1rem !important;
 	flex: 1 1 auto !important;
 	min-width: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
 }
 
 .elementor-751 .elementor-element.elementor-element-46cb44b .gruposnap-about-contact .gruposnap-about-contact__label,
@@ -343,7 +424,7 @@
 	color: #ffffff !important;
 	font-weight: 700 !important;
 	font-size: clamp(1rem, 3.5vw, 1.125rem) !important;
-	line-height: 1.25 !important;
+	line-height: 1.15 !important;
 	text-transform: none !important;
 	margin: 0 !important;
 	text-shadow: 0 1px 2px rgba(10, 31, 92, 0.35) !important;
@@ -358,7 +439,7 @@
 	color: #f57c20 !important;
 	font-weight: 800 !important;
 	font-size: clamp(1rem, 3.5vw, 1.125rem) !important;
-	line-height: 1.25 !important;
+	line-height: 1.15 !important;
 	text-transform: none !important;
 	text-decoration: none !important;
 }
@@ -383,6 +464,13 @@
 }
 
 @media (max-width: 1024px) {
+	.elementor-751 .elementor-element.elementor-element-46cb44b:not(.elementor-motion-effects-element-type-background),
+	.elementor-751 .elementor-element.elementor-element-46cb44b > .elementor-motion-effects-container > .elementor-motion-effects-layer,
+	.elementor-751 #nosotros:not(.elementor-motion-effects-element-type-background),
+	.elementor-751 #nosotros > .elementor-motion-effects-container > .elementor-motion-effects-layer {
+		background-image: linear-gradient(54deg, #6ec1e4 50%, #ff6101 72%) !important;
+	}
+
 	.elementor-751 .elementor-element.elementor-element-46cb44b {
 		padding: clamp(1rem, 4vw, 1.5rem) clamp(1rem, 4vw, 1.25rem) clamp(0.75rem, 2.5vw, 1rem) !important;
 	}
@@ -486,22 +574,67 @@
 		padding: 0.15rem 0 !important;
 	}
 
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-heading,
+	.elementor-751 .elementor-element.elementor-element-f29b9db .gruposnap-about-heading {
+		align-items: center !important;
+		gap: 0.5rem !important;
+	}
+
 	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__head,
-	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__badge-row {
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__badge-row,
+	.elementor-751 .elementor-element.elementor-element-f29b9db .gruposnap-experience__head,
+	.elementor-751 .elementor-element.elementor-element-f29b9db .gruposnap-experience__badge-row {
 		flex-direction: column !important;
 		align-items: center !important;
+		gap: 0.35rem !important;
+		margin-bottom: 0 !important;
 	}
 
-	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__number {
-		font-size: clamp(2.65rem, 11vw, 3.5rem) !important;
+	/* En columna, flex-basis 10rem del tagline dejaba ~160px de hueco vacío */
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__tagline,
+	.elementor-751 .elementor-element.elementor-element-f29b9db .gruposnap-experience__tagline {
+		flex: 0 0 auto !important;
+		min-height: 0 !important;
 	}
 
-	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__years {
-		font-size: clamp(1.35rem, 5vw, 1.85rem) !important;
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__number,
+	.elementor-751 .elementor-element.elementor-element-f29b9db .gruposnap-experience__number {
+		font-size: clamp(3.35rem, 15vw, 4.6rem) !important;
+		line-height: 0.88 !important;
 	}
 
-	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__tagline {
-		font-size: clamp(1.125rem, 4.5vw, 1.45rem) !important;
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__years,
+	.elementor-751 .elementor-element.elementor-element-f29b9db .gruposnap-experience__years {
+		font-size: clamp(1.85rem, 7.5vw, 2.45rem) !important;
+		line-height: 1 !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__stat::after,
+	.elementor-751 .elementor-element.elementor-element-f29b9db .gruposnap-experience__stat::after {
+		margin: 0.3rem auto 0.15rem !important;
+		width: min(4.25rem, 52%) !important;
+		height: 3px !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__tagline,
+	.elementor-751 .elementor-element.elementor-element-f29b9db .gruposnap-experience__tagline {
+		font-size: clamp(1.45rem, 6.2vw, 2rem) !important;
+		line-height: 1.08 !important;
+		margin: 0 !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-heading > .wdt-heading-content-wrapper,
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-intro,
+	.elementor-751 .elementor-element.elementor-element-f29b9db .gruposnap-about-heading > .wdt-heading-content-wrapper,
+	.elementor-751 .elementor-element.elementor-element-f29b9db .gruposnap-about-intro {
+		margin-top: 0 !important;
+		padding-top: 0 !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-f92bae7 > .elementor-widget-container,
+	.elementor-751 .elementor-element.elementor-element-f29b9db > .elementor-widget-container {
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
 	}
 
 	.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-47796ac {
