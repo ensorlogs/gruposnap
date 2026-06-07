@@ -13,9 +13,11 @@ function gruposnap_header_logo_url(): string
 {
     $logo_id = (int) get_theme_mod('custom_logo');
     if ($logo_id) {
-        $url = wp_get_attachment_image_url($logo_id, 'medium');
-        if (is_string($url) && $url !== '') {
-            return (string) apply_filters('gruposnap_header_logo_url', $url);
+        foreach (array('full', 'large', 'medium') as $size) {
+            $url = wp_get_attachment_image_url($logo_id, $size);
+            if (is_string($url) && $url !== '') {
+                return (string) apply_filters('gruposnap_header_logo_url', $url);
+            }
         }
     }
 
@@ -71,20 +73,22 @@ function gruposnap_render_mobile_menu_extras_template(): void
     ?>
     <div id="gruposnap-mobile-menu-template" class="gruposnap-mobile-menu__template" hidden>
         <div class="gruposnap-mobile-menu__brand" data-logo-fallback="<?php echo esc_attr($logo_url); ?>">
+            <button type="button" class="gruposnap-mobile-menu__close" aria-label="<?php esc_attr_e('Cerrar menú', 'gruposnap'); ?>">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="gruposnap-mobile-menu__handle-wrap">
+                <span class="gruposnap-mobile-menu__handle" aria-hidden="true"></span>
+                <span class="gruposnap-mobile-menu__swipe-hint"><?php esc_html_e('Desliza para cerrar', 'gruposnap'); ?></span>
+            </div>
             <a class="gruposnap-mobile-menu__logo-link" href="<?php echo $home_url; ?>">
                 <?php if ($logo_url !== '') : ?>
-                    <img class="gruposnap-mobile-menu__logo" src="<?php echo esc_url($logo_url); ?>" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" width="180" height="52" decoding="async" />
+                    <img class="gruposnap-mobile-menu__logo" src="<?php echo esc_url($logo_url); ?>" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" width="260" height="76" decoding="async" />
                 <?php else : ?>
-                    <img class="gruposnap-mobile-menu__logo" src="" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" width="180" height="52" decoding="async" />
+                    <img class="gruposnap-mobile-menu__logo" src="" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" width="260" height="76" decoding="async" />
                 <?php endif; ?>
             </a>
         </div>
         <div class="gruposnap-mobile-menu__footer">
-            <div class="gruposnap-mobile-menu__lang" id="gruposnap-mobile-menu-lang-slot"></div>
-            <button type="button" class="gruposnap-mobile-menu__a11y">
-                <?php echo gruposnap_mobile_menu_icon_svg('a11y'); ?>
-                <span><?php esc_html_e('Accesibilidad', 'gruposnap'); ?></span>
-            </button>
             <div class="gruposnap-mobile-menu__actions">
                 <a class="gruposnap-mobile-menu__btn gruposnap-mobile-menu__btn--whatsapp" href="<?php echo $whatsapp; ?>" target="_blank" rel="noopener noreferrer">
                     <?php echo gruposnap_mobile_menu_icon_svg('whatsapp'); ?>
@@ -97,6 +101,11 @@ function gruposnap_render_mobile_menu_extras_template(): void
                     <?php esc_html_e('Pide tu Presupuesto', 'gruposnap'); ?>
                 </a>
             </div>
+            <div class="gruposnap-mobile-menu__lang" id="gruposnap-mobile-menu-lang-slot"></div>
+            <button type="button" class="gruposnap-mobile-menu__a11y">
+                <?php echo gruposnap_mobile_menu_icon_svg('a11y'); ?>
+                <span><?php esc_html_e('Accesibilidad', 'gruposnap'); ?></span>
+            </button>
         </div>
     </div>
     <?php

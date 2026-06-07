@@ -239,6 +239,8 @@ return [
     '20+' => '20+',
     ' por ' => ' by ',
     ' Por ' => ' By ',
+    'Desliza para cerrar' => 'Swipe to close',
+    'Cerrar menú' => 'Close menu',
     'No' => 'No',
     'Sí' => 'Yes',
     '·' => '·',
