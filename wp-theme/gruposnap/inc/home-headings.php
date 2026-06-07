@@ -107,6 +107,28 @@ function gruposnap_marketing_highlight_snap(string $html): string
  */
 function gruposnap_hero_heading_highlight(string $html): string
 {
+    $is_en = function_exists('gruposnap_current_lang') && gruposnap_current_lang() === 'en';
+
+    if ($is_en) {
+        if (!str_contains($html, 'Experiences')) {
+            return $html;
+        }
+
+        $html = (string) preg_replace(
+            '/^20 years/u',
+            '<span class="gruposnap-heading-accent-navy">20 years</span>',
+            $html,
+            1
+        );
+
+        return (string) preg_replace(
+            '/Experiences/u',
+            '<span class="gruposnap-heading-accent">Experiences</span>',
+            $html,
+            1
+        );
+    }
+
     if (!str_contains($html, 'Experiencias')) {
         return $html;
     }
@@ -131,30 +153,79 @@ function gruposnap_hero_heading_highlight(string $html): string
  */
 function gruposnap_hero_subtitle_has_brand_spans(string $html): bool
 {
-    return preg_match('/gruposnap-heading-accent[^>]*>\s*Material\s+POP/iu', $html) === 1
-        && preg_match('/gruposnap-heading-accent-navy[^>]*>\s*Marketing\s+Experiencial/iu', $html) === 1;
+    return (
+        preg_match('/gruposnap-heading-accent[^>]*>\s*(Material\s+POP|POP\s+MATERIALS)/iu', $html) === 1
+        && preg_match('/gruposnap-heading-accent-navy[^>]*>\s*(Marketing\s+Experiencial|Experiential\s+Marketing|EXPERIENTIAL\s+MARKETING)/iu', $html) === 1
+    );
+}
+
+function gruposnap_hero_build_subtitle_brand_html(string $pop, string $separator, string $marketingExperiencial): string
+{
+    $navyPart = (string) preg_replace(
+        '/\s+(Experiencial|EXPERIENCIAL)/u',
+        ' <br class="gruposnap-hero-subtitle-br" aria-hidden="true" />$1',
+        $marketingExperiencial
+    );
+
+    return '<span class="gruposnap-hero-subtitle-stack">'
+        . '<span class="gruposnap-heading-accent">' . $pop . '</span>'
+        . '<span class="gruposnap-hero-subtitle-sep" aria-hidden="true">' . $separator . '</span>'
+        . '<span class="gruposnap-heading-accent-navy">' . $navyPart . '</span>'
+        . '</span>';
+}
+
+function gruposnap_hero_wrap_subtitle_stack(string $content): string
+{
+    if (str_contains($content, 'gruposnap-hero-subtitle-stack')) {
+        return $content;
+    }
+
+    if (!preg_match('/<span class="gruposnap-heading-accent">/i', $content)) {
+        return $content;
+    }
+
+    return (string) preg_replace(
+        '/(<span class="gruposnap-heading-accent">.*?<\/span>)(\s*[·•]\s*)(<span class="gruposnap-heading-accent-navy">.*?<\/span>)/is',
+        '<span class="gruposnap-hero-subtitle-stack">$1<span class="gruposnap-hero-subtitle-sep" aria-hidden="true">$2</span>$3</span>',
+        $content,
+        1
+    );
+}
+
+function gruposnap_hero_fix_subtitle_spacing(string $content): string
+{
+    $content = (string) preg_replace('/MarketingExperiencial/iu', 'Marketing Experiencial', $content);
+    $content = (string) preg_replace('/MARKETINGEXPERIENCIAL/u', 'MARKETING EXPERIENCIAL', $content);
+
+    $content = (string) preg_replace(
+        '/(Marketing|MARKETING)<br class="gruposnap-hero-subtitle-br"[^>]*\/?>\s*(Experiencial|EXPERIENCIAL)/iu',
+        '$1 <br class="gruposnap-hero-subtitle-br" aria-hidden="true" />$2',
+        $content
+    );
+
+    return gruposnap_hero_wrap_subtitle_stack($content);
 }
 
 function gruposnap_hero_apply_subtitle_brand_colors(string $content): string
 {
     if (gruposnap_hero_subtitle_has_brand_spans($content)) {
+        return gruposnap_hero_fix_subtitle_spacing($content);
+    }
+
+    if (!preg_match('/material\s+pop|pop\s+materials|marketing\s+experiencial|experiential\s+marketing/iu', wp_strip_all_tags($content))) {
         return $content;
     }
 
-    if (!preg_match('/material\s+pop[\s\S]*marketing\s+experiencial/iu', wp_strip_all_tags($content))) {
-        return $content;
-    }
-
-    return (string) preg_replace_callback(
-        '/(Material\s+POP|MATERIAL\s+POP|Material\s+Pop)(\s*[·•]\s*)(Marketing\s+Experiencial|MARKETING\s+EXPERIENCIAL)/u',
+    $content = (string) preg_replace_callback(
+        '/(Material\s+POP|MATERIAL\s+POP|Material\s+Pop|POP\s+MATERIALS|Pop\s+Materials)(\s*[·•]\s*)(Marketing\s+Experiencial|MARKETING\s+EXPERIENCIAL|Experiential\s+Marketing|EXPERIENTIAL\s+MARKETING)/u',
         static function (array $matches): string {
-            return '<span class="gruposnap-heading-accent">' . $matches[1] . '</span>'
-                . $matches[2]
-                . '<span class="gruposnap-heading-accent-navy">' . $matches[3] . '</span>';
+            return gruposnap_hero_build_subtitle_brand_html($matches[1], $matches[2], $matches[3]);
         },
         $content,
         1
     );
+
+    return gruposnap_hero_fix_subtitle_spacing($content);
 }
 
 /**
@@ -292,23 +363,57 @@ function gruposnap_hero_subtitle_brand_colors_fallback(): void
     ?>
     <script id="gruposnap-hero-subtitle-brand-colors">
     (function () {
-        var pattern = /(Material\s+POP|MATERIAL\s+POP|Material\s+Pop)(\s*[·•]\s*)(Marketing\s+Experiencial|MARKETING\s+EXPERIENCIAL)/;
-        var replacement = '<span class="gruposnap-heading-accent">$1</span>$2<span class="gruposnap-heading-accent-navy">$3</span>';
+        var pattern = /(Material\s+POP|MATERIAL\s+POP|Material\s+Pop|POP\s+MATERIALS|Pop\s+Materials|POP\s+Materials)(\s*[·•]\s*)(Marketing\s+Experiencial|MARKETING\s+EXPERIENCIAL|Experiential\s+Marketing|EXPERIENTIAL\s+MARKETING)/;
+
+        function buildHeroSubtitleHtml(match) {
+            var navyPart = match[3].replace(/\s+(Experiencial|EXPERIENCIAL|Experiential|EXPERIENTIAL)/, ' <br class="gruposnap-hero-subtitle-br" aria-hidden="true" />$1');
+            return '<span class="gruposnap-hero-subtitle-stack">'
+                + '<span class="gruposnap-heading-accent">' + match[1] + '</span>'
+                + '<span class="gruposnap-hero-subtitle-sep" aria-hidden="true">' + match[2] + '</span>'
+                + '<span class="gruposnap-heading-accent-navy">' + navyPart + '</span>'
+                + '</span>';
+        }
+
+        function wrapHeroSubtitleStack(html) {
+            if (/gruposnap-hero-subtitle-stack/.test(html)) {
+                return html;
+            }
+
+            return html.replace(
+                /(<span class="gruposnap-heading-accent">[\s\S]*?<\/span>)(\s*[·•]\s*)(<span class="gruposnap-heading-accent-navy">[\s\S]*?<\/span>)/i,
+                '<span class="gruposnap-hero-subtitle-stack">$1<span class="gruposnap-hero-subtitle-sep" aria-hidden="true">$2</span>$3</span>'
+            );
+        }
+
+        function normalizeHeroSubtitleHtml(html) {
+            return wrapHeroSubtitleStack(
+                html
+                    .replace(/MarketingExperiencial/gi, 'Marketing Experiencial')
+                    .replace(/MARKETINGEXPERIENCIAL/g, 'MARKETING EXPERIENCIAL')
+                    .replace(/MarketingExperiential/gi, 'Experiential Marketing')
+                    .replace(/MARKETINGEXPERIENTIAL/g, 'EXPERIENTIAL MARKETING')
+                    .replace(/(Marketing|MARKETING)<br class="gruposnap-hero-subtitle-br"[^>]*\/?>\s*(Experiencial|EXPERIENCIAL)/gi, '$1 <br class="gruposnap-hero-subtitle-br" aria-hidden="true" />$2')
+                    .replace(/(Experiential|EXPERIENTIAL)<br class="gruposnap-hero-subtitle-br"[^>]*\/?>\s*(Marketing|MARKETING)/gi, '$1 <br class="gruposnap-hero-subtitle-br" aria-hidden="true" />$2')
+            );
+        }
 
         function patchHeroSubtitle() {
             document.querySelectorAll(
                 '.elementor-element-8082631 .wdt-heading-subtitle, .elementor-element-f428155 .wdt-heading-subtitle'
             ).forEach(function (el) {
-                if (el.querySelector('.gruposnap-heading-accent-navy') && /gruposnap-heading-accent[^>]*>\s*Material\s+POP/i.test(el.innerHTML)) {
-                    return;
-                }
-
                 var html = el.innerHTML;
-                if (!/material\s+pop/i.test(html)) {
+                if (!/material\s+pop|pop\s+materials|marketing\s+experiencial|experiential\s+marketing/i.test(html)) {
                     return;
                 }
 
-                el.innerHTML = html.replace(pattern, replacement);
+                if (el.querySelector('.gruposnap-heading-accent-navy') && /gruposnap-heading-accent[^>]*>\s*(Material\s+POP|POP\s+MATERIALS)/i.test(el.innerHTML)) {
+                    el.innerHTML = normalizeHeroSubtitleHtml(html);
+                    return;
+                }
+
+                el.innerHTML = normalizeHeroSubtitleHtml(html.replace(pattern, function () {
+                    return buildHeroSubtitleHtml(Array.prototype.slice.call(arguments, 0, 4));
+                }));
             });
         }
 

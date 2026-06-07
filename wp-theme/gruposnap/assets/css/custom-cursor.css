@@ -1,0 +1,62 @@
+/**
+ * GrupoSnap — cursor personalizado (mano del logo).
+ * Solo dispositivos con ratón; campos de texto mantienen cursor nativo.
+ */
+
+@media (hover: hover) and (pointer: fine) {
+	body.gruposnap-custom-cursor,
+	body.gruposnap-custom-cursor *:not(input):not(textarea):not(select):not([contenteditable='true']) {
+		cursor:
+			url('../images/cursor-snap-48.png') 26 8,
+			url('../images/cursor-snap-64.png') 35 11,
+			auto;
+	}
+
+	body.gruposnap-custom-cursor a,
+	body.gruposnap-custom-cursor button,
+	body.gruposnap-custom-cursor summary,
+	body.gruposnap-custom-cursor label[for],
+	body.gruposnap-custom-cursor [role='button'],
+	body.gruposnap-custom-cursor [role='link'],
+	body.gruposnap-custom-cursor [role='tab'],
+	body.gruposnap-custom-cursor input[type='button'],
+	body.gruposnap-custom-cursor input[type='submit'],
+	body.gruposnap-custom-cursor input[type='reset'],
+	body.gruposnap-custom-cursor input[type='checkbox'],
+	body.gruposnap-custom-cursor input[type='radio'],
+	body.gruposnap-custom-cursor select,
+	body.gruposnap-custom-cursor .wdt-button,
+	body.gruposnap-custom-cursor .wdt-button-holder,
+	body.gruposnap-custom-cursor .elementor-button,
+	body.gruposnap-custom-cursor .cursor-pointer {
+		cursor:
+			url('../images/cursor-snap-48.png') 26 8,
+			url('../images/cursor-snap-64.png') 35 11,
+			pointer;
+	}
+
+	body.gruposnap-custom-cursor input[type='text'],
+	body.gruposnap-custom-cursor input[type='email'],
+	body.gruposnap-custom-cursor input[type='url'],
+	body.gruposnap-custom-cursor input[type='tel'],
+	body.gruposnap-custom-cursor input[type='search'],
+	body.gruposnap-custom-cursor input[type='password'],
+	body.gruposnap-custom-cursor input[type='number'],
+	body.gruposnap-custom-cursor textarea,
+	body.gruposnap-custom-cursor [contenteditable='true'] {
+		cursor: text;
+	}
+
+	body.gruposnap-custom-cursor .gsnap-a11y-panel input,
+	body.gruposnap-custom-cursor .gsnap-a11y-panel textarea,
+	body.gruposnap-custom-cursor .gsnap-a11y-panel select {
+		cursor: text;
+	}
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: reduce) {
+	body.gruposnap-custom-cursor,
+	body.gruposnap-custom-cursor * {
+		cursor: auto;
+	}
+}

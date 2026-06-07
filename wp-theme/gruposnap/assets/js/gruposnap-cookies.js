@@ -74,9 +74,23 @@
         } catch (e) {}
     }
 
+    function cfgStrings() {
+        return (window.GrupoSnapCookiesConfig && window.GrupoSnapCookiesConfig.strings) || {};
+    }
+
+    function t(key, fallback) {
+        var s = cfgStrings();
+        return s[key] || fallback;
+    }
+
+    function detectLang() {
+        var m = d.querySelector('meta[name="gruposnap-lang"]');
+        return m && m.content === 'en' ? 'en' : 'es';
+    }
+
     function getLegalUrl() {
         var m = d.querySelector('meta[name="gruposnap-cookies-url"]');
-        return m && m.content ? m.content : '/legal/cookies/';
+        return m && m.content ? m.content : detectLang() === 'en' ? '/en/legal/cookies/' : '/legal/cookies/';
     }
 
     function ensureBanner(openPanelFn) {
@@ -87,17 +101,30 @@
         var el = d.createElement('section');
         el.className = 'gsnap-cookies';
         el.setAttribute('role', 'dialog');
-        el.setAttribute('aria-label', 'Aviso de cookies');
+        el.setAttribute('aria-label', t('cookiesDialog', 'Aviso de cookies'));
         el.innerHTML =
-            '<h2 class="gsnap-cookies__title">Usamos cookies</h2>' +
-            '<p class="gsnap-cookies__text">Usamos cookies técnicas necesarias para que el sitio funcione y, si tú lo aceptas, cookies de medición y marketing para entender qué contenido funciona mejor. Puedes aceptar, rechazar o ajustar por categoría. Más información en nuestra ' +
+            '<h2 class="gsnap-cookies__title">' + t('cookiesTitle', 'Usamos cookies') + '</h2>' +
+            '<p class="gsnap-cookies__text">' +
+            t(
+                'cookiesText',
+                'Usamos cookies técnicas necesarias para que el sitio funcione y, si tú lo aceptas, cookies de medición y marketing para entender qué contenido funciona mejor. Puedes aceptar, rechazar o ajustar por categoría. Más información en nuestra'
+            ) +
+            ' ' +
             '<a href="' +
             legalUrl +
-            '" class="gsnap-cookies__link">política de cookies</a>.</p>' +
+            '" class="gsnap-cookies__link">' +
+            t('cookiesPolicy', 'política de cookies') +
+            '</a>.</p>' +
             '<div class="gsnap-cookies__actions">' +
-            '<button type="button" class="gsnap-cookies__btn" data-action="reject">Rechazar todo</button>' +
-            '<button type="button" class="gsnap-cookies__btn" data-action="customize">Personalizar</button>' +
-            '<button type="button" class="gsnap-cookies__btn gsnap-cookies__btn--primary" data-action="accept">Aceptar todo</button>' +
+            '<button type="button" class="gsnap-cookies__btn" data-action="reject">' +
+            t('rejectAll', 'Rechazar todo') +
+            '</button>' +
+            '<button type="button" class="gsnap-cookies__btn" data-action="customize">' +
+            t('customize', 'Personalizar') +
+            '</button>' +
+            '<button type="button" class="gsnap-cookies__btn gsnap-cookies__btn--primary" data-action="accept">' +
+            t('acceptAll', 'Aceptar todo') +
+            '</button>' +
             '</div>';
         d.body.appendChild(el);
 
@@ -128,32 +155,55 @@
         modal.className = 'gsnap-cookies-modal';
         modal.innerHTML =
             '<div class="gsnap-cookies-modal__panel" role="dialog" aria-modal="true" aria-labelledby="gsnap-ck-title">' +
-            '<h2 id="gsnap-ck-title" class="gsnap-cookies-modal__title">Preferencias de cookies</h2>' +
-            '<p class="gsnap-cookies-modal__intro">Activa solo las categorías que quieras. Las cookies técnicas son imprescindibles y no se pueden desactivar.</p>' +
+            '<h2 id="gsnap-ck-title" class="gsnap-cookies-modal__title">' +
+            t('prefsTitle', 'Preferencias de cookies') +
+            '</h2>' +
+            '<p class="gsnap-cookies-modal__intro">' +
+            t(
+                'prefsIntro',
+                'Activa solo las categorías que quieras. Las cookies técnicas son imprescindibles y no se pueden desactivar.'
+            ) +
+            '</p>' +
             '<div class="gsnap-cookies-modal__row">' +
             '<div class="gsnap-cookies-modal__row-top">' +
-            '<span class="gsnap-cookies-modal__row-title">Técnicas (necesarias)</span>' +
+            '<span class="gsnap-cookies-modal__row-title">' +
+            t('technical', 'Técnicas (necesarias)') +
+            '</span>' +
             '<label class="gsnap-cookies-switch"><input type="checkbox" checked disabled data-cat="necessary"><span class="gsnap-cookies-switch__slider"></span></label>' +
             '</div>' +
-            '<p class="gsnap-cookies-modal__row-text">Sesión, carrito, accesibilidad y registro de consentimiento.</p>' +
+            '<p class="gsnap-cookies-modal__row-text">' +
+            t('technicalDesc', 'Sesión, carrito, accesibilidad y registro de consentimiento.') +
+            '</p>' +
             '</div>' +
             '<div class="gsnap-cookies-modal__row">' +
             '<div class="gsnap-cookies-modal__row-top">' +
-            '<span class="gsnap-cookies-modal__row-title">Analítica / medición</span>' +
+            '<span class="gsnap-cookies-modal__row-title">' +
+            t('analytics', 'Analítica / medición') +
+            '</span>' +
             '<label class="gsnap-cookies-switch"><input type="checkbox" data-cat="analytics"><span class="gsnap-cookies-switch__slider"></span></label>' +
             '</div>' +
-            '<p class="gsnap-cookies-modal__row-text">Datos agregados para mejorar el sitio y el catálogo.</p>' +
+            '<p class="gsnap-cookies-modal__row-text">' +
+            t('analyticsDesc', 'Datos agregados para mejorar el sitio y el catálogo.') +
+            '</p>' +
             '</div>' +
             '<div class="gsnap-cookies-modal__row">' +
             '<div class="gsnap-cookies-modal__row-top">' +
-            '<span class="gsnap-cookies-modal__row-title">Marketing</span>' +
+            '<span class="gsnap-cookies-modal__row-title">' +
+            t('marketing', 'Marketing') +
+            '</span>' +
             '<label class="gsnap-cookies-switch"><input type="checkbox" data-cat="marketing"><span class="gsnap-cookies-switch__slider"></span></label>' +
             '</div>' +
-            '<p class="gsnap-cookies-modal__row-text">Recordar interacciones con campañas. Hoy no se cargan por defecto.</p>' +
+            '<p class="gsnap-cookies-modal__row-text">' +
+            t('marketingDesc', 'Recordar interacciones con campañas. Hoy no se cargan por default.') +
+            '</p>' +
             '</div>' +
             '<div class="gsnap-cookies-modal__actions">' +
-            '<button type="button" class="gsnap-cookies__btn" data-action="cancel">Cancelar</button>' +
-            '<button type="button" class="gsnap-cookies__btn gsnap-cookies__btn--primary" data-action="save">Guardar preferencias</button>' +
+            '<button type="button" class="gsnap-cookies__btn" data-action="cancel">' +
+            t('cancel', 'Cancelar') +
+            '</button>' +
+            '<button type="button" class="gsnap-cookies__btn gsnap-cookies__btn--primary" data-action="save">' +
+            t('savePrefs', 'Guardar preferencias') +
+            '</button>' +
             '</div>' +
             '</div>';
         d.body.appendChild(modal);

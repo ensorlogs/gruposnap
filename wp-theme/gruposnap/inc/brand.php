@@ -9,6 +9,9 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+require_once get_stylesheet_directory() . '/inc/i18n.php';
+require_once get_stylesheet_directory() . '/inc/legal-i18n.php';
+require_once get_stylesheet_directory() . '/inc/content-i18n.php';
 require_once get_stylesheet_directory() . '/inc/loader.php';
 require_once get_stylesheet_directory() . '/inc/cta.php';
 require_once get_stylesheet_directory() . '/inc/home-hero.php';
@@ -18,6 +21,7 @@ require_once get_stylesheet_directory() . '/inc/blog.php';
 require_once get_stylesheet_directory() . '/inc/blog-rating.php';
 require_once get_stylesheet_directory() . '/inc/compliance.php';
 require_once get_stylesheet_directory() . '/inc/header.php';
+require_once get_stylesheet_directory() . '/inc/header-mobile-menu.php';
 require_once get_stylesheet_directory() . '/inc/footer-payments.php';
 require_once get_stylesheet_directory() . '/inc/footer-mobile.php';
 require_once get_stylesheet_directory() . '/inc/footer-compact.php';
@@ -27,6 +31,7 @@ require_once get_stylesheet_directory() . '/inc/home-services.php';
 require_once get_stylesheet_directory() . '/inc/home-headings.php';
 require_once get_stylesheet_directory() . '/inc/home-about.php';
 require_once get_stylesheet_directory() . '/inc/home-responsive.php';
+require_once get_stylesheet_directory() . '/inc/custom-cursor.php';
 
 /**
  * CTA styles must load after WDT button + Elementor page CSS (accent #61CE70).

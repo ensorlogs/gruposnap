@@ -1219,16 +1219,28 @@ function gruposnap_home_hero_rescue_footer_css(): void
             padding: 0 !important;
             overflow: hidden !important;
         }
-        .elementor-element-<?php echo esc_attr($section); ?> .wdt-heading-title,
         .elementor-element-<?php echo esc_attr($section); ?> .wdt-heading-subtitle,
         .elementor-element-<?php echo esc_attr($section); ?> .wdt-heading-content-wrapper,
         .elementor-element-<?php echo esc_attr($section); ?> .wdt-heading-content-wrapper p {
             color: #111111 !important;
             -webkit-text-fill-color: #111111 !important;
         }
+        .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-8082631 .wdt-heading-title {
+            color: #000000 !important;
+            -webkit-text-fill-color: #000000 !important;
+        }
+        .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-8082631 .wdt-heading-title .gruposnap-heading-accent-navy {
+            color: #112b75 !important;
+            -webkit-text-fill-color: #112b75 !important;
+        }
+        .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-8082631 .wdt-heading-title .gruposnap-heading-accent {
+            color: #f57c20 !important;
+            -webkit-text-fill-color: #f57c20 !important;
+        }
         .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-8082631 .wdt-heading-subtitle {
-            color: #111111 !important;
-            -webkit-text-fill-color: #111111 !important;
+            color: #112b75 !important;
+            -webkit-text-fill-color: #112b75 !important;
+            text-align: center !important;
         }
         .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-8082631 .wdt-heading-subtitle .gruposnap-heading-accent {
             color: #f57c20 !important;
@@ -1238,13 +1250,12 @@ function gruposnap_home_hero_rescue_footer_css(): void
             color: #112b75 !important;
             -webkit-text-fill-color: #112b75 !important;
         }
-        .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-8082631 .wdt-heading-title .gruposnap-heading-accent {
-            color: #f57c20 !important;
-            -webkit-text-fill-color: #f57c20 !important;
-        }
-        .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-8082631 .wdt-heading-title .gruposnap-heading-accent-navy {
-            color: #112b75 !important;
-            -webkit-text-fill-color: #112b75 !important;
+        .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-8082631 .wdt-heading-subtitle-wrapper {
+            width: 100% !important;
+            max-width: 100% !important;
+            display: flex !important;
+            justify-content: center !important;
+            text-align: center !important;
         }
     }
     </style>

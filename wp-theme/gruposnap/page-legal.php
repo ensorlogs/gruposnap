@@ -21,7 +21,9 @@ while (have_posts()) :
 
     $contact_email = apply_filters('gruposnap_legal_contact_email', get_option('admin_email'));
     $contact_page  = get_page_by_path('contact');
-    $contact_url   = $contact_page ? get_permalink($contact_page) : home_url('/contact/');
+    $contact_url   = function_exists('gruposnap_lang_url')
+        ? gruposnap_lang_url('/contact/')
+        : ($contact_page ? get_permalink($contact_page) : home_url('/contact/'));
 
     $cross = function_exists('gruposnap_legal_cross_labels') ? gruposnap_legal_cross_labels() : array();
     ?>
@@ -84,7 +86,9 @@ while (have_posts()) :
                         if (!$page) {
                             continue;
                         }
-                        $url = get_permalink($page);
+                        $url = function_exists('gruposnap_lang_url')
+                            ? gruposnap_lang_url('/legal/' . $slug . '/')
+                            : get_permalink($page);
                         $current = ($slug === $page_slug);
                         ?>
                         <a href="<?php echo esc_url($url); ?>"<?php echo $current ? ' class="is-current" aria-current="page"' : ''; ?>><?php echo esc_html($label); ?></a>

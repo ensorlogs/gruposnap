@@ -1,5 +1,5 @@
 /*!
- * GrupoSnap · enriquece el menú móvil Printme (body > .mobile-menu) con logo y contacto.
+ * GrupoSnap · enriquece el menú móvil Printme (body > .mobile-menu) con logo y pie.
  */
 (function ($) {
     'use strict';
@@ -30,8 +30,21 @@
         }
     }
 
+    function bindMobileMenuFooter($menu) {
+        $menu.find('.gruposnap-mobile-menu__a11y').off('click.gruposnap').on('click.gruposnap', function () {
+            if (window.GrupoSnapA11y && typeof window.GrupoSnapA11y.toggle === 'function') {
+                window.GrupoSnapA11y.toggle();
+                return;
+            }
+            var fab = document.querySelector('.gsnap-a11y-fab');
+            if (fab) {
+                fab.click();
+            }
+        });
+    }
+
     /**
-     * Solo el panel que Printme crea en body al abrir MENU (evita duplicar con el placeholder del header).
+     * Panel Printme en body al abrir MENU.
      *
      * @returns {jQuery}
      */
@@ -40,42 +53,63 @@
 
         for (var i = 0; i < menus.length; i++) {
             var menu = menus[i];
-            if (menu.classList.contains(ENHANCED_CLASS)) {
+            if (!menu.querySelector('ul.wdt-primary-nav')) {
                 continue;
             }
-            if (menu.querySelector('ul.wdt-primary-nav')) {
-                return $(menu);
+            if (menu.querySelector('.gruposnap-mobile-menu__footer')) {
+                continue;
             }
+            return $(menu);
         }
 
         return $();
     }
 
+    function mountLangSwitchLater() {
+        if (!window.GrupoSnapLangSwitch || typeof window.GrupoSnapLangSwitch.mountMobile !== 'function') {
+            return;
+        }
+        window.GrupoSnapLangSwitch.mountMobile();
+        window.setTimeout(window.GrupoSnapLangSwitch.mountMobile, 60);
+        window.setTimeout(window.GrupoSnapLangSwitch.mountMobile, 200);
+    }
+
     function enhanceMobileMenu() {
         var $menu = getPrintmeMobileMenu();
         if (!$menu.length) {
+            mountLangSwitchLater();
             return;
         }
 
-        var $template = $('#' + TEMPLATE_ID);
-        if (!$template.length) {
+        var template = document.getElementById(TEMPLATE_ID);
+        if (!template) {
             return;
         }
 
-        var $brand = $template.find('.gruposnap-mobile-menu__brand').first().clone();
-        var $contact = $template.find('.gruposnap-mobile-menu__contact').first().clone();
+        var brand = template.querySelector('.gruposnap-mobile-menu__brand');
+        var footer = template.querySelector('.gruposnap-mobile-menu__footer');
+        if (!brand || !footer) {
+            return;
+        }
+
+        var $brand = $(brand.cloneNode(true));
+        var $footer = $(footer.cloneNode(true));
 
         resolveLogoSrc($brand);
 
         $menu.addClass(ENHANCED_CLASS);
         $menu.prepend($brand);
-        $menu.append($contact);
+        $menu.append($footer);
+
+        bindMobileMenuFooter($menu);
+        mountLangSwitchLater();
     }
 
     function scheduleEnhance() {
         window.setTimeout(enhanceMobileMenu, 0);
-        window.setTimeout(enhanceMobileMenu, 80);
-        window.setTimeout(enhanceMobileMenu, 220);
+        window.setTimeout(enhanceMobileMenu, 50);
+        window.setTimeout(enhanceMobileMenu, 150);
+        window.setTimeout(enhanceMobileMenu, 350);
     }
 
     $(document).on('click', '.menu-trigger', scheduleEnhance);
@@ -96,8 +130,12 @@
                     }
                 }
             }
+
+            if (document.body.classList.contains('nav-is-visible')) {
+                scheduleEnhance();
+            }
         });
 
-        observer.observe(document.body, { childList: true });
+        observer.observe(document.body, { childList: true, attributes: true, attributeFilter: ['class'] });
     }
 })(jQuery);

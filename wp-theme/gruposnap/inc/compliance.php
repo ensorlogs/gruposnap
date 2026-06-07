@@ -25,17 +25,22 @@ function gruposnap_legal_contact_email(): string
  */
 function gruposnap_legal_seed_html(string $slug): string
 {
-    $file = get_stylesheet_directory() . '/seed-html/legal/' . $slug . '.html';
+    $lang   = function_exists('gruposnap_current_lang') ? gruposnap_current_lang() : 'es';
+    $suffix = $lang === 'en' ? '.en' : '';
+    $file   = get_stylesheet_directory() . '/seed-html/legal/' . $slug . $suffix . '.html';
+    if (!is_readable($file)) {
+        $file = get_stylesheet_directory() . '/seed-html/legal/' . $slug . '.html';
+    }
     if (!is_readable($file)) {
         return '';
     }
 
     $html = (string) file_get_contents($file);
-    $home = trailingslashit(home_url());
+    $base = function_exists('gruposnap_lang_url') ? gruposnap_lang_url('/legal/') : trailingslashit(home_url('legal/'));
 
     return str_replace(
         array('href="/legal/', "href='/legal/"),
-        array('href="' . $home . 'legal/', "href='" . $home . 'legal/'),
+        array('href="' . $base, "href='" . $base),
         $html
     );
 }
@@ -174,7 +179,12 @@ add_filter(
  */
 function gruposnap_cookies_policy_url(): string
 {
+    if (function_exists('gruposnap_lang_url')) {
+        return gruposnap_lang_url('/legal/cookies/');
+    }
+
     $page = get_page_by_path('legal/cookies');
+
     return $page ? get_permalink($page) : home_url('/legal/cookies/');
 }
 
@@ -189,7 +199,9 @@ function gruposnap_legal_footer_links(): array
         if ($page) {
             $links[$slug] = array(
                 'label' => $label,
-                'url'   => get_permalink($page),
+                'url'   => function_exists('gruposnap_lang_url')
+                    ? gruposnap_lang_url('/legal/' . $slug . '/')
+                    : get_permalink($page),
             );
         }
     }
@@ -329,7 +341,9 @@ function gruposnap_developer_credit_label(): string
  */
 function gruposnap_legal_nosotros_url(): string
 {
-    return (string) apply_filters('gruposnap_legal_nosotros_url', home_url('/#nosotros'));
+    $url = function_exists('gruposnap_lang_url') ? gruposnap_lang_url('/#nosotros') : home_url('/#nosotros');
+
+    return (string) apply_filters('gruposnap_legal_nosotros_url', $url);
 }
 
 /**

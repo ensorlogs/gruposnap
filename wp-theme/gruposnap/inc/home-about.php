@@ -51,10 +51,16 @@ function gruposnap_should_style_home_about(): bool
  */
 function gruposnap_home_about_intro_text(): string
 {
-    return (string) apply_filters(
-        'gruposnap_home_about_intro_text',
-        'Más de 20 años impulsando marcas a nivel internacional. En GrupoSnap combinamos diseño, producción y ejecución para crear soluciones publicitarias que conectan con los clientes y generan impacto real.'
-    );
+    $text = 'Más de 20 años impulsando marcas a nivel internacional. En GrupoSnap combinamos diseño, producción y ejecución para crear soluciones publicitarias que conectan con los clientes y generan impacto real.';
+
+    if (function_exists('gruposnap_t')) {
+        $text = gruposnap_t(
+            $text,
+            'For over 20 years we have been empowering brands internationally. At GrupoSnap we combine design, production, and execution to create advertising solutions that connect with customers and deliver real impact.'
+        );
+    }
+
+    return (string) apply_filters('gruposnap_home_about_intro_text', $text);
 }
 
 /**
