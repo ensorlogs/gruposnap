@@ -228,6 +228,21 @@ body.elementor-page-751 #header-wrapper {
 	display: none !important;
 }
 
+/* Hero subtitle — Material POP (naranja) · Marketing Experiencial (azul). */
+.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-subtitle .gruposnap-heading-accent,
+.elementor-751 .elementor-element.elementor-element-f428155 .wdt-heading-subtitle .gruposnap-heading-accent,
+.elementor-751 .elementor-element.elementor-element-650305b .elementor-element-8082631 .wdt-heading-subtitle .gruposnap-heading-accent {
+	color: #f57c20 !important;
+	-webkit-text-fill-color: #f57c20 !important;
+}
+
+.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-subtitle .gruposnap-heading-accent-navy,
+.elementor-751 .elementor-element.elementor-element-f428155 .wdt-heading-subtitle .gruposnap-heading-accent-navy,
+.elementor-751 .elementor-element.elementor-element-650305b .elementor-element-8082631 .wdt-heading-subtitle .gruposnap-heading-accent-navy {
+	color: #112b75 !important;
+	-webkit-text-fill-color: #112b75 !important;
+}
+
 /* Escritorio/tablet — título hero sin acentos de color (estilo original). */
 @media (min-width: 768px) {
 	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-subtitle {
@@ -239,13 +254,23 @@ body.elementor-page-751 #header-wrapper {
 		text-transform: inherit !important;
 	}
 
+	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-subtitle .gruposnap-heading-accent {
+		color: #f57c20 !important;
+		-webkit-text-fill-color: #f57c20 !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-subtitle .gruposnap-heading-accent-navy {
+		color: #112b75 !important;
+		-webkit-text-fill-color: #112b75 !important;
+	}
+
 	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-title::after {
 		display: none !important;
 		content: none !important;
 	}
 
-	.elementor-751 .elementor-element.elementor-element-8082631 .gruposnap-heading-accent,
-	.elementor-751 .elementor-element.elementor-element-8082631 .gruposnap-heading-accent-navy {
+	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-title .gruposnap-heading-accent,
+	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-title .gruposnap-heading-accent-navy {
 		display: inline !important;
 		margin-left: 0 !important;
 		font-size: inherit !important;
@@ -270,8 +295,8 @@ body.elementor-page-751 #header-wrapper {
 		font-weight: 700 !important;
 		letter-spacing: 0.12em !important;
 		text-transform: uppercase !important;
-		color: #f57c20 !important;
-		-webkit-text-fill-color: #f57c20 !important;
+		color: #111111 !important;
+		-webkit-text-fill-color: #111111 !important;
 	}
 
 	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-title {
@@ -521,6 +546,16 @@ body.elementor-page-751 #header-wrapper {
 	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-subtitle,
 	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-content-wrapper {
 		color: #222222 !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-subtitle .gruposnap-heading-accent {
+		color: #f57c20 !important;
+		-webkit-text-fill-color: #f57c20 !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-subtitle .gruposnap-heading-accent-navy {
+		color: #112b75 !important;
+		-webkit-text-fill-color: #112b75 !important;
 	}
 
 	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-deco-icon {
@@ -844,8 +879,8 @@ body.elementor-page-751 #header-wrapper {
 	}
 
 	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-subtitle {
-		color: #f57c20 !important;
-		-webkit-text-fill-color: #f57c20 !important;
+		color: #111111 !important;
+		-webkit-text-fill-color: #111111 !important;
 	}
 
 	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-title .gruposnap-heading-accent,
@@ -1185,10 +1220,19 @@ body.elementor-page-751 #header-wrapper {
 		-webkit-text-fill-color: #112b75 !important;
 	}
 
-	.elementor-751 .elementor-element.elementor-element-650305b .elementor-element-8082631 .wdt-heading-subtitle,
-	.elementor-751 .elementor-element.elementor-element-650305b .elementor-element-8082631 .wdt-heading-subtitle span {
+	.elementor-751 .elementor-element.elementor-element-650305b .elementor-element-8082631 .wdt-heading-subtitle {
+		color: #111111 !important;
+		-webkit-text-fill-color: #111111 !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-650305b .elementor-element-8082631 .wdt-heading-subtitle .gruposnap-heading-accent {
 		color: #f57c20 !important;
 		-webkit-text-fill-color: #f57c20 !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-650305b .elementor-element-8082631 .wdt-heading-subtitle .gruposnap-heading-accent-navy {
+		color: #112b75 !important;
+		-webkit-text-fill-color: #112b75 !important;
 	}
 }
 

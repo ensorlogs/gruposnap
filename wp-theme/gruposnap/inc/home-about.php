@@ -201,6 +201,25 @@ function gruposnap_home_about_contact_content(string $content, $widget): string
 }
 
 /**
+ * Oculta el badge duplicado sobre la foto (2454fd0 / 95e0f84); el unificado está en f92bae7.
+ *
+ * @param string               $content
+ * @param \Elementor\Widget_Base $widget
+ */
+function gruposnap_home_about_hide_photo_experience_widgets(string $content, $widget): string
+{
+    if (!gruposnap_should_style_home_about()) {
+        return $content;
+    }
+
+    if (in_array($widget->get_id(), GRUPOSNAP_HOME_EXPERIENCE_WIDGET_IDS, true)) {
+        return '';
+    }
+
+    return $content;
+}
+
+/**
  * HTML del encabezado «20+ Años · Impulsando Marcas» (sustituye «Sobre GrupoSnap»).
  *
  * @return string
@@ -485,22 +504,48 @@ function gruposnap_home_experience_dom_fallback(): void
             });
         }
 
+        function patchExperienceHeadLayout() {
+            ['2454fd0', '95e0f84'].forEach(function (id) {
+                var duplicate = document.querySelector('.elementor-element-' + id);
+                if (duplicate) {
+                    duplicate.remove();
+                }
+            });
+
+            if (!window.matchMedia('(min-width: 1025px)').matches) {
+                return;
+            }
+
+            document.querySelectorAll('.elementor-element-f92bae7 .gruposnap-experience__head').forEach(function (head) {
+                head.style.setProperty('display', 'flex', 'important');
+                head.style.setProperty('flex-direction', 'row', 'important');
+                head.style.setProperty('flex-wrap', 'nowrap', 'important');
+                head.style.setProperty('align-items', 'flex-end', 'important');
+                head.style.setProperty('justify-content', 'flex-start', 'important');
+            });
+        }
+
         patchAboutTitle();
         patchAboutIntro();
         patchAboutContact();
         patchExperienceBadge();
+        patchExperienceHeadLayout();
         document.addEventListener('DOMContentLoaded', function () {
             patchAboutTitle();
             patchAboutIntro();
             patchAboutContact();
             patchExperienceBadge();
+            patchExperienceHeadLayout();
         });
+        window.addEventListener('load', patchExperienceHeadLayout);
+        window.matchMedia('(min-width: 1025px)').addEventListener('change', patchExperienceHeadLayout);
     })();
     </script>
     <?php
 }
 
 add_action('init', 'gruposnap_home_about_bust_elementor_cache', 1);
+add_filter('elementor/widget/render_content', 'gruposnap_home_about_hide_photo_experience_widgets', 4, 2);
 add_filter('elementor/widget/render_content', 'gruposnap_home_about_heading_content', 10, 2);
 add_filter('elementor/widget/render_content', 'gruposnap_home_about_intro_content', 11, 2);
 add_filter('elementor/widget/render_content', 'gruposnap_home_about_contact_content', 12, 2);

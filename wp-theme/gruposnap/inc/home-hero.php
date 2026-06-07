@@ -1226,10 +1226,17 @@ function gruposnap_home_hero_rescue_footer_css(): void
             color: #111111 !important;
             -webkit-text-fill-color: #111111 !important;
         }
-        .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-8082631 .wdt-heading-subtitle,
-        .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-8082631 .wdt-heading-subtitle span {
+        .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-8082631 .wdt-heading-subtitle {
+            color: #111111 !important;
+            -webkit-text-fill-color: #111111 !important;
+        }
+        .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-8082631 .wdt-heading-subtitle .gruposnap-heading-accent {
             color: #f57c20 !important;
             -webkit-text-fill-color: #f57c20 !important;
+        }
+        .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-8082631 .wdt-heading-subtitle .gruposnap-heading-accent-navy {
+            color: #112b75 !important;
+            -webkit-text-fill-color: #112b75 !important;
         }
         .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-8082631 .wdt-heading-title .gruposnap-heading-accent {
             color: #f57c20 !important;

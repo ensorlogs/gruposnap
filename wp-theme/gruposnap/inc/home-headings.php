@@ -127,6 +127,37 @@ function gruposnap_hero_heading_highlight(string $html): string
 }
 
 /**
+ * Subtítulo hero: «Material POP» naranja · «Marketing Experiencial» azul.
+ */
+function gruposnap_hero_subtitle_has_brand_spans(string $html): bool
+{
+    return preg_match('/gruposnap-heading-accent[^>]*>\s*Material\s+POP/iu', $html) === 1
+        && preg_match('/gruposnap-heading-accent-navy[^>]*>\s*Marketing\s+Experiencial/iu', $html) === 1;
+}
+
+function gruposnap_hero_apply_subtitle_brand_colors(string $content): string
+{
+    if (gruposnap_hero_subtitle_has_brand_spans($content)) {
+        return $content;
+    }
+
+    if (!preg_match('/material\s+pop[\s\S]*marketing\s+experiencial/iu', wp_strip_all_tags($content))) {
+        return $content;
+    }
+
+    return (string) preg_replace_callback(
+        '/(Material\s+POP|MATERIAL\s+POP|Material\s+Pop)(\s*[·•]\s*)(Marketing\s+Experiencial|MARKETING\s+EXPERIENCIAL)/u',
+        static function (array $matches): string {
+            return '<span class="gruposnap-heading-accent">' . $matches[1] . '</span>'
+                . $matches[2]
+                . '<span class="gruposnap-heading-accent-navy">' . $matches[3] . '</span>';
+        },
+        $content,
+        1
+    );
+}
+
+/**
  * @param \Elementor\Widget_Base $widget
  */
 function gruposnap_hero_heading_wrapper_class($widget): void
@@ -156,7 +187,7 @@ function gruposnap_hero_heading_enhance_content(string $content, $widget): strin
         return $content;
     }
 
-    return (string) preg_replace_callback(
+    $content = (string) preg_replace_callback(
         '/(<span class="wdt-heading-title">)(.*?)(<\/span>)/s',
         static function (array $matches): string {
             $inner = (string) preg_replace('/<br\s*\/?>\s*/i', ' ', $matches[2]);
@@ -167,6 +198,8 @@ function gruposnap_hero_heading_enhance_content(string $content, $widget): strin
         },
         $content
     );
+
+    return gruposnap_hero_apply_subtitle_brand_colors($content);
 }
 
 /**
@@ -251,8 +284,45 @@ function gruposnap_home_headings_bust_elementor_cache(): void
     update_option('gruposnap_home_headings_cache_version', GRUPOSNAP_THEME_VERSION, false);
 }
 
+function gruposnap_hero_subtitle_brand_colors_fallback(): void
+{
+    if (!gruposnap_should_style_home_headings()) {
+        return;
+    }
+    ?>
+    <script id="gruposnap-hero-subtitle-brand-colors">
+    (function () {
+        var pattern = /(Material\s+POP|MATERIAL\s+POP|Material\s+Pop)(\s*[·•]\s*)(Marketing\s+Experiencial|MARKETING\s+EXPERIENCIAL)/;
+        var replacement = '<span class="gruposnap-heading-accent">$1</span>$2<span class="gruposnap-heading-accent-navy">$3</span>';
+
+        function patchHeroSubtitle() {
+            document.querySelectorAll(
+                '.elementor-element-8082631 .wdt-heading-subtitle, .elementor-element-f428155 .wdt-heading-subtitle'
+            ).forEach(function (el) {
+                if (el.querySelector('.gruposnap-heading-accent-navy') && /gruposnap-heading-accent[^>]*>\s*Material\s+POP/i.test(el.innerHTML)) {
+                    return;
+                }
+
+                var html = el.innerHTML;
+                if (!/material\s+pop/i.test(html)) {
+                    return;
+                }
+
+                el.innerHTML = html.replace(pattern, replacement);
+            });
+        }
+
+        patchHeroSubtitle();
+        document.addEventListener('DOMContentLoaded', patchHeroSubtitle);
+        window.addEventListener('load', patchHeroSubtitle);
+    })();
+    </script>
+    <?php
+}
+
 add_action('init', 'gruposnap_home_headings_bust_elementor_cache', 1);
 add_action('wp_enqueue_scripts', 'gruposnap_enqueue_home_headings_styles', 105);
+add_action('wp_footer', 'gruposnap_hero_subtitle_brand_colors_fallback', 12);
 add_action('elementor/frontend/widget/before_render', 'gruposnap_hero_heading_wrapper_class', 6);
 add_action('elementor/frontend/widget/before_render', 'gruposnap_marketing_heading_wrapper_class', 6);
 add_filter('elementor/widget/render_content', 'gruposnap_hero_heading_enhance_content', 19, 2);

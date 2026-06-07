@@ -325,6 +325,14 @@ function gruposnap_developer_credit_label(): string
 }
 
 /**
+ * Enlace a la sección Nosotros desde el pie legal.
+ */
+function gruposnap_legal_nosotros_url(): string
+{
+    return (string) apply_filters('gruposnap_legal_nosotros_url', home_url('/#nosotros'));
+}
+
+/**
  * Fila de enlaces legales tras el footer Elementor.
  */
 function gruposnap_render_legal_footer_row(): void
@@ -349,9 +357,16 @@ function gruposnap_render_legal_footer_row(): void
                 </a>
             </div>
             <p class="gsnap-legal-row__credit">
-                <?php esc_html_e('Desarrollado por :', 'gruposnap'); ?>
-                <a href="<?php echo esc_url(gruposnap_developer_credit_url()); ?>" target="_blank" rel="noopener noreferrer">
-                    <?php echo esc_html(gruposnap_developer_credit_label()); ?>
+                <?php
+                echo esc_html__('Desarrollador con Amor', 'gruposnap');
+                echo ' ';
+                ?>
+                <span class="gsnap-legal-row__heart" aria-hidden="true">♥</span>
+                <?php
+                echo ' ' . esc_html__('por', 'gruposnap') . ' ';
+                ?>
+                <a href="<?php echo esc_url(gruposnap_legal_nosotros_url()); ?>">
+                    <?php esc_html_e('Nosotros', 'gruposnap'); ?>
                 </a>
             </p>
         </nav>

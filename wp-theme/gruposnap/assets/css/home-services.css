@@ -15,6 +15,17 @@
 	display: none !important;
 }
 
+/* Catálogo — títulos (sin «de»): misma tipografía; color heredado como Pendones y posters. */
+.elementor-751 .elementor-element-303fa43 .wdt-content-detail-group .wdt-content-title h5,
+.elementor-751 .elementor-element-303fa43 .wdt-content-detail-group .wdt-content-title h5 a,
+.elementor-751 .elementor-element-0a88f17 .wdt-content-detail-group .wdt-content-title h5,
+.elementor-751 .elementor-element-0a88f17 .wdt-content-detail-group .wdt-content-title h5 a {
+	text-shadow: none !important;
+	text-transform: uppercase !important;
+	letter-spacing: 0.06em !important;
+	font-weight: 800 !important;
+}
+
 /* Branding de espacios — móvil: título bajo la imagen (sin solaparse). */
 @media (max-width: 767px) {
 	.elementor-751 .elementor-element-303fa43 .wdt-content-detail-group .wdt-content-title {
@@ -41,12 +52,6 @@
 
 	.elementor-751 .elementor-element-303fa43 .wdt-content-detail-group .wdt-content-title {
 		margin-top: -0.75rem !important;
-	}
-
-	.elementor-751 .elementor-element-303fa43 .wdt-content-detail-group .wdt-content-title h5,
-	.elementor-751 .elementor-element-303fa43 .wdt-content-detail-group .wdt-content-title h5 a {
-		color: #ffffff !important;
-		text-shadow: 0 2px 10px rgba(0, 0, 0, 0.75) !important;
 	}
 }
 
@@ -835,6 +840,15 @@
 		font-weight: 700 !important;
 		letter-spacing: 0.1em !important;
 		line-height: 1.35 !important;
+	}
+
+	.elementor-751 .elementor-element-1d1ab7d .elementor-element-303fa43 .wdt-content-detail-group .wdt-content-title h5,
+	.elementor-751 .elementor-element-1d1ab7d .elementor-element-303fa43 .wdt-content-detail-group .wdt-content-title h5 a,
+	.elementor-751 .elementor-element-1d1ab7d .elementor-element-0a88f17 .wdt-content-detail-group .wdt-content-title h5,
+	.elementor-751 .elementor-element-1d1ab7d .elementor-element-0a88f17 .wdt-content-detail-group .wdt-content-title h5 a {
+		text-transform: uppercase !important;
+		letter-spacing: 0.06em !important;
+		font-weight: 800 !important;
 	}
 
 	.elementor-751 .elementor-element-1d1ab7d .wdt-custom-portfolio-image-box .wdt-content-button > a {

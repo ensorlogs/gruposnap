@@ -35,6 +35,62 @@ const GRUPOSNAP_HOME_CATALOG_HIDDEN_WIDGET_IDS = array(
 /** Widget «Branding de espacios» — sin subtítulo «Personalización 100%». */
 const GRUPOSNAP_HOME_CATALOG_BRANDING_WIDGET_ID = '303fa43';
 
+/** Widget «Activación de eventos». */
+const GRUPOSNAP_HOME_CATALOG_EVENTS_WIDGET_ID = '0a88f17';
+
+/**
+ * Título visible de la tarjeta «Branding espacios».
+ */
+function gruposnap_home_catalog_branding_card_title(): string
+{
+    return (string) apply_filters(
+        'gruposnap_home_catalog_branding_card_title',
+        'Branding Espacios'
+    );
+}
+
+/**
+ * Título visible de la tarjeta «Activacion eventos».
+ */
+function gruposnap_home_catalog_events_card_title(): string
+{
+    return (string) apply_filters(
+        'gruposnap_home_catalog_events_card_title',
+        'Activacion Eventos'
+    );
+}
+
+/**
+ * @param string               $content
+ * @param \Elementor\Widget_Base $widget
+ */
+function gruposnap_home_catalog_card_titles_content(string $content, $widget): string
+{
+    if (!gruposnap_should_patch_home_services_grid()) {
+        return $content;
+    }
+
+    $widget_id = $widget->get_id();
+
+    if ($widget_id === GRUPOSNAP_HOME_CATALOG_BRANDING_WIDGET_ID) {
+        return (string) preg_replace(
+            '/Branding\s+de\s+espacios/iu',
+            gruposnap_home_catalog_branding_card_title(),
+            $content
+        );
+    }
+
+    if ($widget_id === GRUPOSNAP_HOME_CATALOG_EVENTS_WIDGET_ID) {
+        return (string) preg_replace(
+            '/Activaci[oó]n\s+de\s+eventos/iu',
+            gruposnap_home_catalog_events_card_title(),
+            $content
+        );
+    }
+
+    return $content;
+}
+
 /** Catálogo: bloque Elementor 1d1ab7d (4d58045 + edfa8e2). IDs 5ae8011/0f7d283 = legacy. */
 const GRUPOSNAP_HOME_CATALOG_DESKTOP_SECTION_ID = '1d1ab7d';
 const GRUPOSNAP_HOME_CATALOG_MOBILE_SECTION_ID  = '5ae8011';
@@ -364,11 +420,15 @@ function gruposnap_home_services_link_to_nosotros_script(): void
 
     $hash = esc_js(gruposnap_home_services_nosotros_hash());
     $card_selector = implode(',', gruposnap_home_services_nosotros_card_selectors());
+    $branding_title = gruposnap_home_catalog_branding_card_title();
+    $events_title   = gruposnap_home_catalog_events_card_title();
     ?>
     <script id="gruposnap-home-services-link-nosotros">
     (function () {
         var hash = '<?php echo $hash; ?>';
         var cardSelector = <?php echo wp_json_encode($card_selector); ?>;
+        var brandingTitle = <?php echo wp_json_encode($branding_title); ?>;
+        var eventsTitle = <?php echo wp_json_encode($events_title); ?>;
 
         function getNosotrosTarget() {
             return (
@@ -446,7 +506,22 @@ function gruposnap_home_services_link_to_nosotros_script(): void
             });
         }
 
+        function patchCatalogCardTitles() {
+            document.querySelectorAll('.elementor-element-303fa43 .wdt-content-title h5 a, .elementor-element-303fa43 .wdt-content-title h5').forEach(function (el) {
+                if (/branding\s+de\s+espacios/i.test(el.textContent)) {
+                    el.textContent = brandingTitle;
+                }
+            });
+
+            document.querySelectorAll('.elementor-element-0a88f17 .wdt-content-title h5 a, .elementor-element-0a88f17 .wdt-content-title h5').forEach(function (el) {
+                if (/activaci[oó]n\s+de\s+eventos/i.test(el.textContent)) {
+                    el.textContent = eventsTitle;
+                }
+            });
+        }
+
         function init() {
+            patchCatalogCardTitles();
             bindServiceCards();
         }
 
@@ -468,6 +543,7 @@ function gruposnap_home_services_link_to_nosotros_script(): void
 }
 
 add_action('init', 'gruposnap_home_services_bust_elementor_cache');
+add_filter('elementor/widget/render_content', 'gruposnap_home_catalog_card_titles_content', 13, 2);
 add_filter('elementor/widget/render_content', 'gruposnap_home_services_replace_merchandising_card', 14, 2);
 add_action('wp_enqueue_scripts', 'gruposnap_enqueue_home_services_styles', 999);
 add_action('wp_footer', 'gruposnap_home_services_web_apps_card_fallback_script', 13);

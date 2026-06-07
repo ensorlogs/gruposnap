@@ -28,12 +28,21 @@
 	padding-bottom: 0 !important;
 }
 
-/* Badge sobre la foto: oculto (va en la columna de texto) */
+/* Badge sobre la foto: oculto (el encabezado unificado va en f92bae7). */
 .elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-2454fd0,
-.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-95e0f84 {
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-95e0f84,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-2454fd0 .wdt-heading-holder,
+.elementor-751 .elementor-element.elementor-element-46cb44b .elementor-element-95e0f84 .wdt-heading-holder {
 	display: none !important;
 	visibility: hidden !important;
+	opacity: 0 !important;
 	pointer-events: none !important;
+	width: 0 !important;
+	height: 0 !important;
+	min-height: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	overflow: hidden !important;
 }
 
 /* Foto: encuadre para no tapar la cara */
@@ -69,7 +78,7 @@
 	flex-direction: row !important;
 	align-items: flex-end !important;
 	justify-content: flex-start !important;
-	flex-wrap: wrap !important;
+	flex-wrap: nowrap !important;
 	gap: clamp(1.15rem, 3vw, 2.25rem) !important;
 	width: 100% !important;
 	max-width: min(52rem, 100%) !important;
@@ -79,6 +88,7 @@
 	border: none !important;
 	border-radius: 0 !important;
 	box-shadow: none !important;
+	--gruposnap-exp-number: clamp(3rem, 8.5vw, 5.25rem);
 }
 
 .elementor-751 .elementor-element.elementor-element-f92bae7 .wdt-about-experience .wdt-heading-holder,
@@ -99,7 +109,7 @@
 
 .elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__number {
 	display: block !important;
-	font-size: clamp(3rem, 8.5vw, 5.25rem) !important;
+	font-size: var(--gruposnap-exp-number, clamp(3rem, 8.5vw, 5.25rem)) !important;
 	font-weight: 800 !important;
 	line-height: 0.92 !important;
 	letter-spacing: -0.04em !important;
@@ -128,17 +138,18 @@
 }
 
 .elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__tagline {
-	flex: 1 1 10rem !important;
+	flex: 0 1 auto !important;
+	min-width: 0 !important;
 	margin: 0 0 0.2rem !important;
 	padding: 0 0 0 clamp(0.65rem, 2vw, 1.15rem) !important;
-	border-left: 3px solid rgba(17, 43, 117, 0.22) !important;
-	font-size: clamp(1.25rem, 2.8vw, 1.75rem) !important;
+	border-left: 3px solid rgba(0, 0, 0, 0.18) !important;
+	font-size: calc(var(--gruposnap-exp-number, clamp(3rem, 8.5vw, 5.25rem)) * 0.44) !important;
 	font-weight: 800 !important;
-	line-height: 1.15 !important;
-	letter-spacing: 0.06em !important;
+	line-height: 1.02 !important;
+	letter-spacing: -0.04em !important;
 	text-transform: uppercase !important;
-	color: #0a1f5c !important;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+	color: #000000 !important;
+	text-shadow: none !important;
 }
 
 .elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__tagline-line {
@@ -588,18 +599,12 @@
 		align-items: center !important;
 		gap: 0.35rem !important;
 		margin-bottom: 0 !important;
-	}
-
-	/* En columna, flex-basis 10rem del tagline dejaba ~160px de hueco vacío */
-	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__tagline,
-	.elementor-751 .elementor-element.elementor-element-f29b9db .gruposnap-experience__tagline {
-		flex: 0 0 auto !important;
-		min-height: 0 !important;
+		--gruposnap-exp-number: clamp(3.35rem, 15vw, 4.6rem);
 	}
 
 	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__number,
 	.elementor-751 .elementor-element.elementor-element-f29b9db .gruposnap-experience__number {
-		font-size: clamp(3.35rem, 15vw, 4.6rem) !important;
+		font-size: var(--gruposnap-exp-number, clamp(3.35rem, 15vw, 4.6rem)) !important;
 		line-height: 0.88 !important;
 	}
 
@@ -618,9 +623,14 @@
 
 	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__tagline,
 	.elementor-751 .elementor-element.elementor-element-f29b9db .gruposnap-experience__tagline {
-		font-size: clamp(1.45rem, 6.2vw, 2rem) !important;
-		line-height: 1.08 !important;
+		flex: 0 0 auto !important;
+		min-height: 0 !important;
+		font-size: calc(var(--gruposnap-exp-number, clamp(3.35rem, 15vw, 4.6rem)) * 0.44) !important;
+		line-height: 1.02 !important;
+		letter-spacing: -0.04em !important;
 		margin: 0 !important;
+		color: #000000 !important;
+		text-shadow: none !important;
 	}
 
 	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-about-heading > .wdt-heading-content-wrapper,
@@ -679,16 +689,46 @@
 	}
 }
 
+@media (min-width: 1025px) {
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__head,
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__badge-row {
+		flex-direction: row !important;
+		flex-wrap: nowrap !important;
+		align-items: flex-end !important;
+		justify-content: flex-start !important;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		max-width: none !important;
+		--gruposnap-exp-number: clamp(3rem, 8.5vw, 5.25rem);
+	}
+
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__stat {
+		flex: 0 0 auto !important;
+		align-items: flex-start !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__stat::after {
+		margin-left: 0 !important;
+		margin-right: auto !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__tagline {
+		flex: 0 1 auto !important;
+		align-self: flex-end !important;
+		border-left: 3px solid rgba(0, 0, 0, 0.18) !important;
+		padding-left: clamp(0.65rem, 2vw, 1.15rem) !important;
+		text-align: left !important;
+		white-space: normal !important;
+	}
+}
+
 @media (min-width: 1200px) {
-	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__number {
-		font-size: 5.25rem !important;
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__head,
+	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__badge-row {
+		--gruposnap-exp-number: 5.25rem;
 	}
 
 	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__years {
 		font-size: 2.35rem !important;
-	}
-
-	.elementor-751 .elementor-element.elementor-element-f92bae7 .gruposnap-experience__tagline {
-		font-size: 1.75rem !important;
 	}
 }

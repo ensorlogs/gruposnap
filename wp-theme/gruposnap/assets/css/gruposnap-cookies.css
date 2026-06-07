@@ -232,6 +232,15 @@
 	text-decoration: underline;
 }
 
+#gsnap-legal-row .gsnap-legal-row__heart {
+	display: inline-block;
+	margin: 0 0.2em;
+	color: #f57c20;
+	font-size: 0.85em;
+	line-height: 1;
+	vertical-align: baseline;
+}
+
 #gsnap-legal-row > nav > a,
 #gsnap-legal-row .gsnap-legal-row__links > a,
 #gsnap-legal-row > nav > .gsnap-cookies-reopen,

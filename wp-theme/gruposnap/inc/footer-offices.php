@@ -14,6 +14,7 @@ const GRUPOSNAP_FOOTER_OFFICE_VE_TITLE        = 'a51201a';
 const GRUPOSNAP_FOOTER_OFFICE_VE_ADDRESS_LIST = 'ed8191b';
 const GRUPOSNAP_FOOTER_OFFICE_VE_EMAIL_LABEL  = 'b29effd';
 const GRUPOSNAP_FOOTER_OFFICE_VE_EMAIL_LIST   = '69048ef';
+const GRUPOSNAP_FOOTER_NEWSLETTER_MAILCHIMP_WIDGET_ID = '5513379';
 
 /**
  * @return bool
@@ -151,6 +152,50 @@ function gruposnap_footer_office_column_country_class($element): void
 }
 
 /**
+ * Placeholder del email en el formulario newsletter del footer.
+ */
+function gruposnap_footer_newsletter_email_placeholder(): string
+{
+    return (string) apply_filters('gruposnap_footer_newsletter_email_placeholder', '(Tu Email)');
+}
+
+/**
+ * @param \Elementor\Widget_Base $widget
+ */
+function gruposnap_footer_newsletter_mailchimp_settings($widget): void
+{
+    if (!gruposnap_should_enhance_footer_offices()) {
+        return;
+    }
+
+    if ($widget->get_name() !== 'wdt-mailchimp' || $widget->get_id() !== GRUPOSNAP_FOOTER_NEWSLETTER_MAILCHIMP_WIDGET_ID) {
+        return;
+    }
+
+    $widget->set_settings('email_label', gruposnap_footer_newsletter_email_placeholder());
+}
+
+/**
+ * @param string $content
+ * @return string
+ */
+function gruposnap_footer_newsletter_mailchimp_placeholder_content(string $content): string
+{
+    $placeholder = gruposnap_footer_newsletter_email_placeholder();
+
+    return str_ireplace(
+        array(
+            'placeholder="Mail ID Here"',
+            "placeholder='Mail ID Here'",
+            'placeholder="Mail ID here"',
+            "placeholder='Mail ID here'",
+        ),
+        'placeholder="' . esc_attr($placeholder) . '"',
+        $content
+    );
+}
+
+/**
  * @param string               $content
  * @param \Elementor\Widget_Base $widget
  */
@@ -161,6 +206,10 @@ function gruposnap_footer_office_widget_content(string $content, $widget): strin
     }
 
     $id = $widget->get_id();
+
+    if ($id === GRUPOSNAP_FOOTER_NEWSLETTER_MAILCHIMP_WIDGET_ID) {
+        return gruposnap_footer_newsletter_mailchimp_placeholder_content($content);
+    }
 
     if ($id === GRUPOSNAP_FOOTER_OFFICE_RD_PHONE_LIST) {
         return $content . gruposnap_footer_office_rd_email_markup();
@@ -192,7 +241,19 @@ function gruposnap_footer_offices_dom_fallback(): void
     ?>
     <script id="gruposnap-footer-offices-fallback">
     (function () {
+        function patchNewsletterPlaceholder() {
+            var placeholder = <?php echo wp_json_encode(gruposnap_footer_newsletter_email_placeholder()); ?>;
+            document.querySelectorAll('.elementor-element-<?php echo esc_js(GRUPOSNAP_FOOTER_NEWSLETTER_MAILCHIMP_WIDGET_ID); ?> input[name="wdt_mc_emailid"], form[name="mailchimpSubscribeForm"] input[name="wdt_mc_emailid"]').forEach(function (input) {
+                var current = (input.getAttribute('placeholder') || '').trim();
+                if (/^mail id here$/i.test(current)) {
+                    input.setAttribute('placeholder', placeholder);
+                }
+            });
+        }
+
         function patchOffices() {
+            patchNewsletterPlaceholder();
+
             var rd = document.querySelector('.elementor-element-<?php echo esc_js(GRUPOSNAP_FOOTER_OFFICE_RD_COLUMN); ?>');
             var ve = document.querySelector('.elementor-element-<?php echo esc_js(GRUPOSNAP_FOOTER_OFFICE_VE_COLUMN); ?>');
 
@@ -423,6 +484,7 @@ function gruposnap_enqueue_home_bottom_stack_styles(): void
 
 add_action('init', 'gruposnap_footer_offices_bust_elementor_cache', 1);
 add_action('wp_enqueue_scripts', 'gruposnap_enqueue_home_bottom_stack_styles', 120);
+add_action('elementor/frontend/widget/before_render', 'gruposnap_footer_newsletter_mailchimp_settings', 10);
 add_action('elementor/frontend/column/before_render', 'gruposnap_footer_offices_render_intro', 5);
 add_action('elementor/frontend/column/before_render', 'gruposnap_footer_office_column_country_class', 6);
 add_filter('elementor/widget/render_content', 'gruposnap_footer_office_widget_content', 12, 2);
