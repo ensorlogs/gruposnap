@@ -351,6 +351,23 @@ body.elementor-page-751 #header-wrapper {
 	}
 }
 
+/* Escritorio — subtítulo en una sola línea (tamaño reducido para que quepa). */
+@media (min-width: 1025px) {
+	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-subtitle,
+	.elementor-751 .elementor-element.elementor-element-650305b .elementor-element-8082631 .wdt-heading-subtitle,
+	.elementor-element-650305b .elementor-element-8082631 .wdt-heading-subtitle {
+		font-size: clamp(0.8125rem, 1.2vw, 1rem) !important;
+		letter-spacing: 0.04em !important;
+		white-space: nowrap !important;
+	}
+
+	.elementor-751 .elementor-element.elementor-element-8082631 .gruposnap-hero-subtitle-stack,
+	.elementor-751 .elementor-element.elementor-element-650305b .elementor-element-8082631 .gruposnap-hero-subtitle-stack,
+	.elementor-element-650305b .elementor-element-8082631 .gruposnap-hero-subtitle-stack {
+		white-space: nowrap !important;
+	}
+}
+
 /* Móvil — colores de marca exactos (Material POP / título / Experiencias). */
 @media (max-width: 767px) {
 	.elementor-751 .elementor-element.elementor-element-8082631 .wdt-heading-deco-icon,
