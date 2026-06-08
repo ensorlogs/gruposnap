@@ -97,6 +97,15 @@ const GRUPOSNAP_HOME_CATALOG_MOBILE_SECTION_ID  = '5ae8011';
 const GRUPOSNAP_HOME_CATALOG_DESKTOP_HEADING_ID = '4d58045';
 const GRUPOSNAP_HOME_CATALOG_MOBILE_HEADING_ID  = 'efbc9f6';
 
+/** Sección «Soluciones para tu marca» (#servicios) — solo escritorio/tablet. */
+const GRUPOSNAP_HOME_SERVICES_SECTION_ID = '693ab46';
+
+/** Legacy móvil (si existe en datos Elementor). */
+const GRUPOSNAP_HOME_SERVICES_MOBILE_SECTION_ID = 'acaee6e';
+
+/** Versión del parche hide_mobile en la sección servicios. */
+const GRUPOSNAP_HOME_SERVICES_FIX_VERSION = '1';
+
 /** Grid «Soluciones para tu marca» (sección #servicios / 693ab46). */
 const GRUPOSNAP_HOME_SERVICES_GRID_WIDGET_ID = '9a378ea';
 
@@ -308,6 +317,66 @@ function gruposnap_home_services_bust_elementor_cache(): void
 }
 
 /**
+ * Oculta #servicios (693ab46) en móvil vía datos Elementor (hide_mobile).
+ */
+function gruposnap_home_services_fix_elementor_data(): void
+{
+    if (get_option('gruposnap_home_services_fix_version') === GRUPOSNAP_HOME_SERVICES_FIX_VERSION) {
+        return;
+    }
+
+    $raw = get_post_meta(751, '_elementor_data', true);
+    if (!is_string($raw) || $raw === '') {
+        return;
+    }
+
+    $data = json_decode($raw, true);
+    if (!is_array($data)) {
+        return;
+    }
+
+    $needs_save = false;
+
+    $walk = static function (array &$nodes) use (&$walk, &$needs_save): void {
+        foreach ($nodes as &$node) {
+            if (!is_array($node)) {
+                continue;
+            }
+
+            $id       = $node['id'] ?? '';
+            $settings = &$node['settings'];
+
+            if (
+                $id === GRUPOSNAP_HOME_SERVICES_SECTION_ID
+                || $id === GRUPOSNAP_HOME_SERVICES_MOBILE_SECTION_ID
+            ) {
+                if (($settings['hide_mobile'] ?? '') !== 'hidden-mobile') {
+                    $settings['hide_mobile'] = 'hidden-mobile';
+                    $needs_save              = true;
+                }
+            }
+
+            if (!empty($node['elements']) && is_array($node['elements'])) {
+                $walk($node['elements']);
+            }
+        }
+    };
+
+    $walk($data);
+
+    if (!$needs_save) {
+        update_option('gruposnap_home_services_fix_version', GRUPOSNAP_HOME_SERVICES_FIX_VERSION, false);
+
+        return;
+    }
+
+    update_post_meta(751, '_elementor_data', wp_slash(wp_json_encode($data)));
+    delete_post_meta(751, '_elementor_element_cache');
+    delete_post_meta(751, '_elementor_css');
+    update_option('gruposnap_home_services_fix_version', GRUPOSNAP_HOME_SERVICES_FIX_VERSION, false);
+}
+
+/**
  * Estilos compactos para tarjetas de servicios en móvil/tablet.
  */
 function gruposnap_enqueue_home_services_styles(): void
@@ -354,7 +423,7 @@ function gruposnap_enqueue_home_services_styles(): void
         . $catalog_scope . ' .elementor-widget.elementor-widget-wdt-image-box{'
         . 'width:100%!important;max-width:100%!important;--container-widget-width:100%!important;}'
         . $catalog_scope . ' .elementor-widget-wdt-image-box>.elementor-widget-container{'
-        . 'width:100%!important;max-width:min(440px,92vw)!important;margin-left:auto!important;margin-right:auto!important;}'
+        . 'width:100%!important;max-width:100%!important;margin-left:auto!important;margin-right:auto!important;}'
         . $catalog_scope . ' .wdt-custom-portfolio-image-box .wdt-content-item,'
         . $catalog_scope . ' .wdt-custom-portfolio-image-box .wdt-image-box-holder{'
         . 'display:block!important;height:auto!important;min-height:0!important;}'
@@ -542,6 +611,7 @@ function gruposnap_home_services_link_to_nosotros_script(): void
     <?php
 }
 
+add_action('init', 'gruposnap_home_services_fix_elementor_data', 5);
 add_action('init', 'gruposnap_home_services_bust_elementor_cache');
 add_filter('elementor/widget/render_content', 'gruposnap_home_catalog_card_titles_content', 13, 2);
 add_filter('elementor/widget/render_content', 'gruposnap_home_services_replace_merchandising_card', 14, 2);

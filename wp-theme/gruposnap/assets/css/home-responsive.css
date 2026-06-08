@@ -53,6 +53,23 @@ body.elementor-page-751 {
 		min-width: 0 !important;
 		max-width: 100% !important;
 	}
+
+	/* «Te impulsamos» — anular breakout full_width de Elementor en tablet. */
+	.elementor-751 .elementor-element-1d1ab7d.elementor-section-full_width {
+		width: 100% !important;
+		max-width: 100% !important;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		left: auto !important;
+		right: auto !important;
+	}
+
+	.elementor-751 .elementor-element-1d1ab7d.elementor-section-full_width > .elementor-container {
+		width: 100% !important;
+		max-width: 100% !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
 }
 
 @media (max-width: 767px) {
@@ -100,7 +117,6 @@ body.elementor-page-751 {
 
 	.elementor-751 .elementor-top-section:has(.gruposnap-marketing-heading--catalog-2026) > .elementor-container,
 	.elementor-751 .elementor-top-section:has(.elementor-element-57435c6) > .elementor-container,
-	.elementor-751 .elementor-element.elementor-element-87ef98c > .elementor-container,
 	.elementor-751 .elementor-element-9d50218:has(.elementor-element-57435c6),
 	.elementor-751 .elementor-element.elementor-element-9d50218,
 	.elementor-751 .elementor-element.elementor-element-d5c027d > .elementor-container,
@@ -203,15 +219,90 @@ body.elementor-page-751 {
 		margin: 0 !important;
 	}
 
-	/* Grid «Te impulsamos en un SNAP!» — márgenes simétricos. */
-	.elementor-751 .elementor-element-1d1ab7d > .elementor-container {
+	/* Grid «Te impulsamos en un SNAP!» — sin breakout full_width; centrado simétrico. */
+	.elementor-751 .elementor-element-87ef98c {
+		overflow: hidden !important;
+	}
+
+	.elementor-751 .elementor-element-87ef98c > .elementor-container {
 		padding-left: var(--gs-home-gutter) !important;
 		padding-right: var(--gs-home-gutter) !important;
 		box-sizing: border-box !important;
 	}
 
-	.elementor-751 .elementor-element-1d1ab7d .elementor-widget-wdt-image-box > .elementor-widget-container {
+	.elementor-751 .elementor-element-87ef98c .elementor-column > .elementor-element-populated {
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+		align-items: center !important;
+	}
+
+	.elementor-751 .elementor-element-1d1ab7d.elementor-section-full_width {
+		width: 100% !important;
+		max-width: 100% !important;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		left: auto !important;
+		right: auto !important;
+	}
+
+	.elementor-751 .elementor-element-1d1ab7d.elementor-section-full_width > .elementor-container,
+	.elementor-751 .elementor-element-1d1ab7d > .elementor-container {
+		width: 100% !important;
+		max-width: 100% !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+		box-sizing: border-box !important;
+	}
+
+	.elementor-751 .elementor-element-edfa8e2 > .elementor-container {
+		width: 100% !important;
+		max-width: 100% !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+		justify-content: center !important;
+		align-items: center !important;
+	}
+
+	.elementor-751 .elementor-element-1d1ab7d .elementor-column,
+	.elementor-751 .elementor-element-edfa8e2 .elementor-column {
+		display: flex !important;
+		justify-content: center !important;
+	}
+
+	.elementor-751 .elementor-element-1d1ab7d .elementor-column > .elementor-widget-wrap,
+	.elementor-751 .elementor-element-edfa8e2 .elementor-column > .elementor-widget-wrap {
+		width: 100% !important;
 		max-width: var(--gs-home-content-max) !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
+		align-items: center !important;
+	}
+
+	.elementor-751 .elementor-element-1d1ab7d .elementor-widget-wdt-image-box,
+	.elementor-751 .elementor-element-edfa8e2 .elementor-widget-wdt-image-box {
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+
+	.elementor-751 .elementor-element-1d1ab7d .elementor-widget-wdt-image-box > .elementor-widget-container,
+	.elementor-751 .elementor-element-edfa8e2 .elementor-widget-wdt-image-box > .elementor-widget-container {
+		width: 100% !important;
+		max-width: 100% !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	.elementor-751 .elementor-element-4d58045 > .elementor-widget-container {
+		width: 100% !important;
+		max-width: var(--gs-home-content-max) !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
+		padding-left: 0 !important;
+		padding-right: 0 !important;
 	}
 
 }

@@ -611,8 +611,8 @@
 	}
 
 	.elementor-751 .elementor-element-4d58045 > .elementor-widget-container {
-		padding: 0 0.75rem 0.35rem !important;
-		margin: 0 !important;
+		padding: 0 0 0.35rem !important;
+		margin: 0 auto !important;
 	}
 
 	.elementor-751 .elementor-element.elementor-element-4d58045 .wdt-heading-holder,
@@ -664,7 +664,7 @@
 
 	.elementor-751 .elementor-element-1d1ab7d .elementor-widget-wdt-image-box > .elementor-widget-container {
 		width: 100% !important;
-		max-width: min(440px, 92vw) !important;
+		max-width: 100% !important;
 		margin: 0 auto !important;
 		padding: 0 !important;
 		min-height: 0 !important;
@@ -753,13 +753,16 @@
 	.elementor-751 .elementor-element-1d1ab7d .wdt-custom-portfolio-image-box .wdt-content-image-wrapper .wdt-content-image,
 	.elementor-751 .elementor-element-1d1ab7d .wdt-custom-portfolio-image-box .wdt-content-image-wrapper .wdt-content-image > a,
 	.elementor-751 .elementor-element-1d1ab7d .wdt-custom-portfolio-image-box .wdt-content-image-wrapper .wdt-content-image > span,
+	.elementor-751 .elementor-element-edfa8e2 .wdt-custom-portfolio-image-box .wdt-content-image-wrapper .wdt-content-image,
+	.elementor-751 .elementor-element-edfa8e2 .wdt-custom-portfolio-image-box .wdt-content-image-wrapper .wdt-content-image > a,
+	.elementor-751 .elementor-element-edfa8e2 .wdt-custom-portfolio-image-box .wdt-content-image-wrapper .wdt-content-image > span,
 	.elementor-751 .elementor-element-1d1ab7d .wdt-content-item .wdt-media-image-overlay > .wdt-content-image-wrapper .wdt-content-image,
 	.elementor-751 .elementor-element-1d1ab7d .wdt-content-item .wdt-media-image-overlay > .wdt-content-image-wrapper .wdt-content-image > a,
 	.elementor-751 .elementor-element-1d1ab7d .wdt-content-item .wdt-media-image-overlay > .wdt-content-image-wrapper .wdt-content-image > span {
 		display: block !important;
 		width: 100% !important;
 		max-width: 100% !important;
-		min-width: 100% !important;
+		min-width: 0 !important;
 		height: auto !important;
 		min-height: clamp(11.25rem, 54vw, 15.5rem) !important;
 		max-height: none !important;
@@ -865,7 +868,27 @@
 	}
 }
 
-/* Móvil — «Soluciones para tu marca» (wdt-custom-home-image-box): anula Printme + ancho completo. */
+/* Móvil — «Soluciones para tu marca»: oculta en ≤767px (solo escritorio/tablet). */
+@media (max-width: 767px) {
+	.elementor-751 .elementor-element.elementor-element-693ab46,
+	.elementor-751 .elementor-element.elementor-element-693ab46.elementor-hidden-mobile,
+	.elementor-751 .elementor-element.elementor-element-acaee6e,
+	.elementor-751 .elementor-element.elementor-element-acaee6e.elementor-hidden-mobile,
+	.elementor-751 #servicios.elementor-top-section,
+	.elementor-751 section#servicios {
+		display: none !important;
+		visibility: hidden !important;
+		height: 0 !important;
+		min-height: 0 !important;
+		max-height: 0 !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		overflow: hidden !important;
+		pointer-events: none !important;
+	}
+}
+
+/* Móvil — estilos legacy del grid (solo si la sección volviera a mostrarse). */
 @media (max-width: 767px) {
 	.elementor-751 .elementor-element-693ab46,
 	.elementor-751 .elementor-element-acaee6e,

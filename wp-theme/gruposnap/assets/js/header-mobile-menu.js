@@ -128,19 +128,6 @@
         );
     }
 
-    function bindMobileMenuFooter($menu) {
-        $menu.find('.gruposnap-mobile-menu__a11y').off('click.gruposnap').on('click.gruposnap', function () {
-            if (window.GrupoSnapA11y && typeof window.GrupoSnapA11y.toggle === 'function') {
-                window.GrupoSnapA11y.toggle();
-                return;
-            }
-            var fab = document.querySelector('.gsnap-a11y-fab');
-            if (fab) {
-                fab.click();
-            }
-        });
-    }
-
     /**
      * Panel Printme en body al abrir MENU.
      *
@@ -199,7 +186,6 @@
         $menu.prepend($brand);
         $menu.append($footer);
 
-        bindMobileMenuFooter($menu);
         bindMobileMenuClose($menu);
         bindSwipeClose($menu);
         mountLangSwitchLater();

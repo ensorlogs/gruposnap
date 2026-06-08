@@ -753,9 +753,9 @@ body.elementor-page-751 #header-wrapper {
 
 	.elementor-751 .elementor-element.elementor-element-650305b {
 		margin-top: 0 !important;
-		padding-top: 100px !important;
-		padding-bottom: 1.5rem !important;
-		min-height: auto !important;
+		padding-top: clamp(5.5rem, 16vw, 6.75rem) !important;
+		padding-bottom: clamp(1.25rem, 4vw, 2rem) !important;
+		min-height: min(62vh, 560px) !important;
 		overflow: visible !important;
 	}
 
@@ -778,7 +778,7 @@ body.elementor-page-751 #header-wrapper {
 		margin-left: 0 !important;
 		margin-right: 0 !important;
 		margin-inline: unset !important;
-		min-height: min(72vh, 680px) !important;
+		min-height: 0 !important;
 		position: relative !important;
 		z-index: 5 !important;
 	}
@@ -862,6 +862,26 @@ body.elementor-page-751 #header-wrapper {
 
 	.elementor-751 .elementor-element.elementor-element-04501ce {
 		order: 2 !important;
+	}
+
+	/* Móvil: sin columna inferior (mockups + marcas) — duplica el hero apilado. */
+	.elementor-751 .elementor-element.elementor-element-650305b .elementor-element-04501ce,
+	.elementor-751 .elementor-element.elementor-element-650305b .elementor-element-87e8edf,
+	.elementor-751 .elementor-element.elementor-element-650305b .elementor-element-bfd27b4,
+	.elementor-751 .elementor-element.elementor-element-650305b .gruposnap-brands-strip,
+	.elementor-element-650305b .elementor-element-04501ce,
+	.elementor-element-650305b .elementor-element-87e8edf,
+	.elementor-element-650305b .elementor-element-bfd27b4,
+	.elementor-element-650305b .gruposnap-brands-strip {
+		display: none !important;
+		visibility: hidden !important;
+		height: 0 !important;
+		min-height: 0 !important;
+		max-height: 0 !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		overflow: hidden !important;
+		pointer-events: none !important;
 	}
 
 	/* Móvil: sin columna lateral (redes + scroll). */
@@ -1243,9 +1263,25 @@ body.elementor-page-751 #header-wrapper {
 		order: 2 !important;
 	}
 
+	.elementor-element-650305b .elementor-element-04501ce,
+	.elementor-element-650305b .elementor-element-87e8edf,
+	.elementor-element-650305b .elementor-element-bfd27b4,
+	.elementor-element-650305b .gruposnap-brands-strip {
+		display: none !important;
+		visibility: hidden !important;
+		height: 0 !important;
+		min-height: 0 !important;
+		max-height: 0 !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		overflow: hidden !important;
+		pointer-events: none !important;
+	}
+
 	.elementor-element-650305b .elementor-element-82f3f66 > .elementor-element-populated {
 		background: #f8fafc !important;
 		border-radius: 12px !important;
+		box-shadow: 0 8px 32px rgba(17, 43, 117, 0.12) !important;
 		padding: clamp(1.25rem, 5vw, 2rem) clamp(1rem, 4vw, 1.5rem) !important;
 		text-align: center !important;
 		overflow: hidden !important;

@@ -471,11 +471,71 @@ function gruposnap_home_hero_fix_section_html(string $content): string
     }
 
     $hero_html = substr($content, $section_start, $section_end - $section_start);
-    $fixed = gruposnap_home_hero_patch_media(
+    $fixed     = gruposnap_home_hero_patch_media(
         gruposnap_home_hero_strip_animation_settings($hero_html)
     );
+    $fixed     = gruposnap_home_hero_strip_duplicate_mobile_section($fixed);
 
     return substr($content, 0, $section_start) . $fixed . substr($content, $section_end);
+}
+
+/**
+ * Quita el bloque móvil legacy 47df02b del HTML cacheado (evita hero duplicado).
+ */
+function gruposnap_home_hero_strip_duplicate_mobile_section(string $html): string
+{
+    if (!str_contains($html, 'elementor-element-' . GRUPOSNAP_HOME_HERO_MOBILE_SECTION_ID)) {
+        return $html;
+    }
+
+    $needle = 'elementor-element-' . GRUPOSNAP_HOME_HERO_MOBILE_SECTION_ID;
+    $marker = strpos($html, $needle);
+    if (false === $marker) {
+        return $html;
+    }
+
+    $section_start = strrpos(substr($html, 0, $marker), '<section');
+    if (false === $section_start) {
+        $section_start = strrpos(substr($html, 0, $marker), '<div');
+    }
+    if (false === $section_start) {
+        return $html;
+    }
+
+    $depth       = 0;
+    $len         = strlen($html);
+    $i           = $section_start;
+    $section_end = null;
+    $tag_name    = str_starts_with(substr($html, $section_start, 8), '<section') ? 'section' : 'div';
+    $close_pat   = $tag_name === 'section' ? '</section>' : '</div>';
+
+    while ($i < $len) {
+        if (!preg_match('/<\/?' . $tag_name . '\b/i', $html, $match, PREG_OFFSET_CAPTURE, $i)) {
+            break;
+        }
+
+        $tag = $match[0][0];
+        $pos = (int) $match[0][1];
+
+        if (stripos($tag, $close_pat) === 0) {
+            --$depth;
+            if ($depth === 0) {
+                $gt = strpos($html, '>', $pos);
+                $section_end = false !== $gt ? $gt + 1 : $pos + strlen($tag);
+                break;
+            }
+        } else {
+            ++$depth;
+        }
+
+        $i = $pos + strlen($tag);
+    }
+
+    if (null === $section_end) {
+        return $html;
+    }
+
+    return substr($html, 0, $section_start) . substr($html, $section_end);
 }
 
 /**
@@ -796,7 +856,7 @@ function gruposnap_home_hero_reveal_style(): void
             margin-left: 0 !important;
             margin-right: 0 !important;
             margin-inline: unset !important;
-            min-height: min(72vh, 680px) !important;
+            min-height: 0 !important;
         }
         .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-a5d8162 .elementor-widget,
         .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-a5d8162 .elementor-column,
@@ -815,12 +875,20 @@ function gruposnap_home_hero_reveal_style(): void
             flex-direction: column !important;
             z-index: 12 !important;
         }
-        .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-82f3f66,
-        .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-04501ce {
+        .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-82f3f66 {
             width: 100% !important;
             max-width: 100% !important;
             display: block !important;
             z-index: 13 !important;
+        }
+        .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-04501ce,
+        .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-87e8edf,
+        .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-bfd27b4,
+        .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .gruposnap-brands-strip {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            overflow: hidden !important;
         }
         .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-85b941c > .elementor-element-populated,
         .elementor-751 .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-85b941c .elementor-widget-wrap {
@@ -1018,7 +1086,7 @@ function gruposnap_home_hero_reveal_script(): void
 
             if (window.innerWidth <= 767) {
                 hero.querySelectorAll(
-                    '.elementor-element-c4dc9ca, .elementor-element-3eb4a8b, .elementor-element-8afe48e, .wdt-custom-slider-scroll, .wdt-custom-slider-social-icons'
+                    '.elementor-element-c4dc9ca, .elementor-element-3eb4a8b, .elementor-element-8afe48e, .elementor-element-04501ce, .elementor-element-87e8edf, .elementor-element-bfd27b4, .gruposnap-brands-strip, .wdt-custom-slider-scroll, .wdt-custom-slider-social-icons'
                 ).forEach(function (el) {
                     el.style.setProperty('display', 'none', 'important');
                     el.style.setProperty('visibility', 'hidden', 'important');
@@ -1148,8 +1216,13 @@ function gruposnap_home_hero_rescue_footer_css(): void
             overflow: visible !important;
             position: relative !important;
             z-index: 20 !important;
-            min-height: 280px !important;
+            min-height: 0 !important;
             width: 100% !important;
+        }
+        .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-82f3f66 > .elementor-element-populated {
+            background: #f8fafc !important;
+            border-radius: 12px !important;
+            box-shadow: 0 8px 32px rgba(17, 43, 117, 0.12) !important;
         }
         .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-35290fa {
             display: none !important;
@@ -1188,8 +1261,18 @@ function gruposnap_home_hero_rescue_footer_css(): void
         .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-82f3f66 {
             order: 1 !important;
         }
-        .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-04501ce {
-            order: 2 !important;
+        .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-04501ce,
+        .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-87e8edf,
+        .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-bfd27b4,
+        .elementor-element-<?php echo esc_attr($section); ?> .gruposnap-brands-strip {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            min-height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+            pointer-events: none !important;
         }
         .elementor-element-<?php echo esc_attr($section); ?> .elementor-widget,
         .elementor-element-<?php echo esc_attr($section); ?> .elementor-widget-container,

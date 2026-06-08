@@ -394,12 +394,6 @@ html.gsnap-a11y-contrast img {
 	filter: grayscale(15%) contrast(115%);
 }
 
-@media (max-width: 1023px) {
-	button.gsnap-a11y-fab {
-		display: none !important;
-	}
-}
-
 @media (max-width: 640px) {
 	:root {
 		--gsnap-fab-inset: 0.65rem;
