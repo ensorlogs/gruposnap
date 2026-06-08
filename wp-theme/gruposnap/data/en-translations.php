@@ -110,6 +110,7 @@ return [
     'Gerente de marketing' => 'Marketing manager',
     'Guardar preferencias' => 'Save preferences',
     'Material corporativo' => 'Corporate materials',
+    'Merchandising Promocional' => 'Promotional merchandising',
     'Personalizacion 100%' => '100% Customization',
     'Personalización 100%' => '100% Customization',
     'Producción editorial' => 'Editorial production',

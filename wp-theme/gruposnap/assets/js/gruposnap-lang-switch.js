@@ -1,5 +1,5 @@
 /*!
- * GrupoSnap · Language switch (ES / EN)
+ * GrupoSnap · Language switch — un botón ES/EN con ambas banderas (toggle).
  */
 (function () {
     'use strict';
@@ -87,46 +87,52 @@
         var img = d.createElement('img');
         var prefix = assetsPrefix();
         img.src = prefix + 'img/flag-' + (code === 'en' ? 'usa' : 'venezuela') + '.svg';
-        img.alt = code === 'en' ? 'English' : 'Español';
+        img.alt = '';
         img.width = 16;
         img.height = 11;
         img.setAttribute('width', '16');
         img.setAttribute('height', '11');
         img.decoding = 'async';
         img.loading = 'eager';
-        img.className = 'gruposnap-lang-switch__flag';
+        img.className = 'gruposnap-lang-switch__flag gruposnap-lang-switch__flag--' + code;
+        img.setAttribute('aria-hidden', 'true');
         return img;
     }
 
-    function makeBtn(code, label, lang) {
+    function makeToggleBtn(lang) {
+        var targetLang = lang === 'en' ? 'es' : 'en';
         var btn = d.createElement('button');
         btn.type = 'button';
-        btn.className = 'gruposnap-lang-switch__btn';
-        btn.appendChild(makeFlagImg(code));
+        btn.className = 'gruposnap-lang-switch__btn is-' + lang;
+        btn.setAttribute(
+            'aria-label',
+            lang === 'en' ? 'Cambiar a español (ES)' : 'Switch to English (EN)'
+        );
+        btn.setAttribute('title', lang === 'en' ? 'Español' : 'English');
+
+        var flags = d.createElement('span');
+        flags.className = 'gruposnap-lang-switch__flags';
+        flags.setAttribute('aria-hidden', 'true');
+        flags.appendChild(makeFlagImg('es'));
+        flags.appendChild(makeFlagImg('en'));
+        btn.appendChild(flags);
+
         var text = d.createElement('span');
         text.className = 'gruposnap-lang-switch__code';
-        text.textContent = label;
+        text.textContent = 'ES/EN';
         btn.appendChild(text);
-        btn.setAttribute('lang', code);
-        if (code === lang) {
-            btn.classList.add('is-active');
-            btn.disabled = true;
-            btn.setAttribute('aria-current', 'true');
-        } else {
-            btn.setAttribute(
-                'aria-label',
-                code === 'en' ? 'Switch to English' : 'Cambiar a español'
-            );
-            btn.addEventListener('click', function () {
-                var url = resolveAltUrl(code);
-                if (url) {
-                    try {
-                        localStorage.setItem('gruposnap_lang', code);
-                    } catch (e) {}
-                    d.location.assign(url);
-                }
-            });
-        }
+
+        btn.addEventListener('click', function () {
+            var url = resolveAltUrl(targetLang);
+            if (!url) {
+                return;
+            }
+            try {
+                localStorage.setItem('gruposnap_lang', targetLang);
+            } catch (e) {}
+            d.location.assign(url);
+        });
+
         return btn;
     }
 
@@ -136,8 +142,7 @@
         nav.id = id;
         nav.className = 'gruposnap-lang-switch ' + extraClass;
         nav.setAttribute('aria-label', lang === 'en' ? 'Language' : 'Idioma');
-        nav.appendChild(makeBtn('es', 'ES', lang));
-        nav.appendChild(makeBtn('en', 'EN', lang));
+        nav.appendChild(makeToggleBtn(lang));
         return nav;
     }
 

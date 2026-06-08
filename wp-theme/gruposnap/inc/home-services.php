@@ -20,7 +20,7 @@ const GRUPOSNAP_HOME_SERVICES_PORTFOLIO_SECTION_IDS = array(
 /** Catálogo edfa8e2 — 5 tarjetas verticales tipo story (escritorio). */
 const GRUPOSNAP_HOME_CATALOG_STORY_WIDGET_IDS = array(
     'f6d4d5a', /* Pendones y posters */
-    'fcb5fb4', /* Material corporativo */
+    'fcb5fb4', /* Merchandising promocional */
     '303fa43', /* Branding de espacios */
     '0a88f17', /* Desarrollo web / APPS */
     'e65dc9f', /* Uniformes y textil */
@@ -35,6 +35,9 @@ const GRUPOSNAP_HOME_CATALOG_HIDDEN_WIDGET_IDS = array(
 /** Widget «Branding de espacios» — sin subtítulo «Personalización 100%». */
 const GRUPOSNAP_HOME_CATALOG_BRANDING_WIDGET_ID = '303fa43';
 
+/** Widget catálogo (antes «Material corporativo» → Merchandising promocional). */
+const GRUPOSNAP_HOME_CATALOG_MERCH_WIDGET_ID = 'fcb5fb4';
+
 /** Widget catálogo (antes «Activación de eventos» → Desarrollo web / APPS). */
 const GRUPOSNAP_HOME_CATALOG_EVENTS_WIDGET_ID = '0a88f17';
 
@@ -46,6 +49,45 @@ function gruposnap_home_catalog_branding_card_title(): string
     return (string) apply_filters(
         'gruposnap_home_catalog_branding_card_title',
         'Branding Espacios'
+    );
+}
+
+/**
+ * Imagen de la tarjeta «Branding espacios».
+ */
+function gruposnap_home_catalog_branding_card_image_url(): string
+{
+    $theme_path = get_stylesheet_directory() . '/assets/images/services/branding-espacios.jpg';
+    $theme_uri  = get_stylesheet_directory_uri() . '/assets/images/services/branding-espacios.jpg';
+
+    return (string) apply_filters(
+        'gruposnap_home_catalog_branding_card_image_url',
+        file_exists($theme_path) ? $theme_uri : $theme_uri
+    );
+}
+
+/**
+ * Título visible de la tarjeta «Merchandising promocional» (widget fcb5fb4).
+ */
+function gruposnap_home_catalog_merch_card_title(): string
+{
+    return (string) apply_filters(
+        'gruposnap_home_catalog_merch_card_title',
+        'Merchandising Promocional'
+    );
+}
+
+/**
+ * Imagen de la tarjeta «Merchandising promocional».
+ */
+function gruposnap_home_catalog_merch_card_image_url(): string
+{
+    $theme_path = get_stylesheet_directory() . '/assets/images/services/merchandising-promocional.jpg';
+    $theme_uri  = get_stylesheet_directory_uri() . '/assets/images/services/merchandising-promocional.jpg';
+
+    return (string) apply_filters(
+        'gruposnap_home_catalog_merch_card_image_url',
+        file_exists($theme_path) ? $theme_uri : $theme_uri
     );
 }
 
@@ -87,11 +129,85 @@ function gruposnap_home_catalog_card_titles_content(string $content, $widget): s
     $widget_id = $widget->get_id();
 
     if ($widget_id === GRUPOSNAP_HOME_CATALOG_BRANDING_WIDGET_ID) {
-        return (string) preg_replace(
+        $title = gruposnap_home_catalog_branding_card_title();
+        $image = gruposnap_home_catalog_branding_card_image_url();
+        $alt   = esc_attr__('Branding de espacios corporativos', 'gruposnap');
+
+        $content = (string) preg_replace(
             '/Branding\s+de\s+espacios/iu',
-            gruposnap_home_catalog_branding_card_title(),
+            $title,
             $content
         );
+
+        if (preg_match('/<img\b/i', $content)) {
+            $content = (string) preg_replace(
+                '/(<img\b[^>]*\bsrc=")([^"]+)(")/i',
+                '$1' . esc_url($image) . '$3',
+                $content,
+                1
+            );
+            $content = (string) preg_replace('/\bsrcset="[^"]*"/i', '', $content);
+            $content = (string) preg_replace('/\bsizes="[^"]*"/i', '', $content);
+
+            if (preg_match('/<img\b[^>]*\balt="/i', $content)) {
+                $content = (string) preg_replace(
+                    '/(<img\b[^>]*\bsrc="' . preg_quote(esc_url($image), '/') . '"[^>]*?)alt="[^"]*"/i',
+                    '$1alt="' . $alt . '"',
+                    $content,
+                    1
+                );
+            } else {
+                $content = (string) preg_replace(
+                    '/(<img\b[^>]*\bsrc="' . preg_quote(esc_url($image), '/') . '")/i',
+                    '$1 alt="' . $alt . '"',
+                    $content,
+                    1
+                );
+            }
+        }
+
+        return $content;
+    }
+
+    if ($widget_id === GRUPOSNAP_HOME_CATALOG_MERCH_WIDGET_ID) {
+        $title = gruposnap_home_catalog_merch_card_title();
+        $image = gruposnap_home_catalog_merch_card_image_url();
+        $alt   = esc_attr__('Merchandising promocional', 'gruposnap');
+
+        $content = (string) preg_replace(
+            '/Material\s+corporativo/iu',
+            $title,
+            $content
+        );
+
+        if (preg_match('/<img\b/i', $content)) {
+            $content = (string) preg_replace(
+                '/(<img\b[^>]*\bsrc=")([^"]+)(")/i',
+                '$1' . esc_url($image) . '$3',
+                $content,
+                1
+            );
+            $content = (string) preg_replace('/\bsrcset="[^"]*"/i', '', $content);
+            $content = (string) preg_replace('/\bsizes="[^"]*"/i', '', $content);
+
+            if (preg_match('/<img\b[^>]*\balt="/i', $content)) {
+                $content = (string) preg_replace(
+                    '/(<img\b[^>]*\bsrc="' . preg_quote(esc_url($image), '/') . '"[^>]*?)alt="[^"]*"/i',
+                    '$1alt="' . $alt . '"',
+                    $content,
+                    1
+                );
+            } else {
+                $content = (string) preg_replace(
+                    '/(<img\b[^>]*\bsrc="' . preg_quote(esc_url($image), '/') . '")/i',
+                    '$1 alt="' . $alt . '"',
+                    $content,
+                    1
+                );
+            }
+        }
+
+        return $content;
     }
 
     if ($widget_id === GRUPOSNAP_HOME_CATALOG_EVENTS_WIDGET_ID) {

@@ -50,7 +50,7 @@
 		z-index: 2 !important;
 	}
 
-	.elementor-751 .elementor-element-303fa43 .wdt-content-detail-group .wdt-content-title {
+	.elementor-751 .elementor-element-1d1ab7d .elementor-element-303fa43 .wdt-content-detail-group .wdt-content-title {
 		margin-top: -0.75rem !important;
 	}
 }
@@ -209,8 +209,34 @@
 	.elementor-751 .elementor-element-edfa8e2 .elementor-element-303fa43 .wdt-content-detail-group,
 	.elementor-751 .elementor-element-edfa8e2 .elementor-element-0a88f17 .wdt-content-detail-group,
 	.elementor-751 .elementor-element-edfa8e2 .elementor-element-e65dc9f .wdt-content-detail-group {
+		display: flex !important;
+		flex-direction: column !important;
+		justify-content: flex-end !important;
+		align-items: center !important;
+		align-self: stretch !important;
+		width: 100% !important;
+		height: 100% !important;
+		min-height: 100% !important;
+		padding: clamp(1.5rem, 2.2vw, 2.15rem) clamp(0.65rem, 1vw, 1rem) clamp(1.15rem, 1.6vw, 1.75rem) !important;
+		box-sizing: border-box !important;
 		transform: none !important;
 		-webkit-transform: none !important;
+		text-align: center !important;
+	}
+
+	/* Títulos centrados horizontalmente, anclados al degradado inferior. */
+	.elementor-751 .elementor-element-edfa8e2 .wdt-content-detail-group .wdt-content-title,
+	.elementor-751 .elementor-element-edfa8e2 .wdt-content-detail-group .wdt-content-elements-group,
+	.elementor-751 .elementor-element-edfa8e2 .wdt-content-detail-group .wdt-content-title h5,
+	.elementor-751 .elementor-element-edfa8e2 .wdt-content-detail-group .wdt-content-title h5 a {
+		width: 100% !important;
+		max-width: 100% !important;
+		text-align: center !important;
+		justify-content: center !important;
+		margin-top: 0 !important;
+		margin-bottom: 0 !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
 	}
 }
 
