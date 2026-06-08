@@ -2,6 +2,21 @@
  * Home hero (650305b) — visible en desktop, tablet y móvil.
  */
 
+/* Hero duplicado legacy (71e8394): solo móvil en datos viejos de Elementor. */
+.elementor-751 .elementor-element.elementor-element-71e8394,
+.elementor-751 .elementor-element.elementor-element-71e8394.elementor-hidden-desktop,
+.elementor-751 .elementor-element.elementor-element-71e8394.elementor-hidden-tablet {
+	display: none !important;
+	visibility: hidden !important;
+	height: 0 !important;
+	min-height: 0 !important;
+	max-height: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	overflow: hidden !important;
+	pointer-events: none !important;
+}
+
 body.home .inner-wrapper,
 body.page-id-751 .inner-wrapper,
 body.elementor-page-751 .inner-wrapper {

@@ -528,41 +528,19 @@
 }
 
 @media (max-width: 767px) {
-	/* Bloque Nosotros solo móvil (a783519): mismo párrafo corto que escritorio. */
-	.elementor-751 .elementor-element.elementor-element-a783519 {
-		padding: clamp(1rem, 4vw, 1.5rem) clamp(1rem, 4vw, 1.25rem) 1.25rem !important;
-	}
-
-	.elementor-751 .elementor-element.elementor-element-f29b9db .wdt-heading-content-wrapper:not(.gruposnap-about-intro) p:not(:first-of-type),
-	.elementor-751 .elementor-element.elementor-element-f29b9db .gruposnap-about-intro p:not(:first-of-type) {
+	/* Legacy: bloque «Sobre GrupoSnap» solo móvil (a783519) — no debe mostrarse en responsive. */
+	.elementor-751 .elementor-element.elementor-element-a783519,
+	.elementor-751 .elementor-element.elementor-element-a783519.elementor-hidden-desktop,
+	.elementor-751 .elementor-element.elementor-element-a783519.elementor-hidden-tablet {
 		display: none !important;
-	}
-
-	.elementor-751 .elementor-element.elementor-element-f29b9db .wdt-heading-content-wrapper,
-	.elementor-751 .elementor-element.elementor-element-f29b9db .gruposnap-about-intro {
-		display: block !important;
-		max-width: min(34rem, 100%) !important;
-		margin-left: auto !important;
-		margin-right: auto !important;
-		text-align: center !important;
-		font-size: clamp(0.9375rem, 3.8vw, 1.0625rem) !important;
-		font-weight: 600 !important;
-		line-height: 1.62 !important;
-	}
-
-	.elementor-751 .elementor-element.elementor-element-f29b9db .gruposnap-about-intro,
-	.elementor-751 .elementor-element.elementor-element-f29b9db .wdt-heading-content-wrapper.gruposnap-about-intro {
-		color: #000000 !important;
-		text-shadow: none !important;
-	}
-
-	.elementor-751 .elementor-element.elementor-element-f29b9db .wdt-heading-content-wrapper p,
-	.elementor-751 .elementor-element.elementor-element-f29b9db .gruposnap-about-intro__text {
-		color: #000000 !important;
+		visibility: hidden !important;
+		height: 0 !important;
+		min-height: 0 !important;
+		max-height: 0 !important;
 		margin: 0 !important;
-		font-weight: 600 !important;
-		font-size: inherit !important;
-		line-height: inherit !important;
+		padding: 0 !important;
+		overflow: hidden !important;
+		pointer-events: none !important;
 	}
 
 	.elementor-751 .elementor-element.elementor-element-46cb44b {

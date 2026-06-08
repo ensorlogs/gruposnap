@@ -318,6 +318,7 @@
 	}
 
 	.elementor-751 .elementor-element.elementor-element-5ae8011,
+	.elementor-751 .elementor-element.elementor-element-0f7d283,
 	.elementor-751 .elementor-element.elementor-element-efbc9f6 {
 		display: none !important;
 	}
@@ -868,12 +869,14 @@
 	}
 }
 
-/* Móvil — «Soluciones para tu marca»: oculta en ≤767px (solo escritorio/tablet). */
+/* Móvil — «Soluciones para tu marca» y catálogo legacy: ocultos en ≤767px. */
 @media (max-width: 767px) {
 	.elementor-751 .elementor-element.elementor-element-693ab46,
 	.elementor-751 .elementor-element.elementor-element-693ab46.elementor-hidden-mobile,
 	.elementor-751 .elementor-element.elementor-element-acaee6e,
 	.elementor-751 .elementor-element.elementor-element-acaee6e.elementor-hidden-mobile,
+	.elementor-751 .elementor-element.elementor-element-5ae8011,
+	.elementor-751 .elementor-element.elementor-element-0f7d283,
 	.elementor-751 #servicios.elementor-top-section,
 	.elementor-751 section#servicios {
 		display: none !important;

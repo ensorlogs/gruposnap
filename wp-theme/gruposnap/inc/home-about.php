@@ -11,6 +11,7 @@ if (!defined('ABSPATH')) {
 
 const GRUPOSNAP_HOME_ABOUT_SECTION_ID        = '46cb44b';
 const GRUPOSNAP_HOME_ABOUT_MOBILE_SECTION_ID = 'a783519';
+const GRUPOSNAP_HOME_ABOUT_FIX_VERSION       = '1';
 const GRUPOSNAP_HOME_ABOUT_COLUMN_ID         = '7332389';
 /** Escritorio (46cb44b, oculto en móvil). */
 const GRUPOSNAP_HOME_ABOUT_HEADING_ID = 'f92bae7';
@@ -367,6 +368,67 @@ function gruposnap_home_about_bust_elementor_cache(): void
     update_option('gruposnap_home_about_cache_version', GRUPOSNAP_THEME_VERSION, false);
 }
 
+/**
+ * Elimina el bloque Nosotros solo móvil (a783519) de datos Elementor legacy en producción.
+ *
+ * @param array<int, array<string, mixed>> $nodes
+ */
+function gruposnap_home_about_prune_mobile_section(array &$nodes, bool &$needs_save): void
+{
+    foreach ($nodes as $key => &$node) {
+        if (!is_array($node)) {
+            continue;
+        }
+
+        if (($node['id'] ?? '') === GRUPOSNAP_HOME_ABOUT_MOBILE_SECTION_ID) {
+            unset($nodes[$key]);
+            $needs_save = true;
+            continue;
+        }
+
+        if (!empty($node['elements']) && is_array($node['elements'])) {
+            gruposnap_home_about_prune_mobile_section($node['elements'], $needs_save);
+            $node['elements'] = array_values($node['elements']);
+        }
+    }
+
+    $nodes = array_values($nodes);
+}
+
+/**
+ * Quita a783519 («Sobre GrupoSnap» móvil) del árbol Elementor de la home.
+ */
+function gruposnap_home_about_fix_elementor_data(): void
+{
+    if (get_option('gruposnap_home_about_fix_version') === GRUPOSNAP_HOME_ABOUT_FIX_VERSION) {
+        return;
+    }
+
+    $raw = get_post_meta(751, '_elementor_data', true);
+    if (!is_string($raw) || $raw === '') {
+        return;
+    }
+
+    $data = json_decode($raw, true);
+    if (!is_array($data)) {
+        return;
+    }
+
+    $needs_save = false;
+    gruposnap_home_about_prune_mobile_section($data, $needs_save);
+
+    if (!$needs_save) {
+        update_option('gruposnap_home_about_fix_version', GRUPOSNAP_HOME_ABOUT_FIX_VERSION, false);
+
+        return;
+    }
+
+    update_post_meta(751, '_elementor_data', wp_slash(wp_json_encode($data)));
+    delete_post_meta(751, '_elementor_element_cache');
+    delete_post_meta(751, '_elementor_css');
+    update_option('gruposnap_home_about_fix_version', GRUPOSNAP_HOME_ABOUT_FIX_VERSION, false);
+}
+
 function gruposnap_home_experience_dom_fallback(): void
 {
     if (!gruposnap_should_style_home_about()) {
@@ -550,6 +612,8 @@ function gruposnap_home_experience_dom_fallback(): void
     <?php
 }
 
+add_action('init', 'gruposnap_home_about_fix_elementor_data', 0);
+add_action('admin_init', 'gruposnap_home_about_fix_elementor_data', 0);
 add_action('init', 'gruposnap_home_about_bust_elementor_cache', 1);
 add_filter('elementor/widget/render_content', 'gruposnap_home_about_hide_photo_experience_widgets', 4, 2);
 add_filter('elementor/widget/render_content', 'gruposnap_home_about_heading_content', 10, 2);

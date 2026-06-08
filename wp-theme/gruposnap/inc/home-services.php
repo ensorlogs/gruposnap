@@ -22,7 +22,7 @@ const GRUPOSNAP_HOME_CATALOG_STORY_WIDGET_IDS = array(
     'f6d4d5a', /* Pendones y posters */
     'fcb5fb4', /* Material corporativo */
     '303fa43', /* Branding de espacios */
-    '0a88f17', /* Activación de eventos */
+    '0a88f17', /* Desarrollo web / APPS */
     'e65dc9f', /* Uniformes y textil */
 );
 
@@ -35,7 +35,7 @@ const GRUPOSNAP_HOME_CATALOG_HIDDEN_WIDGET_IDS = array(
 /** Widget «Branding de espacios» — sin subtítulo «Personalización 100%». */
 const GRUPOSNAP_HOME_CATALOG_BRANDING_WIDGET_ID = '303fa43';
 
-/** Widget «Activación de eventos». */
+/** Widget catálogo (antes «Activación de eventos» → Desarrollo web / APPS). */
 const GRUPOSNAP_HOME_CATALOG_EVENTS_WIDGET_ID = '0a88f17';
 
 /**
@@ -50,13 +50,27 @@ function gruposnap_home_catalog_branding_card_title(): string
 }
 
 /**
- * Título visible de la tarjeta «Activacion eventos».
+ * Título visible de la tarjeta «Desarrollo web / APPS» (widget 0a88f17).
  */
 function gruposnap_home_catalog_events_card_title(): string
 {
     return (string) apply_filters(
         'gruposnap_home_catalog_events_card_title',
-        'Activacion Eventos'
+        'Desarrollo web / APPS'
+    );
+}
+
+/**
+ * Imagen de la tarjeta «Desarrollo web / APPS».
+ */
+function gruposnap_home_catalog_events_card_image_url(): string
+{
+    $theme_path = get_stylesheet_directory() . '/assets/images/services/desarrollo-web-apps.jpg';
+    $theme_uri  = get_stylesheet_directory_uri() . '/assets/images/services/desarrollo-web-apps.jpg';
+
+    return (string) apply_filters(
+        'gruposnap_home_catalog_events_card_image_url',
+        file_exists($theme_path) ? $theme_uri : $theme_uri
     );
 }
 
@@ -81,11 +95,44 @@ function gruposnap_home_catalog_card_titles_content(string $content, $widget): s
     }
 
     if ($widget_id === GRUPOSNAP_HOME_CATALOG_EVENTS_WIDGET_ID) {
-        return (string) preg_replace(
-            '/Activaci[oó]n\s+de\s+eventos/iu',
-            gruposnap_home_catalog_events_card_title(),
+        $title = gruposnap_home_catalog_events_card_title();
+        $image = gruposnap_home_catalog_events_card_image_url();
+        $alt   = esc_attr__('Desarrollo web y aplicaciones', 'gruposnap');
+
+        $content = (string) preg_replace(
+            '/Activaci[oó]n(\s+de\s+eventos|\s+eventos|Eventos)?/iu',
+            $title,
             $content
         );
+
+        if (preg_match('/<img\b/i', $content)) {
+            $content = (string) preg_replace(
+                '/(<img\b[^>]*\bsrc=")([^"]+)(")/i',
+                '$1' . esc_url($image) . '$3',
+                $content,
+                1
+            );
+            $content = (string) preg_replace('/\bsrcset="[^"]*"/i', '', $content);
+            $content = (string) preg_replace('/\bsizes="[^"]*"/i', '', $content);
+
+            if (preg_match('/<img\b[^>]*\balt="/i', $content)) {
+                $content = (string) preg_replace(
+                    '/(<img\b[^>]*\bsrc="' . preg_quote(esc_url($image), '/') . '"[^>]*?)alt="[^"]*"/i',
+                    '$1alt="' . $alt . '"',
+                    $content,
+                    1
+                );
+            } else {
+                $content = (string) preg_replace(
+                    '/(<img\b[^>]*\bsrc="' . preg_quote(esc_url($image), '/') . '")/i',
+                    '$1 alt="' . $alt . '"',
+                    $content,
+                    1
+                );
+            }
+        }
+
+        return $content;
     }
 
     return $content;
@@ -104,7 +151,7 @@ const GRUPOSNAP_HOME_SERVICES_SECTION_ID = '693ab46';
 const GRUPOSNAP_HOME_SERVICES_MOBILE_SECTION_ID = 'acaee6e';
 
 /** Versión del parche hide_mobile en la sección servicios. */
-const GRUPOSNAP_HOME_SERVICES_FIX_VERSION = '1';
+const GRUPOSNAP_HOME_SERVICES_FIX_VERSION = '2';
 
 /** Grid «Soluciones para tu marca» (sección #servicios / 693ab46). */
 const GRUPOSNAP_HOME_SERVICES_GRID_WIDGET_ID = '9a378ea';
@@ -337,14 +384,38 @@ function gruposnap_home_services_fix_elementor_data(): void
 
     $needs_save = false;
 
-    $walk = static function (array &$nodes) use (&$walk, &$needs_save): void {
-        foreach ($nodes as &$node) {
+    $legacy_top_ids = array(
+        GRUPOSNAP_HOME_CATALOG_MOBILE_SECTION_ID,
+        '0f7d283',
+    );
+
+    $before = count($data);
+    $data   = array_values(
+        array_filter(
+            $data,
+            static function ($node) use ($legacy_top_ids): bool {
+                return is_array($node) && !in_array($node['id'] ?? '', $legacy_top_ids, true);
+            }
+        )
+    );
+    if (count($data) !== $before) {
+        $needs_save = true;
+    }
+
+    $walk = static function (array &$nodes) use (&$walk, &$needs_save, $legacy_top_ids): void {
+        foreach ($nodes as $key => &$node) {
             if (!is_array($node)) {
                 continue;
             }
 
             $id       = $node['id'] ?? '';
             $settings = &$node['settings'];
+
+            if (in_array($id, $legacy_top_ids, true)) {
+                unset($nodes[$key]);
+                $needs_save = true;
+                continue;
+            }
 
             if (
                 $id === GRUPOSNAP_HOME_SERVICES_SECTION_ID
@@ -358,8 +429,11 @@ function gruposnap_home_services_fix_elementor_data(): void
 
             if (!empty($node['elements']) && is_array($node['elements'])) {
                 $walk($node['elements']);
+                $node['elements'] = array_values($node['elements']);
             }
         }
+
+        $nodes = array_values($nodes);
     };
 
     $walk($data);
@@ -491,6 +565,8 @@ function gruposnap_home_services_link_to_nosotros_script(): void
     $card_selector = implode(',', gruposnap_home_services_nosotros_card_selectors());
     $branding_title = gruposnap_home_catalog_branding_card_title();
     $events_title   = gruposnap_home_catalog_events_card_title();
+    $events_image   = esc_url(gruposnap_home_catalog_events_card_image_url());
+    $events_alt     = esc_attr__('Desarrollo web y aplicaciones', 'gruposnap');
     ?>
     <script id="gruposnap-home-services-link-nosotros">
     (function () {
@@ -498,6 +574,8 @@ function gruposnap_home_services_link_to_nosotros_script(): void
         var cardSelector = <?php echo wp_json_encode($card_selector); ?>;
         var brandingTitle = <?php echo wp_json_encode($branding_title); ?>;
         var eventsTitle = <?php echo wp_json_encode($events_title); ?>;
+        var eventsImage = <?php echo wp_json_encode($events_image); ?>;
+        var eventsAlt = <?php echo wp_json_encode($events_alt); ?>;
 
         function getNosotrosTarget() {
             return (
@@ -583,9 +661,20 @@ function gruposnap_home_services_link_to_nosotros_script(): void
             });
 
             document.querySelectorAll('.elementor-element-0a88f17 .wdt-content-title h5 a, .elementor-element-0a88f17 .wdt-content-title h5').forEach(function (el) {
-                if (/activaci[oó]n\s+de\s+eventos/i.test(el.textContent)) {
+                if (/activaci[oó]n(\s+de\s+eventos|\s+eventos)?/i.test(el.textContent)) {
                     el.textContent = eventsTitle;
                 }
+            });
+
+            document.querySelectorAll('.elementor-element-0a88f17 img').forEach(function (img) {
+                if (!eventsImage || img.getAttribute('src') === eventsImage) {
+                    return;
+                }
+
+                img.setAttribute('src', eventsImage);
+                img.removeAttribute('srcset');
+                img.removeAttribute('sizes');
+                img.setAttribute('alt', eventsAlt);
             });
         }
 

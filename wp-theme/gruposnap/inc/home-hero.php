@@ -17,8 +17,11 @@ const GRUPOSNAP_HOME_HERO_INNER_SECTION_ID = 'a5d8162';
 /** Inner section móvil (Elementor: hide_desktop + hide_tablet). */
 const GRUPOSNAP_HOME_HERO_MOBILE_SECTION_ID = '47df02b';
 
+/** Sección top-level legacy solo móvil (duplica 650305b en producción). */
+const GRUPOSNAP_HOME_HERO_LEGACY_TOP_SECTION_ID = '71e8394';
+
 /** Versión del parche de datos/caché del hero (incrementar al cambiar visibilidad móvil). */
-const GRUPOSNAP_HOME_HERO_FIX_VERSION = '5';
+const GRUPOSNAP_HOME_HERO_FIX_VERSION = '6';
 
 /** Columna vacía que reemplazó al bloque móvil en Elementor (live corrupto). */
 const GRUPOSNAP_HOME_HERO_BROKEN_MOBILE_COLUMN_ID = '078d495';
@@ -480,15 +483,15 @@ function gruposnap_home_hero_fix_section_html(string $content): string
 }
 
 /**
- * Quita el bloque móvil legacy 47df02b del HTML cacheado (evita hero duplicado).
+ * Quita un bloque Elementor (section o inner-section) del HTML por data-id.
  */
-function gruposnap_home_hero_strip_duplicate_mobile_section(string $html): string
+function gruposnap_strip_elementor_block_by_id(string $html, string $section_id): string
 {
-    if (!str_contains($html, 'elementor-element-' . GRUPOSNAP_HOME_HERO_MOBILE_SECTION_ID)) {
+    if (!str_contains($html, 'elementor-element-' . $section_id)) {
         return $html;
     }
 
-    $needle = 'elementor-element-' . GRUPOSNAP_HOME_HERO_MOBILE_SECTION_ID;
+    $needle = 'elementor-element-' . $section_id;
     $marker = strpos($html, $needle);
     if (false === $marker) {
         return $html;
@@ -536,6 +539,57 @@ function gruposnap_home_hero_strip_duplicate_mobile_section(string $html): strin
     }
 
     return substr($html, 0, $section_start) . substr($html, $section_end);
+}
+
+/**
+ * Quita el bloque móvil legacy 47df02b del HTML cacheado (evita hero duplicado).
+ */
+function gruposnap_home_hero_strip_duplicate_mobile_section(string $html): string
+{
+    return gruposnap_strip_elementor_block_by_id($html, GRUPOSNAP_HOME_HERO_MOBILE_SECTION_ID);
+}
+
+/**
+ * Quita secciones legacy del home (hero/about/catálogo duplicados en datos viejos de Elementor).
+ */
+function gruposnap_home_strip_legacy_sections(string $content): string
+{
+    if (!function_exists('gruposnap_is_home_front') || !gruposnap_is_home_front()) {
+        return $content;
+    }
+
+    if (gruposnap_is_elementor_editing_home_hero()) {
+        return $content;
+    }
+
+    $legacy_ids = array(
+        GRUPOSNAP_HOME_HERO_LEGACY_TOP_SECTION_ID,
+        GRUPOSNAP_HOME_HERO_MOBILE_SECTION_ID,
+    );
+
+    if (defined('GRUPOSNAP_HOME_ABOUT_MOBILE_SECTION_ID')) {
+        $legacy_ids[] = GRUPOSNAP_HOME_ABOUT_MOBILE_SECTION_ID;
+    }
+
+    if (defined('GRUPOSNAP_HOME_CATALOG_MOBILE_SECTION_ID')) {
+        $legacy_ids[] = GRUPOSNAP_HOME_CATALOG_MOBILE_SECTION_ID;
+    }
+
+    $legacy_ids[] = '0f7d283';
+
+    foreach (array_unique($legacy_ids) as $section_id) {
+        $guard = 0;
+        while (str_contains($content, 'elementor-element-' . $section_id) && $guard < 8) {
+            $next = gruposnap_strip_elementor_block_by_id($content, $section_id);
+            if ($next === $content) {
+                break;
+            }
+            $content = $next;
+            ++$guard;
+        }
+    }
+
+    return $content;
 }
 
 /**
@@ -658,6 +712,19 @@ function gruposnap_home_hero_fix_elementor_data(): void
 
     $needs_save = false;
 
+    $before = count($data);
+    $data     = array_values(
+        array_filter(
+            $data,
+            static function ($node): bool {
+                return is_array($node) && ($node['id'] ?? '') !== GRUPOSNAP_HOME_HERO_LEGACY_TOP_SECTION_ID;
+            }
+        )
+    );
+    if (count($data) !== $before) {
+        $needs_save = true;
+    }
+
     $walk = static function (array &$nodes, bool $in_hero = false, bool $in_desktop = false, bool $in_mobile = false) use (&$walk, &$needs_save): void {
         foreach ($nodes as &$node) {
             if (!is_array($node)) {
@@ -734,6 +801,8 @@ function gruposnap_home_hero_fix_elementor_data(): void
     $walk($data);
 
     if (!$needs_save) {
+        update_option('gruposnap_home_hero_fix_version', GRUPOSNAP_HOME_HERO_FIX_VERSION, false);
+
         return;
     }
 
@@ -831,6 +900,17 @@ function gruposnap_home_hero_reveal_style(): void
             position: relative !important;
             min-height: 480px !important;
         }
+    }
+    .elementor-751 .elementor-element.elementor-element-<?php echo esc_attr(GRUPOSNAP_HOME_HERO_LEGACY_TOP_SECTION_ID); ?> {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        max-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        pointer-events: none !important;
     }
     @media (max-width: 767px) {
         .elementor .elementor-element-<?php echo esc_attr($section); ?> .elementor-element-47df02b {
@@ -1500,6 +1580,7 @@ add_action('elementor/frontend/widget/before_render', 'gruposnap_home_hero_remov
 add_filter('elementor/widget/render_content', 'gruposnap_home_hero_hide_highlights_widget', 8, 2);
 add_filter('elementor/widget/render_content', 'gruposnap_home_hero_strip_invisible_class', 5, 2);
 add_filter('elementor/frontend/the_content', 'gruposnap_home_hero_fix_section_html', 8);
+add_filter('elementor/frontend/the_content', 'gruposnap_home_strip_legacy_sections', 9);
 add_filter('elementor/frontend/builder_content_data', 'gruposnap_home_hero_patch_document_data', 8, 2);
 add_action('wp_enqueue_scripts', 'gruposnap_enqueue_home_hero_assets', 9999);
 add_action('wp_head', 'gruposnap_home_hero_reveal_style', 3);

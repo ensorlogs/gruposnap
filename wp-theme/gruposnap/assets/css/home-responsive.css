@@ -4,7 +4,73 @@
 
 .elementor-751 {
 	--gs-home-gutter: clamp(1.125rem, 5vw, 1.5rem);
-	--gs-home-content-max: min(560px, calc(100vw - (2 * var(--gs-home-gutter))));
+	--gs-home-content-max: min(560px, calc(100% - (2 * var(--gs-home-gutter))));
+}
+
+/* Bloqueo horizontal + sin desbordes en móvil/tablet (evita pan/zoom lateral). */
+@media (max-width: 1024px) {
+	html.gruposnap-home-lock,
+	body.gruposnap-home-lock,
+	body.elementor-page-751.gruposnap-home-lock {
+		overflow-x: hidden !important;
+		max-width: 100% !important;
+		width: 100% !important;
+		overscroll-behavior-x: none;
+		-webkit-overflow-scrolling: touch;
+		touch-action: pan-y;
+	}
+
+	body.gruposnap-home-lock #page,
+	body.gruposnap-home-lock #main,
+	body.gruposnap-home-lock .inner-wrapper,
+	body.gruposnap-home-lock #primary,
+	body.gruposnap-home-lock .elementor,
+	body.gruposnap-home-lock .elementor-751,
+	body.gruposnap-home-lock .elementor-751 > .elementor-section-wrap,
+	body.gruposnap-home-lock #header-wrapper,
+	body.gruposnap-home-lock #footer-wrapper {
+		max-width: 100% !important;
+		overflow-x: clip !important;
+		overflow-x: hidden !important;
+	}
+
+	body.gruposnap-home-lock .elementor-751 .elementor-section.elementor-top-section,
+	body.gruposnap-home-lock .elementor-751 .elementor-section.elementor-inner-section {
+		max-width: 100% !important;
+		overflow-x: clip !important;
+		overflow-x: hidden !important;
+	}
+
+	/* Anula breakout full_width de Elementor (causa habitual de scroll horizontal). */
+	body.gruposnap-home-lock .elementor-751 .elementor-section.elementor-section-full_width {
+		width: 100% !important;
+		max-width: 100% !important;
+		left: auto !important;
+		right: auto !important;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		transform: none !important;
+	}
+
+	body.gruposnap-home-lock .elementor-751 .elementor-section.elementor-section-full_width > .elementor-container {
+		max-width: 100% !important;
+		width: 100% !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	body.gruposnap-home-lock .elementor-751 .swiper,
+	body.gruposnap-home-lock .elementor-751 .swiper-wrapper,
+	body.gruposnap-home-lock .elementor-751 .elementor-image-carousel-wrapper,
+	body.gruposnap-home-lock .elementor-751 .elementor-widget-wrap,
+	body.gruposnap-home-lock .elementor-751 .elementor-column {
+		max-width: 100% !important;
+		min-width: 0 !important;
+	}
+
+	body.gruposnap-home-lock .elementor-751 .elementor-element.elementor-element-71e8394 {
+		display: none !important;
+	}
 }
 
 body.elementor-page-751 {
@@ -106,7 +172,7 @@ body.elementor-page-751 {
 
 	.elementor-751 .gruposnap-marketing-heading .wdt-heading-title,
 	.elementor-751 .elementor-element-4d58045 .wdt-heading-title {
-		max-width: calc(100vw - (2 * var(--gs-home-gutter))) !important;
+		max-width: calc(100% - (2 * var(--gs-home-gutter))) !important;
 	}
 
 	/* Catálogo 2026 + embed Flipsnack. */
