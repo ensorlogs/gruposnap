@@ -46,12 +46,13 @@
 		align-items: center;
 		justify-content: center;
 		gap: 0.65rem;
-		padding: 0.85rem 3.75rem 1.25rem 1.25rem;
+		padding: 1rem 3.75rem 1.35rem;
 		background: #ffffff;
 		border-bottom: 1px solid rgba(17, 43, 117, 0.08);
 		position: relative;
 		z-index: 6;
 		touch-action: pan-y;
+		text-align: center;
 	}
 
 	body > .mobile-menu.gruposnap-mobile-menu button.gruposnap-mobile-menu__close {
@@ -125,11 +126,13 @@
 	.gruposnap-mobile-menu__logo {
 		display: block;
 		width: auto;
-		max-width: min(92vw, 340px);
+		max-width: min(100%, 240px);
 		height: auto;
-		max-height: 88px;
-		min-height: 56px;
+		max-height: none;
+		min-height: 0;
+		margin: 0 auto;
 		object-fit: contain;
+		object-position: center center;
 	}
 
 	/* Printme fija el ul a pantalla completa; lo devolvemos al flujo flex */
@@ -330,7 +333,6 @@
 	}
 
 	.gruposnap-mobile-menu__logo {
-		max-width: min(88vw, 320px);
-		max-height: 82px;
+		max-width: min(100%, 216px);
 	}
 }

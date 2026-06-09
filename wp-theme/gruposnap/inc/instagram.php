@@ -83,13 +83,105 @@ function gruposnap_instagram_get_posts(): array
     }
 
     $cached = get_transient(gruposnap_instagram_transient_key());
-    if (is_array($cached)) {
+    if (is_array($cached) && $cached !== array()) {
         return $cached;
+    }
+
+    $stored = get_option(gruposnap_instagram_option_key());
+    if (is_array($stored) && $stored !== array()) {
+        return $stored;
     }
 
     $posts = gruposnap_instagram_fetch_posts_from_api();
     if ($posts !== array()) {
-        set_transient(gruposnap_instagram_transient_key(), $posts, gruposnap_instagram_cache_ttl());
+        gruposnap_instagram_persist_posts($posts);
+        return $posts;
+    }
+
+    return gruposnap_instagram_get_static_fallback_posts();
+}
+
+/**
+ * @return string
+ */
+function gruposnap_instagram_option_key(): string
+{
+    return 'gruposnap_ig_posts_' . sanitize_key(gruposnap_instagram_username());
+}
+
+/**
+ * @param array<int, array{permalink:string,image:string,caption:string}> $posts
+ */
+function gruposnap_instagram_persist_posts(array $posts): void
+{
+    $posts = array_slice(array_values($posts), 0, 3);
+    if ($posts === array()) {
+        return;
+    }
+
+    set_transient(gruposnap_instagram_transient_key(), $posts, gruposnap_instagram_cache_ttl());
+    update_option(gruposnap_instagram_option_key(), $posts, false);
+}
+
+/**
+ * @return array<string, string>
+ */
+function gruposnap_instagram_request_headers(): array
+{
+    $username = gruposnap_instagram_username();
+
+    return array(
+        'User-Agent'      => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+        'Accept'          => '*/*',
+        'Accept-Language' => 'es-ES,es;q=0.9,en;q=0.8',
+        'Referer'         => 'https://www.instagram.com/' . rawurlencode($username) . '/',
+        'Origin'          => 'https://www.instagram.com',
+        'X-IG-App-ID'     => gruposnap_instagram_app_id(),
+        'X-Requested-With'=> 'XMLHttpRequest',
+    );
+}
+
+/**
+ * @return array<int, array{permalink:string,image:string,caption:string}>
+ */
+function gruposnap_instagram_get_static_fallback_posts(): array
+{
+    $file = get_stylesheet_directory() . '/data/instagram-fallback.php';
+    if (!is_readable($file)) {
+        return array();
+    }
+
+    $rows = include $file;
+    if (!is_array($rows) || $rows === array()) {
+        return array();
+    }
+
+    $base_uri = trailingslashit(get_stylesheet_directory_uri()) . 'assets/images/instagram/';
+    $posts    = array();
+
+    foreach (array_slice(array_values($rows), 0, 3) as $row) {
+        if (!is_array($row)) {
+            continue;
+        }
+
+        $image_file = isset($row['image_file']) ? (string) $row['image_file'] : '';
+        $permalink  = isset($row['permalink']) ? (string) $row['permalink'] : gruposnap_instagram_profile_url();
+        $caption    = isset($row['caption']) ? (string) $row['caption'] : '';
+
+        if ($image_file === '') {
+            continue;
+        }
+
+        $path = get_stylesheet_directory() . '/assets/images/instagram/' . basename($image_file);
+        if (!is_readable($path)) {
+            continue;
+        }
+
+        $posts[] = array(
+            'permalink' => $permalink,
+            'image'     => $base_uri . basename($image_file),
+            'caption'   => $caption,
+        );
     }
 
     return $posts;
@@ -117,12 +209,9 @@ function gruposnap_instagram_fetch_posts_from_api(): array
     $response = wp_remote_get(
         $url,
         array(
-            'timeout' => 15,
-            'headers' => array(
-                'User-Agent'      => 'Mozilla/5.0 (compatible; GrupoSnap/1.0; WordPress)',
-                'X-IG-App-ID'     => gruposnap_instagram_app_id(),
-                'Accept-Language' => 'es-ES,es;q=0.9',
-            ),
+            'timeout'   => 20,
+            'headers'   => gruposnap_instagram_request_headers(),
+            'sslverify' => true,
         )
     );
 
@@ -200,9 +289,6 @@ function gruposnap_render_instagram_section(): void
     echo '<h2 class="gruposnap-instagram__title" id="gruposnap-instagram-title">';
     esc_html_e('Síguenos en Instagram', 'gruposnap');
     echo '</h2>';
-    echo '<p class="gruposnap-instagram__subtitle">';
-    esc_html_e('Merch, activaciones y publicidad en República Dominicana — contenido fresco cada semana.', 'gruposnap');
-    echo '</p>';
     echo '</header>';
 
     if ($posts !== array()) {
