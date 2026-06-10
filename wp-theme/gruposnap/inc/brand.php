@@ -31,6 +31,7 @@ require_once get_stylesheet_directory() . '/inc/home-services.php';
 require_once get_stylesheet_directory() . '/inc/home-headings.php';
 require_once get_stylesheet_directory() . '/inc/home-about.php';
 require_once get_stylesheet_directory() . '/inc/home-responsive.php';
+require_once get_stylesheet_directory() . '/inc/viewport-pan-lock.php';
 require_once get_stylesheet_directory() . '/inc/custom-cursor.php';
 
 /**

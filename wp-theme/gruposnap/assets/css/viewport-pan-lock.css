@@ -1,0 +1,26 @@
+/**
+ * Tablet — bloquear deslizamiento horizontal con el dedo (sin cambiar diseño).
+ */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+	html,
+	body {
+		overflow-x: hidden !important;
+		max-width: 100%;
+		overscroll-behavior-x: none;
+		touch-action: pan-y;
+	}
+
+	#page,
+	#main,
+	#primary,
+	#content,
+	#header-wrapper,
+	#footer-wrapper,
+	.wrapper,
+	.main-wrapper,
+	.elementor {
+		max-width: 100%;
+		overflow-x: clip;
+	}
+}

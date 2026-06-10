@@ -17,6 +17,14 @@ body.elementor-page-751 {
 		overflow-x: hidden;
 		max-width: 100%;
 		overscroll-behavior-x: none;
+		touch-action: pan-y;
+	}
+
+	body.elementor-page-751 #page,
+	body.elementor-page-751 #main,
+	body.elementor-page-751 .elementor-751 {
+		max-width: 100%;
+		overflow-x: clip;
 	}
 }
 
@@ -78,6 +86,16 @@ body.elementor-page-751 {
 		max-width: 100% !important;
 		margin-left: auto !important;
 		margin-right: auto !important;
+	}
+
+	/* Evita desbordes laterales en tablet (mismas secciones que en móvil). */
+	.elementor-751 .elementor-top-section:has(.gruposnap-marketing-heading--catalog-2026),
+	.elementor-751 .elementor-top-section:has(.elementor-element-57435c6) {
+		overflow: hidden !important;
+	}
+
+	.elementor-751 .elementor-element-87ef98c {
+		overflow: hidden !important;
 	}
 }
 
